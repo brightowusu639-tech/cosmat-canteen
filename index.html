@@ -1207,44 +1207,176 @@ input:focus, select:focus, textarea:focus {
 
 /* ==========================================================================
    STUDENT FORM & PHOTO UPLOADER
+/* ==========================================================================
+   STUDENT FORM & LEARNERS DIRECTORY REDESIGN
+   Fintech & Modern School Admin Grade UI
    ========================================================================== */
+
+.learners-view-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.learners-view-header .view-header-content {
+  flex: 1;
+  min-width: 280px;
+}
+
+.btn-add-learner {
+  background: linear-gradient(135deg, #1d4ed8 0%, #0a1931 100%);
+  color: var(--white);
+  padding: 12px 24px;
+  font-size: 14.5px;
+  font-weight: 800;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 18px rgba(29, 78, 216, 0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.btn-add-learner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(29, 78, 216, 0.45);
+  background: linear-gradient(135deg, #2563eb 0%, #0e2242 100%);
+}
+
+.btn-add-learner svg {
+  transition: transform 0.2s ease;
+}
+
+.btn-add-learner:hover svg {
+  transform: rotate(90deg);
+}
+
+/* Collapsible Form Card */
+.student-form-card {
+  margin-bottom: 28px;
+  background: #ffffff;
+  border: 1.5px solid #bfdbfe;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.08), 0 4px 12px rgba(15, 23, 42, 0.04);
+  animation: slideFadeDown 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+@keyframes slideFadeDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 18px;
+  border-bottom: 1.5px solid #f1f5f9;
+  margin-bottom: 22px;
+}
+
+.form-title-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.form-icon-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.form-title-group h3 {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--slate-900);
+  line-height: 1.2;
+}
+
+.btn-icon-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-icon-close:hover {
+  background: #fee2e2;
+  color: #ef4444;
+  border-color: #fca5a5;
+  transform: rotate(90deg);
+}
 
 .student-form-layout {
   display: flex;
   gap: 32px;
   align-items: flex-start;
-  flex-wrap: wrap;
 }
 
+/* Photo Uploader Box */
 .photo-section {
+  width: 170px;
+  flex-shrink: 0;
+}
+
+.photo-uploader-box {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  background: #f8fafc;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: var(--radius-md);
+  padding: 18px 12px;
   gap: 12px;
-  width: 130px;
+  transition: all 0.2s ease;
+}
+
+.photo-uploader-box:hover {
+  border-color: #3b82f6;
+  background: #eff6ff;
 }
 
 .photo-circle {
-  width: 115px;
-  height: 115px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  background: var(--slate-100);
-  border: 2.5px dashed var(--slate-300);
+  background: #ffffff;
+  border: 3px solid #e2e8f0;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
   cursor: pointer;
-  color: var(--slate-500);
-  transition: all 0.2s ease;
-  box-shadow: var(--shadow-inner);
+  color: #64748b;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .photo-circle:hover {
-  border-color: var(--accent-500);
-  background: var(--accent-50);
-  transform: scale(1.02);
+  transform: scale(1.04);
+  border-color: #2563eb;
 }
 
 .photo-circle img {
@@ -1253,43 +1385,570 @@ input:focus, select:focus, textarea:focus {
   object-fit: cover;
 }
 
+#photoPlaceholderText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+#photoPlaceholderText small {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.photo-uploader-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
 .btn-photo-pick {
   font-size: 12px;
   font-weight: 700;
-  padding: 6px 14px;
-  background: var(--slate-100);
-  color: var(--slate-700);
+  padding: 7px 12px;
+  background: #ffffff;
+  color: #1e293b;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  border: 1px solid var(--slate-200);
+  border: 1.5px solid #cbd5e1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: var(--shadow-xs);
   transition: all 0.15s;
 }
 
 .btn-photo-pick:hover {
-  background: var(--slate-200);
+  background: #f1f5f9;
+  border-color: #94a3b8;
 }
 
+.btn-remove-photo {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.15s;
+}
+
+.btn-remove-photo:hover {
+  background: #fca5a5;
+  color: #991b1b;
+}
+
+.photo-hint {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* Fieldsets & Groupings */
 .inputs-section {
   flex: 1;
-  min-width: 320px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
 
-.form-footer {
-  margin-top: 24px;
-  padding-top: 18px;
-  border-top: 1px solid var(--slate-200);
+.form-fieldset {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 18px 16px;
+}
+
+.fieldset-legend {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #2563eb;
+  margin-bottom: 12px;
+}
+
+.input-with-icon {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 14px;
 }
 
-.form-feedback {
+.input-with-icon .input-icon {
+  position: absolute;
+  left: 14px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.input-with-icon input {
+  padding-left: 40px !important;
+}
+
+.rate-preview-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #ecfdf5;
+  border: 1.5px solid #a7f3d0;
+  border-radius: var(--radius-md);
   font-size: 13.5px;
-  color: var(--slate-500);
+}
+
+.rate-preview-pill span {
+  color: #065f46;
+  font-weight: 600;
+}
+
+.rate-preview-pill strong {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 800;
+  color: #047857;
+}
+
+/* Table Parent Contact & Action styles */
+.parent-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #2563eb;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+  padding: 3px 8px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-full);
+  transition: all 0.15s ease;
+}
+
+.parent-contact-link:hover {
+  background: #dbeafe;
+  color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.parent-contact-empty {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.qr-badge-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #1e293b;
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.qr-badge-btn:hover {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+  transform: translateY(-1px);
+}
+
+.view-profile-btn {
+  background: #0f2d59;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s ease;
+}
+
+.view-profile-btn:hover {
+  background: #1e40af;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(15, 45, 89, 0.35);
+}
+
+/* ==========================================================================
+   LEARNER PROFILE & DIGITAL ID PASS DIALOG
+   ========================================================================== */
+
+.profile-dialog {
+  border: 0;
+  border-radius: 20px;
+  padding: 0;
+  max-width: 520px;
+  width: 92vw;
+  box-shadow: 0 25px 65px -12px rgba(6, 16, 30, 0.45);
+  background: #ffffff;
+  margin: auto;
+}
+
+.profile-dialog::backdrop {
+  background: rgba(6, 16, 30, 0.7);
+  backdrop-filter: blur(8px);
+}
+
+.profile-modal-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 22px;
+  border-bottom: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.badge-pass-type {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #2563eb;
+  background: #dbeafe;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.modal-title-wrap h3 {
+  font-size: 17px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: 3px;
+}
+
+/* Digital ID Card Surface */
+.profile-id-card {
+  padding: 22px;
+  background: #ffffff;
+}
+
+.id-card-top-ribbon {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #06101e 0%, #1e3a8a 100%);
+  color: #ffffff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border-bottom: 3px solid #f59e0b;
+  margin-bottom: 18px;
+}
+
+.id-school-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f59e0b;
+  flex-shrink: 0;
+}
+
+.id-school-text {
+  flex: 1;
+}
+
+.id-school-text strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.id-school-text span {
+  font-size: 11px;
+  color: #cbd5e1;
   font-weight: 500;
+}
+
+.id-card-status-pill {
+  font-size: 10.5px;
+  font-weight: 800;
+  background: #10b981;
+  color: #ffffff;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+.id-student-lead {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.id-photo-frame {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 3px solid #f59e0b;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(10, 25, 49, 0.15);
+  flex-shrink: 0;
+  background: #eff6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.id-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.id-initials-avatar {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 900;
+  color: #1e3a8a;
+}
+
+.id-student-meta h2 {
+  font-size: 21px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.id-code-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.id-badge-code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 3px 9px;
+  border-radius: 6px;
+}
+
+.id-class-badge {
+  font-size: 12px;
+  font-weight: 700;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+}
+
+.id-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.id-info-cell {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.id-info-cell .cell-label {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 3px;
+}
+
+.id-info-cell strong {
+  font-size: 13.5px;
+  color: #0f172a;
+}
+
+.id-cell-highlight {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+.id-parent-card {
+  background: #fffdf5;
+  border: 1.5px solid #fef08a;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+}
+
+.parent-card-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #b45309;
+  margin-bottom: 8px;
+}
+
+.parent-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.parent-name {
+  display: block;
+  font-size: 13.5px;
+  color: #1e293b;
+  line-height: 1.3;
+}
+
+.parent-phone-text {
+  font-size: 13px;
+  color: #475569;
+  font-weight: 600;
+}
+
+.btn-call-parent {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #10b981;
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
+  transition: all 0.15s ease;
+}
+
+.btn-call-parent:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
+
+.id-qr-panel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.id-qr-box {
+  width: 105px;
+  height: 105px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.id-qr-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.id-qr-notes strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.id-qr-notes p {
+  margin: 0;
+  font-size: 11.5px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.profile-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 22px;
+  background: #f8fafc;
+  border-top: 1.5px solid #e2e8f0;
+  flex-wrap: wrap;
+}
+
+/* ID Card Print View Styles */
+@media print {
+  body.printing-id-card * {
+    visibility: hidden;
+  }
+  body.printing-id-card #learnerProfileModal,
+  body.printing-id-card #studentIdCardPrintArea,
+  body.printing-id-card #studentIdCardPrintArea * {
+    visibility: visible;
+  }
+  body.printing-id-card #learnerProfileModal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+  body.printing-id-card #studentIdCardPrintArea {
+    width: 90mm;
+    margin: 10mm auto;
+    border: 1.5px solid #000;
+    border-radius: 8px;
+    padding: 6mm;
+  }
+  body.printing-id-card .profile-modal-header,
+  body.printing-id-card .profile-modal-actions {
+    display: none !important;
+  }
 }
 
 /* ==========================================================================
@@ -2392,10 +3051,22 @@ input:focus, select:focus, textarea:focus {
 
     <!-- ==================== VIEW 1: LEARNERS DIRECTORY ==================== -->
     <section id="students" class="page-view">
-      <div class="view-header">
-        <div>
-          <h2>Learners Directory &amp; Profiles</h2>
-          <p>Register learners for canteen and bus transportation services with student ID photos.</p>
+      <div class="view-header learners-view-header">
+        <div class="view-header-content">
+          <div class="view-title-row">
+            <h2>Learners Directory &amp; Profiles</h2>
+            <span class="live-pos-badge" id="activeStudentHeaderBadge">
+              <span class="pulse-dot"></span>
+              <span id="headerBadgeCount">4 Learners Enrolled</span>
+            </span>
+          </div>
+          <p>Register learners, manage canteen &amp; transit subscriptions, view digital ID profiles, and generate scannable QR passes.</p>
+        </div>
+        <div class="view-header-actions">
+          <button id="toggleAddStudentBtn" class="btn btn-primary btn-add-learner" type="button">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span id="toggleAddStudentBtnText">+ Add New Learner</span>
+          </button>
         </div>
       </div>
 
@@ -2439,76 +3110,154 @@ input:focus, select:focus, textarea:focus {
         </div>
       </div>
 
-      <!-- Registration Form -->
-      <form id="studentForm" class="card form-card" autocomplete="off">
-        <div class="student-form-layout">
-          <div class="photo-section">
-            <div class="photo-circle" id="studentPhotoPreview" title="Upload Student Photo">
-              <span id="photoPlaceholderText">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                <small>Upload Photo</small>
-              </span>
-              <img id="studentPhotoImg" src="" alt="Student" hidden>
+      <!-- Professional Collapsible Learner Registration & Edit Card -->
+      <div id="studentFormCard" class="card student-form-card" hidden>
+        <div class="form-card-header">
+          <div class="form-title-group">
+            <div class="form-icon-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
             </div>
-            <label class="btn-photo-pick">
-              <span>Choose Image</span>
-              <input id="studentPhotoInput" type="file" accept="image/*" hidden>
-            </label>
-          </div>
-
-          <div class="inputs-section">
-            <div class="grid-3">
-              <div class="field-wrap">
-                <label for="studentName">Learner Full Name *</label>
-                <input id="studentName" required placeholder="e.g. Kwame Mensah">
-              </div>
-              <div class="field-wrap">
-                <label for="studentClass">Class / Grade *</label>
-                <input id="studentClass" required placeholder="e.g. Basic 4">
-              </div>
-              <div class="field-wrap">
-                <label for="familyMembers">Siblings in School *</label>
-                <input id="familyMembers" type="number" min="1" max="6" required value="1" placeholder="1–6">
-              </div>
-            </div>
-
-            <div class="grid-3">
-              <div class="field-wrap">
-                <label for="studentPaymentType">Meal &amp; Bus Plan *</label>
-                <select id="studentPaymentType">
-                  <option value="Canteen">Canteen Only</option>
-                  <option value="Bus &amp; Canteen">Bus &amp; Canteen</option>
-                </select>
-              </div>
-              <div class="field-wrap">
-                <label for="studentDistance">Bus Route Distance</label>
-                <select id="studentDistance" disabled>
-                  <option value="">Not Applicable</option>
-                  <option value="Short">Short Distance</option>
-                  <option value="Medium">Medium Distance</option>
-                  <option value="Long">Long Distance</option>
-                </select>
-              </div>
-              <div class="field-wrap">
-                <label for="studentStatus">Enrollment Status</label>
-                <select id="studentStatus">
-                  <option value="Active">Active Student</option>
-                  <option value="Left">Left School</option>
-                </select>
-              </div>
+            <div>
+              <h3 id="studentFormTitle">Register New Learner</h3>
+              <p id="studentFormSubtitle" class="card-subtext">Fill in learner information, select canteen meal &amp; transit services, and add parent/guardian contact.</p>
             </div>
           </div>
-        </div>
-
-        <div class="form-footer">
-          <button id="saveStudentButton" class="btn btn-primary" type="submit">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-            <span>Save Learner Profile</span>
+          <button id="closeStudentFormBtn" type="button" class="btn-icon-close" title="Close Form">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
           </button>
-          <button id="cancelStudentEditButton" class="btn btn-secondary" type="button" hidden>Cancel Edit</button>
-          <span id="studentFormMessage" class="form-feedback"></span>
         </div>
-      </form>
+
+        <form id="studentForm" autocomplete="off">
+          <div class="student-form-layout">
+            <!-- Left: Photo Upload & Avatar Preview -->
+            <div class="photo-section">
+              <div class="photo-uploader-box">
+                <div class="photo-circle" id="studentPhotoPreview" title="Click to upload student photo">
+                  <span id="photoPlaceholderText">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                    <small>Upload Photo</small>
+                  </span>
+                  <img id="studentPhotoImg" src="" alt="Student Preview" hidden>
+                </div>
+                <div class="photo-uploader-controls">
+                  <label class="btn-photo-pick" for="studentPhotoInput">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    <span>Choose Image</span>
+                    <input id="studentPhotoInput" type="file" accept="image/*" hidden>
+                  </label>
+                  <button id="removePhotoBtn" type="button" class="btn-remove-photo" hidden title="Remove Photo">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    <span>Remove</span>
+                  </button>
+                </div>
+                <span class="photo-hint">Passport photo · JPEG or PNG</span>
+              </div>
+            </div>
+
+            <!-- Right: Structured Form Fields -->
+            <div class="inputs-section">
+              <!-- Fieldset 1: Learner Identity -->
+              <div class="form-fieldset">
+                <span class="fieldset-legend">1. Learner Identity</span>
+                <div class="grid-2">
+                  <div class="field-wrap">
+                    <label for="studentName">Learner Full Name *</label>
+                    <div class="input-with-icon">
+                      <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                      <input id="studentName" required placeholder="e.g. Kwame Mensah">
+                    </div>
+                  </div>
+                  <div class="field-wrap">
+                    <label for="studentClass">Class / Grade *</label>
+                    <div class="input-with-icon">
+                      <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                      <input id="studentClass" required placeholder="e.g. Basic 4">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Fieldset 2: Parent / Guardian Contact Details (Requested Feature) -->
+              <div class="form-fieldset">
+                <span class="fieldset-legend">2. Parent / Guardian Contact Details</span>
+                <div class="grid-2">
+                  <div class="field-wrap">
+                    <label for="studentParentContact">Parent / Guardian Phone Number *</label>
+                    <div class="input-with-icon">
+                      <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                      <input id="studentParentContact" type="tel" placeholder="e.g. 024 123 4567 / +233 ...">
+                    </div>
+                  </div>
+                  <div class="field-wrap">
+                    <label for="studentParentName">Parent / Guardian Name (Optional)</label>
+                    <div class="input-with-icon">
+                      <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                      <input id="studentParentName" placeholder="e.g. Mr. Mensah (Father / Guardian)">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Fieldset 3: Services & Sibling Tier -->
+              <div class="form-fieldset">
+                <span class="fieldset-legend">3. Services &amp; Sibling Tier</span>
+                <div class="grid-3">
+                  <div class="field-wrap">
+                    <label for="studentPaymentType">Meal &amp; Bus Plan *</label>
+                    <select id="studentPaymentType">
+                      <option value="Canteen">Canteen Only</option>
+                      <option value="Bus &amp; Canteen">Bus &amp; Canteen</option>
+                    </select>
+                  </div>
+                  <div class="field-wrap">
+                    <label for="studentDistance">Bus Route Distance</label>
+                    <select id="studentDistance" disabled>
+                      <option value="">Not Applicable</option>
+                      <option value="Short">Short Distance</option>
+                      <option value="Medium">Medium Distance</option>
+                      <option value="Long">Long Distance</option>
+                    </select>
+                  </div>
+                  <div class="field-wrap">
+                    <label for="familyMembers">Siblings in School *</label>
+                    <input id="familyMembers" type="number" min="1" max="6" required value="1" placeholder="1–6">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Fieldset 4: Enrollment & Live Rate Estimate -->
+              <div class="form-fieldset">
+                <span class="fieldset-legend">4. School Status &amp; Rate Preview</span>
+                <div class="grid-2">
+                  <div class="field-wrap">
+                    <label for="studentStatus">Enrollment Status</label>
+                    <select id="studentStatus">
+                      <option value="Active">Active Student</option>
+                      <option value="Left">Left School</option>
+                    </select>
+                  </div>
+                  <div class="field-wrap">
+                    <label>Live Estimated Daily Charge</label>
+                    <div class="rate-preview-pill" id="formLiveRatePreview">
+                      <span>Daily Fee:</span>
+                      <strong id="formLiveRateValue">GH₵ 10.00</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-footer">
+            <button id="saveStudentButton" class="btn btn-primary" type="submit">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+              <span>Save Learner Profile</span>
+            </button>
+            <button id="cancelStudentEditButton" class="btn btn-secondary" type="button">Cancel</button>
+            <span id="studentFormMessage" class="form-feedback"></span>
+          </div>
+        </form>
+      </div>
 
       <!-- Student Directory Table -->
       <div class="card table-card">
@@ -2519,7 +3268,7 @@ input:focus, select:focus, textarea:focus {
           </div>
           <div class="search-box">
             <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input id="studentListSearch" placeholder="Search learner name or class...">
+            <input id="studentListSearch" placeholder="Search learner name, class, ID or parent contact...">
           </div>
         </div>
 
@@ -2527,12 +3276,12 @@ input:focus, select:focus, textarea:focus {
           <table class="data-table">
             <thead>
               <tr>
-                <th>Photo</th>
-                <th>Learner Name</th>
+                <th>Learner Profile</th>
                 <th>Class</th>
+                <th>Service Plan</th>
                 <th>Family Tier</th>
-                <th>Plan</th>
-                <th>Bus Route</th>
+                <th>Parent Contact</th>
+                <th>Digital Pass</th>
                 <th>Status</th>
                 <th class="text-right">Actions</th>
               </tr>
@@ -3246,6 +3995,117 @@ input:focus, select:focus, textarea:focus {
     </div>
   </dialog>
 
+  <!-- ==================== LEARNER PROFILE & DIGITAL ID MODAL ==================== -->
+  <dialog id="learnerProfileModal" class="profile-dialog">
+    <div class="profile-modal-box">
+      <!-- Top Header -->
+      <div class="profile-modal-header">
+        <div class="modal-title-wrap">
+          <span class="badge-pass-type">OFFICIAL STUDENT CANTEEN PASS</span>
+          <h3>Learner Profile &amp; Digital ID</h3>
+        </div>
+        <button id="closeProfileModalBtn" type="button" class="btn-icon-close" title="Close Profile">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <!-- Printable ID Card Area -->
+      <div class="profile-id-card" id="studentIdCardPrintArea">
+        <div class="id-card-top-ribbon">
+          <div class="id-school-logo">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+          </div>
+          <div class="id-school-text">
+            <strong>COSMAT BASIC SCHOOL</strong>
+            <span>Canteen &amp; Transportation Digital Pass</span>
+          </div>
+          <div class="id-card-status-pill" id="profileModalStatusPill">ACTIVE</div>
+        </div>
+
+        <div class="id-card-body">
+          <!-- Student Avatar & Name -->
+          <div class="id-student-lead">
+            <div class="id-photo-frame" id="profileModalPhotoFrame">
+              <img id="profileModalPhotoImg" src="" alt="Student Photo" hidden>
+              <div id="profileModalInitials" class="id-initials-avatar">KM</div>
+            </div>
+            <div class="id-student-meta">
+              <h2 id="profileModalName">Learner Name</h2>
+              <div class="id-code-row">
+                <span class="id-badge-code" id="profileModalId">STU-1001</span>
+                <span class="id-class-badge" id="profileModalClass">Basic 4</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Metrics Grid -->
+          <div class="id-info-grid">
+            <div class="id-info-cell">
+              <span class="cell-label">Service Plan</span>
+              <strong id="profileModalPlan">Canteen Only</strong>
+            </div>
+            <div class="id-info-cell">
+              <span class="cell-label">Bus Route</span>
+              <strong id="profileModalDistance">Not Applicable</strong>
+            </div>
+            <div class="id-info-cell">
+              <span class="cell-label">Family Discount</span>
+              <strong id="profileModalFamily">1 Sibling (Tier 1)</strong>
+            </div>
+            <div class="id-info-cell id-cell-highlight">
+              <span class="cell-label">Daily Standard Charge</span>
+              <strong id="profileModalDailyFee" class="text-green">GH₵ 10.00</strong>
+            </div>
+          </div>
+
+          <!-- Parent / Guardian Contact Card -->
+          <div class="id-parent-card">
+            <div class="parent-card-header">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <span>Emergency Parent / Guardian Contact</span>
+            </div>
+            <div class="parent-card-content">
+              <div>
+                <strong id="profileModalParentName" class="parent-name">—</strong>
+                <div class="parent-phone-row">
+                  <span id="profileModalParentPhone" class="parent-phone-text">No contact provided</span>
+                </div>
+              </div>
+              <a id="profileModalCallBtn" href="tel:" class="btn-call-parent" target="_blank" hidden>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <span>Call Parent</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Unique QR Code Box -->
+          <div class="id-qr-panel">
+            <div class="id-qr-box">
+              <img id="profileModalQrImg" class="id-qr-img" src="" alt="Student Scannable QR Pass">
+            </div>
+            <div class="id-qr-notes">
+              <strong>Official Canteen POS QR Pass</strong>
+              <p>Scan with terminal barcode/QR scanner or enter ID at checkout to charge meals or verify transit route.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="profile-modal-actions">
+        <button id="printStudentIdCardBtn" class="btn btn-primary" type="button">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          <span>Print Student ID &amp; QR Pass</span>
+        </button>
+        <button id="editStudentFromProfileBtn" class="btn btn-secondary" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+          <span>Edit This Learner</span>
+        </button>
+        <button id="closeProfileBtn" class="btn btn-secondary" type="button">Close</button>
+      </div>
+    </div>
+  </dialog>
+
   <!-- Toast Notification Notification Banner -->
   <div id="toast" role="status" aria-live="polite"></div>
 
@@ -3889,15 +4749,55 @@ window.stateStore = new StateStore();
   });
 
   // ===========================================================================
-  // STUDENT MANAGEMENT (PAGE 1)
+  // STUDENT MANAGEMENT & LEARNERS DIRECTORY (PAGE 1)
   // ===========================================================================
+  let activeProfileStudentId = null;
+
   function updateDistanceVisibility() {
     const isCanteen = $('studentPaymentType').value === 'Canteen';
     $('studentDistance').disabled = isCanteen;
     if (isCanteen) $('studentDistance').value = '';
+    updateFormRatePreview();
+  }
+
+  function updateFormRatePreview() {
+    const dummy = {
+      paymentType: $('studentPaymentType')?.value || 'Canteen',
+      distance: $('studentDistance')?.value || '',
+      familyMembers: Number($('familyMembers')?.value) || 1
+    };
+    const rate = stateStore.chargeFor(dummy);
+    if ($('formLiveRateValue')) {
+      $('formLiveRateValue').textContent = money(rate);
+    }
   }
 
   $('studentPaymentType')?.addEventListener('change', updateDistanceVisibility);
+  $('studentDistance')?.addEventListener('change', updateFormRatePreview);
+  $('familyMembers')?.addEventListener('input', updateFormRatePreview);
+
+  // Toggle Learner Registration Form
+  function toggleStudentForm(open) {
+    const card = $('studentFormCard');
+    const btnText = $('toggleAddStudentBtnText');
+    if (!card) return;
+
+    const shouldOpen = open !== undefined ? open : card.hidden;
+    if (shouldOpen) {
+      card.hidden = false;
+      if (btnText) btnText.textContent = '✕ Close Form';
+      updateDistanceVisibility();
+      updateFormRatePreview();
+      setTimeout(() => $('studentName')?.focus(), 100);
+    } else {
+      card.hidden = true;
+      if (btnText) btnText.textContent = '+ Add New Learner';
+      resetStudentForm();
+    }
+  }
+
+  $('toggleAddStudentBtn')?.addEventListener('click', () => toggleStudentForm());
+  $('closeStudentFormBtn')?.addEventListener('click', () => toggleStudentForm(false));
 
   // Photo upload & preview
   $('studentPhotoInput')?.addEventListener('change', event => {
@@ -3916,12 +4816,24 @@ window.stateStore = new StateStore();
       img.src = studentPhotoBase64;
       img.hidden = false;
       placeholder.hidden = true;
+      if ($('removePhotoBtn')) $('removePhotoBtn').hidden = false;
     };
     reader.readAsDataURL(file);
   });
 
   $('studentPhotoPreview')?.addEventListener('click', () => {
     $('studentPhotoInput')?.click();
+  });
+
+  $('removePhotoBtn')?.addEventListener('click', () => {
+    studentPhotoBase64 = null;
+    const img = $('studentPhotoImg');
+    const placeholder = $('photoPlaceholderText');
+    img.src = '';
+    img.hidden = true;
+    placeholder.hidden = false;
+    if ($('studentPhotoInput')) $('studentPhotoInput').value = '';
+    if ($('removePhotoBtn')) $('removePhotoBtn').hidden = true;
   });
 
   function resetStudentForm() {
@@ -3931,10 +4843,12 @@ window.stateStore = new StateStore();
     $('studentPhotoImg').src = '';
     $('studentPhotoImg').hidden = true;
     $('photoPlaceholderText').hidden = false;
+    if ($('removePhotoBtn')) $('removePhotoBtn').hidden = true;
     studentPhotoBase64 = null;
     editingStudentId = null;
+    $('studentFormTitle').textContent = 'Register New Learner';
     $('saveStudentButton').innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> <span>Save Learner Profile</span>';
-    $('cancelStudentEditButton').hidden = true;
+    $('cancelStudentEditButton').hidden = false;
     $('studentFormMessage').textContent = '';
     updateDistanceVisibility();
   }
@@ -3951,8 +4865,10 @@ window.stateStore = new StateStore();
       paymentType: $('studentPaymentType').value,
       distance: $('studentDistance').value,
       status: $('studentStatus').value,
+      parentContact: ($('studentParentContact')?.value || '').trim(),
+      parentName: ($('studentParentName')?.value || '').trim(),
       archived: current?.archived || false,
-      photoUrl: current?.photoUrl || '',
+      photoUrl: studentPhotoBase64 ? '' : (current?.photoUrl || ''),
       photoBase64: studentPhotoBase64 || null
     };
 
@@ -3968,7 +4884,8 @@ window.stateStore = new StateStore();
 
     // Save to local store immediately for instant UI responsiveness
     stateStore.upsertStudent(student);
-    resetStudentForm();
+    const wasEditing = Boolean(editingStudentId);
+    toggleStudentForm(false);
     renderStudents();
 
     // Async sync to Google Sheets & Drive
@@ -3979,9 +4896,9 @@ window.stateStore = new StateStore();
         stateStore.upsertStudent(student);
         renderStudents();
       }
-      toast(editingStudentId ? 'Student updated and synced to Google Sheets!' : 'Student saved and synced to Google Sheets!');
+      toast(wasEditing ? 'Learner profile updated and synced to Cloud!' : 'Learner registered and synced to Cloud!');
     } else {
-      toast('Student saved locally. Will sync when cloud is connected.');
+      toast('Learner saved locally. Will sync when cloud backend connects.');
     }
   });
 
@@ -3990,6 +4907,8 @@ window.stateStore = new StateStore();
     if (!student) return;
 
     editingStudentId = id;
+    toggleStudentForm(true);
+
     $('studentName').value = student.name;
     $('studentClass').value = student.class;
     $('familyMembers').value = student.familyMembers;
@@ -3997,28 +4916,115 @@ window.stateStore = new StateStore();
     updateDistanceVisibility();
     $('studentDistance').value = student.distance || '';
     $('studentStatus').value = student.status;
+    if ($('studentParentContact')) $('studentParentContact').value = student.parentContact || '';
+    if ($('studentParentName')) $('studentParentName').value = student.parentName || '';
 
     if (student.photoUrl) {
       $('studentPhotoImg').src = student.photoUrl;
       $('studentPhotoImg').hidden = false;
       $('photoPlaceholderText').hidden = true;
+      if ($('removePhotoBtn')) $('removePhotoBtn').hidden = false;
     } else {
       $('studentPhotoImg').hidden = true;
       $('photoPlaceholderText').hidden = false;
+      if ($('removePhotoBtn')) $('removePhotoBtn').hidden = true;
     }
 
+    $('studentFormTitle').textContent = `Edit Learner: ${student.name} (${student.id})`;
     $('saveStudentButton').innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> <span>Update Learner Profile</span>';
-    $('cancelStudentEditButton').hidden = false;
-    $('studentFormMessage').textContent = `Editing ${student.name}. Existing payments will remain intact.`;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    $('studentFormMessage').textContent = `Editing profile for ${student.name}. Existing payments remain safe.`;
+    
+    updateFormRatePreview();
+    $('studentFormCard')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
+
+  // Learner Profile & Digital ID Modal
+  function openLearnerProfileModal(id) {
+    const student = stateStore.students.find(s => s.id === id);
+    if (!student) return;
+
+    activeProfileStudentId = id;
+    $('profileModalName').textContent = student.name;
+    $('profileModalId').textContent = student.id;
+    $('profileModalClass').textContent = student.class;
+    $('profileModalPlan').textContent = student.paymentType;
+    $('profileModalDistance').textContent = student.distance ? `${student.distance} Route` : 'Not Applicable';
+    $('profileModalFamily').textContent = `${student.familyMembers} Sibling(s) (Tier ${student.familyMembers})`;
+    
+    const fee = stateStore.chargeFor(student);
+    $('profileModalDailyFee').textContent = money(fee);
+
+    const statusPill = $('profileModalStatusPill');
+    if (statusPill) {
+      statusPill.textContent = student.status.toUpperCase();
+      statusPill.style.background = student.status === 'Active' ? '#10b981' : '#f59e0b';
+    }
+
+    // Photo / Initials
+    const photoImg = $('profileModalPhotoImg');
+    const initialsDiv = $('profileModalInitials');
+    if (student.photoUrl) {
+      photoImg.src = student.photoUrl;
+      photoImg.hidden = false;
+      initialsDiv.hidden = true;
+    } else {
+      photoImg.hidden = true;
+      initialsDiv.textContent = student.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+      initialsDiv.hidden = false;
+    }
+
+    // Parent Contact
+    const parentPhone = $('profileModalParentPhone');
+    const parentName = $('profileModalParentName');
+    const callBtn = $('profileModalCallBtn');
+    if (parentName) parentName.textContent = student.parentName || 'Parent / Guardian';
+    if (parentPhone) parentPhone.textContent = student.parentContact || 'No contact number provided';
+
+    if (callBtn) {
+      if (student.parentContact) {
+        const cleanPhone = student.parentContact.replace(/[^0-9+]/g, '');
+        callBtn.href = `tel:${cleanPhone}`;
+        callBtn.hidden = false;
+      } else {
+        callBtn.hidden = true;
+      }
+    }
+
+    // Unique Scannable QR Code for Learner
+    const qrPayload = `COSMAT CANTEEN ID: ${student.id}\nLearner: ${student.name}\nClass: ${student.class}\nPlan: ${student.paymentType}\nParent: ${student.parentContact || 'N/A'}`;
+    const qrImg = $('profileModalQrImg');
+    if (qrImg) {
+      qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=2&data=${encodeURIComponent(qrPayload)}`;
+      qrImg.alt = `Unique Canteen QR Pass for ${student.name} (${student.id})`;
+    }
+
+    $('learnerProfileModal')?.showModal();
+  }
+
+  $('closeProfileModalBtn')?.addEventListener('click', () => $('learnerProfileModal')?.close());
+  $('closeProfileBtn')?.addEventListener('click', () => $('learnerProfileModal')?.close());
+
+  $('editStudentFromProfileBtn')?.addEventListener('click', () => {
+    $('learnerProfileModal')?.close();
+    if (activeProfileStudentId) {
+      beginStudentEdit(activeProfileStudentId);
+    }
+  });
+
+  $('printStudentIdCardBtn')?.addEventListener('click', () => {
+    document.body.classList.add('printing-id-card');
+    window.print();
+    setTimeout(() => {
+      document.body.classList.remove('printing-id-card');
+    }, 1200);
+  });
 
   async function archiveStudent(id) {
     const student = stateStore.students.find(s => s.id === id);
     if (!student) return;
 
     stateStore.setStudentArchived(id, true);
-    if (editingStudentId === id) resetStudentForm();
+    if (editingStudentId === id) toggleStudentForm(false);
     renderStudents();
     toast(`${student.name} moved to Recycle Bin.`);
 
@@ -4037,13 +5043,19 @@ window.stateStore = new StateStore();
   }
 
   function renderStudents() {
-    const term = ($('studentListSearch')?.value || '').toLowerCase();
+    const term = ($('studentListSearch')?.value || '').toLowerCase().trim();
     const all = stateStore.students;
-    const active = all.filter(s => !s.archived && (s.name.toLowerCase().includes(term) || s.class.toLowerCase().includes(term)));
+    const active = all.filter(s => !s.archived && (
+      s.name.toLowerCase().includes(term) ||
+      s.class.toLowerCase().includes(term) ||
+      s.id.toLowerCase().includes(term) ||
+      (s.parentContact && s.parentContact.toLowerCase().includes(term))
+    ));
     const recycled = all.filter(s => s.archived);
 
     const nonArchived = all.filter(s => !s.archived);
     $('activeStudentCount').textContent = `${nonArchived.length} registered learner(s)`;
+    if ($('headerBadgeCount')) $('headerBadgeCount').textContent = `${nonArchived.length} Learners Enrolled`;
     if ($('metricTotalStudents')) $('metricTotalStudents').textContent = nonArchived.length;
     if ($('metricCanteenOnly')) $('metricCanteenOnly').textContent = nonArchived.filter(s => s.paymentType === 'Canteen').length;
     if ($('metricBusCanteen')) $('metricBusCanteen').textContent = nonArchived.filter(s => s.paymentType === 'Bus & Canteen').length;
@@ -4051,29 +5063,58 @@ window.stateStore = new StateStore();
 
     $('studentList').innerHTML = active.length ? active.map(s => {
       const avatarHtml = s.photoUrl ?
-        `<img class="student-table-thumb" src="${escapeHtml(s.photoUrl)}" alt="Avatar">` :
-        `<span class="student-table-thumb" style="display:inline-flex;align-items:center;justify-content:center;font-weight:bold;color:#0f2d59;">${s.name.charAt(0)}</span>`;
+        `<img class="table-avatar-thumb" src="${escapeHtml(s.photoUrl)}" alt="Avatar">` :
+        `<span class="table-avatar-thumb" style="display:inline-flex;align-items:center;justify-content:center;font-weight:bold;color:#0f2d59;">${s.name.charAt(0)}</span>`;
+
+      const parentContactHtml = s.parentContact ?
+        `<a class="parent-contact-link" href="tel:${escapeHtml(s.parentContact.replace(/[^0-9+]/g, ''))}" title="Call Parent: ${escapeHtml(s.parentContact)}">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <span>${escapeHtml(s.parentContact)}</span>
+        </a>` :
+        `<span class="parent-contact-empty">—</span>`;
 
       return `<tr>
-        <td>${avatarHtml}</td>
-        <td><strong>${escapeHtml(s.name)}</strong></td>
-        <td>${escapeHtml(s.class)}</td>
+        <td>
+          <div class="table-learner-cell" style="cursor:pointer;" data-student-profile="${escapeHtml(s.id)}" title="Click to view digital ID pass">
+            ${avatarHtml}
+            <div>
+              <span class="learner-cell-name font-bold"><strong>${escapeHtml(s.name)}</strong></span>
+              <span class="learner-cell-id">${escapeHtml(s.id)}</span>
+            </div>
+          </div>
+        </td>
+        <td><span class="table-class-pill">${escapeHtml(s.class)}</span></td>
+        <td>
+          <span class="badge ${s.paymentType === 'Canteen' ? 'badge-blue' : 'badge-purple'}">${s.paymentType}</span>
+          ${s.distance ? `<small style="display:block;color:#64748b;margin-top:2px;">${escapeHtml(s.distance)} Route</small>` : ''}
+        </td>
         <td>${s.familyMembers} sibling(s)</td>
-        <td><span class="badge ${s.paymentType === 'Canteen' ? 'badge-blue' : 'badge-purple'}">${s.paymentType}</span></td>
-        <td>${s.distance || '—'}</td>
-        <td><span class="status ${s.status === 'Active' ? 'paid' : 'owing'}">${s.status}</span></td>
-        <td class="text-right">
-          <button type="button" class="edit-button" data-student-edit="${escapeHtml(s.id)}" title="Edit Learner">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-            <span>Edit</span>
-          </button>
-          <button type="button" class="archive-button" data-student-archive="${escapeHtml(s.id)}" title="Archive Learner">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-            <span>Archive</span>
+        <td>${parentContactHtml}</td>
+        <td>
+          <button type="button" class="qr-badge-btn" data-student-qr="${escapeHtml(s.id)}" title="View Unique Scannable QR Pass">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect></svg>
+            <span>QR Pass</span>
           </button>
         </td>
+        <td><span class="status ${s.status === 'Active' ? 'paid' : 'owing'}">${s.status}</span></td>
+        <td class="text-right">
+          <div class="table-action-btns">
+            <button type="button" class="view-profile-btn" data-student-profile="${escapeHtml(s.id)}" title="View Learner Profile & ID Pass">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              <span>Profile</span>
+            </button>
+            <button type="button" class="edit-button" data-student-edit="${escapeHtml(s.id)}" title="Edit Learner Information">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+              <span>Edit</span>
+            </button>
+            <button type="button" class="archive-button" data-student-archive="${escapeHtml(s.id)}" title="Archive Learner">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              <span>Archive</span>
+            </button>
+          </div>
+        </td>
       </tr>`;
-    }).join('') : '<tr><td class="empty" colspan="8">No active students found.</td></tr>';
+    }).join('') : '<tr><td class="empty" colspan="8">No registered learners found matching your criteria.</td></tr>';
 
     $('recycleList').innerHTML = recycled.length ? recycled.map(s => `
       <tr>
@@ -4082,7 +5123,7 @@ window.stateStore = new StateStore();
         <td>${s.status}</td>
         <td class="text-right">
           <button type="button" class="restore-button" data-student-restore="${escapeHtml(s.id)}" title="Restore Learner">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
             <span>Restore</span>
           </button>
         </td>
@@ -4091,10 +5132,17 @@ window.stateStore = new StateStore();
   }
 
   $('studentList')?.addEventListener('click', e => {
-    const btn = e.target.closest('button');
-    if (!btn) return;
-    if (btn.dataset.studentEdit) beginStudentEdit(btn.dataset.studentEdit);
-    if (btn.dataset.studentArchive) archiveStudent(btn.dataset.studentArchive);
+    const editBtn = e.target.closest('[data-student-edit]');
+    if (editBtn) return beginStudentEdit(editBtn.dataset.studentEdit);
+
+    const archiveBtn = e.target.closest('[data-student-archive]');
+    if (archiveBtn) return archiveStudent(archiveBtn.dataset.studentArchive);
+
+    const qrBtn = e.target.closest('[data-student-qr]');
+    if (qrBtn) return openLearnerProfileModal(qrBtn.dataset.studentQr);
+
+    const profileEl = e.target.closest('[data-student-profile]');
+    if (profileEl) return openLearnerProfileModal(profileEl.dataset.studentProfile);
   });
 
   $('recycleList')?.addEventListener('click', e => {
@@ -4102,7 +5150,7 @@ window.stateStore = new StateStore();
     if (btn) restoreStudent(btn.dataset.studentRestore);
   });
 
-  $('cancelStudentEditButton')?.addEventListener('click', resetStudentForm);
+  $('cancelStudentEditButton')?.addEventListener('click', () => toggleStudentForm(false));
   $('studentListSearch')?.addEventListener('input', renderStudents);
 
   // ===========================================================================
@@ -4157,21 +5205,40 @@ window.stateStore = new StateStore();
 
   function renderStudentMatches() {
     const box = $('studentMatches');
-    const term = ($('canteenStudentSearch')?.value || '').trim().toLowerCase();
-    if (!term) {
+    let rawTerm = ($('canteenStudentSearch')?.value || '').trim();
+    if (!rawTerm) {
       box.hidden = true;
       return;
     }
 
+    // If a full QR code payload was scanned (e.g. contains "COSMAT CANTEEN ID: STU-XXXX" or "STU-XXXX")
+    const stuMatch = rawTerm.match(/STU-\d+/i);
+    const searchId = stuMatch ? stuMatch[0].toUpperCase() : null;
+
+    const term = rawTerm.toLowerCase();
+
     const matches = stateStore.students
-      .filter(s => !s.archived && s.status === 'Active' && (s.name.toLowerCase().includes(term) || s.class.toLowerCase().includes(term)))
+      .filter(s => !s.archived && s.status === 'Active' && (
+        (searchId && s.id.toUpperCase() === searchId) ||
+        s.name.toLowerCase().includes(term) ||
+        s.class.toLowerCase().includes(term) ||
+        s.id.toLowerCase().includes(term)
+      ))
       .slice(0, 7);
+
+    // If exact QR code scan match
+    if (searchId && matches.length === 1) {
+      selectStudent(matches[0].id);
+      box.hidden = true;
+      toast(`QR Scanned: Selected ${matches[0].name} (${matches[0].id})`);
+      return;
+    }
 
     box.innerHTML = matches.length ? matches.map(s => `
       <div class="match" data-id="${escapeHtml(s.id)}">
         <div class="match-avatar">${s.name.charAt(0)}</div>
         <div class="match-info">
-          <strong>${escapeHtml(s.name)}</strong>
+          <strong>${escapeHtml(s.name)} <span style="font-family:monospace;font-size:11px;color:#2563eb;">(${s.id})</span></strong>
           <small>${escapeHtml(s.class)} · ${s.paymentType} · Family of ${s.familyMembers}</small>
         </div>
       </div>
