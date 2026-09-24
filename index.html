@@ -423,7 +423,8 @@ h1, h2, h3, h4, h5 {
   color: var(--brand-900);
 }
 
-.live-pos-badge {
+.live-pos-badge,
+.view-header-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -435,6 +436,24 @@ h1, h2, h3, h4, h5 {
   font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.02em;
+}
+
+.audit-badge {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+}
+
+.report-badge {
+  background: #faf5ff;
+  color: #7e22ce;
+  border-color: #e9d5ff;
+}
+
+.cloud-badge {
+  background: #f0fdf4;
+  color: #047857;
+  border-color: #bbf7d0;
 }
 
 .pulse-dot {
@@ -1226,19 +1245,30 @@ input:focus, select:focus, textarea:focus {
   min-width: 280px;
 }
 
+.view-eyebrow {
+  display: block;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2563eb;
+  margin-bottom: 4px;
+}
+
 .btn-add-learner {
   background: linear-gradient(135deg, #1d4ed8 0%, #0a1931 100%);
-  color: var(--white);
-  padding: 12px 24px;
-  font-size: 14.5px;
+  color: #ffffff;
+  padding: 11px 22px;
+  font-size: 14px;
   font-weight: 800;
   border-radius: var(--radius-full);
   box-shadow: 0 4px 18px rgba(29, 78, 216, 0.35);
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
 }
 
@@ -1248,27 +1278,182 @@ input:focus, select:focus, textarea:focus {
   background: linear-gradient(135deg, #2563eb 0%, #0e2242 100%);
 }
 
-.btn-add-learner svg {
+.btn-add-learner.is-open {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1.5px solid #cbd5e1;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+.btn-add-learner.is-open:hover {
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fca5a5;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.2s ease;
 }
 
-.btn-add-learner:hover svg {
-  transform: rotate(90deg);
+.btn-add-learner:hover .btn-icon-wrapper {
+  transform: scale(1.1);
 }
 
-/* Collapsible Form Card */
+/* ==========================================================================
+   EXECUTIVE FINTECH KPI STRIP
+   ========================================================================== */
+.metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 26px;
+}
+
+@media (max-width: 1024px) {
+  .metrics-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .metrics-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
+.metric-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid var(--slate-200);
+  border-radius: 16px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.metric-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.03);
+  border-color: #cbd5e1;
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3.5px;
+}
+
+.metric-card-blue::before {
+  background: linear-gradient(90deg, #2563eb, #60a5fa);
+}
+.metric-card-green::before {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+.metric-card-purple::before {
+  background: linear-gradient(90deg, #8b5cf6, #c084fc);
+}
+.metric-card-amber::before {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.metric-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.metric-icon-box {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.metric-card:hover .metric-icon-box {
+  transform: scale(1.08);
+}
+
+.metric-kpi-tag {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+}
+
+.tag-blue   { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
+.tag-green  { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+.tag-purple { background: #f5f3ff; color: #6b21a8; border: 1px solid #ddd6fe; }
+.tag-amber  { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+
+.metric-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-num {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--slate-900);
+  line-height: 1;
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+}
+
+.metric-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--slate-700);
+  margin: 0 0 2px;
+}
+
+.metric-subtext {
+  font-size: 11.5px;
+  color: var(--slate-400);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   COLLAPSIBLE REGISTRATION & EDIT FORM CARD
+   ========================================================================== */
 .student-form-card {
   margin-bottom: 28px;
   background: #ffffff;
   border: 1.5px solid #bfdbfe;
-  border-radius: var(--radius-lg);
-  box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.08), 0 4px 12px rgba(15, 23, 42, 0.04);
-  animation: slideFadeDown 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 20px;
+  box-shadow: 0 14px 40px -10px rgba(15, 23, 42, 0.08), 0 4px 16px rgba(37, 99, 235, 0.05);
+  animation: slideFadeDown 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
+  position: relative;
+  padding: 0 !important;
+}
+
+.form-card-accent-bar {
+  height: 4px;
+  background: linear-gradient(90deg, #2563eb 0%, #8b5cf6 50%, #10b981 100%);
 }
 
 @keyframes slideFadeDown {
-  from { opacity: 0; transform: translateY(-12px); }
+  from { opacity: 0; transform: translateY(-14px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -1276,21 +1461,35 @@ input:focus, select:focus, textarea:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 18px;
+  padding: 20px 28px 18px;
   border-bottom: 1.5px solid #f1f5f9;
-  margin-bottom: 22px;
 }
 
 .form-title-group {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 15px;
+}
+
+.form-badge-pill {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: #eff6ff;
+  color: #1e40af;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #bfdbfe;
+  display: inline-block;
+  margin-bottom: 3px;
 }
 
 .form-icon-circle {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
   background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
   color: #2563eb;
   border: 1px solid #bfdbfe;
@@ -1298,10 +1497,11 @@ input:focus, select:focus, textarea:focus {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.12);
 }
 
 .form-title-group h3 {
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 800;
   color: var(--slate-900);
   line-height: 1.2;
@@ -1318,7 +1518,7 @@ input:focus, select:focus, textarea:focus {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.18s ease;
 }
 
 .btn-icon-close:hover {
@@ -1328,15 +1528,28 @@ input:focus, select:focus, textarea:focus {
   transform: rotate(90deg);
 }
 
+#studentForm {
+  padding: 24px 28px 20px;
+}
+
 .student-form-layout {
   display: flex;
-  gap: 32px;
+  gap: 28px;
   align-items: flex-start;
 }
 
-/* Photo Uploader Box */
+@media (max-width: 900px) {
+  .student-form-layout {
+    flex-direction: column;
+  }
+  .photo-section {
+    width: 100% !important;
+  }
+}
+
+/* Biometric Photo Studio */
 .photo-section {
-  width: 170px;
+  width: 185px;
   flex-shrink: 0;
 }
 
@@ -1345,38 +1558,60 @@ input:focus, select:focus, textarea:focus {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: #f8fafc;
-  border: 1.5px dashed #cbd5e1;
-  border-radius: var(--radius-md);
-  padding: 18px 12px;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 18px 14px;
   gap: 12px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.02);
   transition: all 0.2s ease;
 }
 
 .photo-uploader-box:hover {
-  border-color: #3b82f6;
+  border-color: #93c5fd;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08);
+}
+
+.photo-uploader-badge {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1e40af;
   background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.photo-circle-container {
+  position: relative;
+  margin: 4px 0;
 }
 
 .photo-circle {
-  width: 110px;
-  height: 110px;
+  width: 118px;
+  height: 118px;
   border-radius: 50%;
-  background: #ffffff;
-  border: 3px solid #e2e8f0;
+  background: #f8fafc;
+  border: 3px solid #3b82f6;
+  outline: 3.5px solid rgba(59, 130, 246, 0.15);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: #64748b;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s ease, outline-color 0.2s ease;
 }
 
 .photo-circle:hover {
-  transform: scale(1.04);
-  border-color: #2563eb;
+  transform: scale(1.03);
+  outline-color: rgba(59, 130, 246, 0.35);
 }
 
 .photo-circle img {
@@ -1385,18 +1620,53 @@ input:focus, select:focus, textarea:focus {
   object-fit: cover;
 }
 
+.photo-camera-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #eff6ff;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
 #photoPlaceholderText {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
 }
 
 #photoPlaceholderText small {
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: #64748b;
+}
+
+.photo-change-badge-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  background: #2563eb;
+  color: #ffffff;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.photo-change-badge-btn:hover {
+  background: #1d4ed8;
+  transform: scale(1.1);
 }
 
 .photo-uploader-controls {
@@ -1412,15 +1682,15 @@ input:focus, select:focus, textarea:focus {
   padding: 7px 12px;
   background: #ffffff;
   color: #1e293b;
-  border-radius: var(--radius-sm);
+  border-radius: 8px;
   cursor: pointer;
   border: 1.5px solid #cbd5e1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  box-shadow: var(--shadow-xs);
-  transition: all 0.15s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.15s ease;
 }
 
 .btn-photo-pick:hover {
@@ -1431,17 +1701,17 @@ input:focus, select:focus, textarea:focus {
 .btn-remove-photo {
   font-size: 11px;
   font-weight: 700;
-  padding: 4px 8px;
+  padding: 5px 8px;
   background: #fee2e2;
   color: #dc2626;
-  border: 1px solid #fecaca;
-  border-radius: var(--radius-sm);
+  border: 1px solid #fca5a5;
+  border-radius: 6px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
-  transition: all 0.15s;
+  transition: all 0.15s ease;
 }
 
 .btn-remove-photo:hover {
@@ -1449,13 +1719,30 @@ input:focus, select:focus, textarea:focus {
   color: #991b1b;
 }
 
-.photo-hint {
-  font-size: 11px;
-  color: #94a3b8;
-  font-weight: 500;
+.photo-specs-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 6px 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
 }
 
-/* Fieldsets & Groupings */
+.photo-specs-card span {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #475569;
+}
+
+.photo-specs-card small {
+  font-size: 9.5px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+/* Step Form Fieldsets */
 .inputs-section {
   flex: 1;
   display: flex;
@@ -1463,21 +1750,76 @@ input:focus, select:focus, textarea:focus {
   gap: 16px;
 }
 
-.form-fieldset {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 14px 18px 16px;
+.form-step-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.fieldset-legend {
-  display: block;
+.form-step-card:focus-within {
+  border-color: #93c5fd;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.06);
+}
+
+.guardian-step-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+}
+
+.fieldset-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.step-num-pill {
+  font-family: var(--font-mono, monospace);
   font-size: 11px;
   font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+.step-pill-green  { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
+.step-pill-purple { background: #f5f3ff; color: #6d28d9; border-color: #ddd6fe; }
+.step-pill-amber  { background: #fffbeb; color: #b45309; border-color: #fde68a; }
+
+.fieldset-legend {
+  font-size: 12px;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #2563eb;
-  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+  color: #1e293b;
+}
+
+.fieldset-sub-tag {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+  margin-left: auto;
+}
+
+.req-star {
+  color: #ef4444;
+  font-weight: 800;
+  margin-left: 2px;
+}
+
+.field-hint-text {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 4px;
+  display: block;
 }
 
 .input-with-icon {
@@ -1494,51 +1836,306 @@ input:focus, select:focus, textarea:focus {
 }
 
 .input-with-icon input {
-  padding-left: 40px !important;
+  padding-left: 42px !important;
 }
 
-.rate-preview-pill {
+/* Live Rate Breakdown Widget */
+.live-rate-breakdown-card {
+  background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+  border: 1.5px solid #a7f3d0;
+  border-radius: 12px;
+  padding: 12px 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 16px;
-  background: #ecfdf5;
-  border: 1.5px solid #a7f3d0;
-  border-radius: var(--radius-md);
-  font-size: 13.5px;
+  gap: 14px;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.08);
 }
 
-.rate-preview-pill span {
-  color: #065f46;
-  font-weight: 600;
+.rate-breakdown-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.rate-preview-pill strong {
-  font-family: var(--font-heading);
-  font-size: 16px;
+.rate-breakdown-label {
+  font-size: 10.5px;
   font-weight: 800;
-  color: #047857;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #065f46;
 }
 
-/* Table Parent Contact & Action styles */
+.rate-breakdown-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.calc-tag {
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.85);
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.rate-breakdown-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.rate-total-num {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 900;
+  color: #047857;
+  line-height: 1.1;
+}
+
+.rate-freq-pill {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #065f46;
+}
+
+/* Form Footer */
+.form-footer {
+  padding: 18px 28px;
+  background: #f8fafc;
+  border-top: 1.5px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 20px;
+  border-radius: 0 0 18px 18px;
+}
+
+.form-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-save-student {
+  background: linear-gradient(135deg, #1d4ed8 0%, #0a1931 100%);
+  color: #ffffff;
+  padding: 11px 24px;
+  font-size: 14px;
+  font-weight: 800;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(29, 78, 216, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-save-student:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #0e2242 100%);
+  box-shadow: 0 6px 20px rgba(29, 78, 216, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Table Card & Roster Aesthetics */
+.table-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+}
+
+.card-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.card-toolbar h3 {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--slate-900);
+}
+
+.badge-count {
+  font-size: 12px;
+  font-weight: 700;
+  color: #2563eb;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.search-box {
+  position: relative;
+  min-width: 280px;
+}
+
+.search-box .search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.search-box input {
+  padding-left: 38px !important;
+  border-radius: var(--radius-full) !important;
+  font-size: 13.5px;
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  transition: all 0.2s ease;
+}
+
+.search-box input:focus {
+  background: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.table-container {
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.data-table thead th {
+  background: #f8fafc;
+  color: #475569;
+  font-size: 11.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 13px 16px;
+  border-bottom: 1.5px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.data-table tbody td {
+  padding: 13px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13.5px;
+  vertical-align: middle;
+}
+
+.data-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.data-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.table-learner-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.table-avatar-thumb {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e2e8f0;
+  background: #eff6ff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+  flex-shrink: 0;
+}
+
+.learner-cell-name {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--slate-900);
+  line-height: 1.2;
+}
+
+.learner-cell-id {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  color: #1e40af;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 1px 6px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 3px;
+}
+
+.table-class-pill {
+  font-size: 12.5px;
+  font-weight: 700;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  padding: 3px 9px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.badge-blue {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  font-weight: 700;
+  font-size: 11.5px;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+.badge-purple {
+  background: #f5f3ff;
+  color: #6d28d9;
+  border: 1px solid #ddd6fe;
+  font-weight: 700;
+  font-size: 11.5px;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
 .parent-contact-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #2563eb;
+  color: #1d4ed8;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 12.5px;
   text-decoration: none;
-  padding: 3px 8px;
+  padding: 3px 9px;
   background: #eff6ff;
   border: 1px solid #bfdbfe;
   border-radius: var(--radius-full);
   transition: all 0.15s ease;
+  white-space: nowrap;
 }
 
 .parent-contact-link:hover {
   background: #dbeafe;
-  color: #1d4ed8;
+  color: #1e40af;
   transform: translateY(-1px);
 }
 
@@ -1551,36 +2148,45 @@ input:focus, select:focus, textarea:focus {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  background: #f1f5f9;
-  border: 1px solid #cbd5e1;
-  color: #1e293b;
+  background: #0f172a;
+  border: 1px solid #0f172a;
+  color: #ffffff;
   font-size: 11.5px;
   font-weight: 800;
   padding: 4px 10px;
   border-radius: var(--radius-full);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.2);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.18s ease;
+  white-space: nowrap;
 }
 
 .qr-badge-btn:hover {
-  background: #0f172a;
-  color: #ffffff;
-  border-color: #0f172a;
+  background: #2563eb;
+  border-color: #2563eb;
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.table-action-btns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-end;
 }
 
 .view-profile-btn {
-  background: #0f2d59;
+  background: #0a1931;
   color: #ffffff;
   font-size: 12px;
   font-weight: 700;
-  padding: 6px 12px;
-  border-radius: var(--radius-sm);
+  padding: 5px 10px;
+  border-radius: 6px;
   border: 0;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   transition: all 0.15s ease;
 }
 
@@ -1590,92 +2196,164 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 0 2px 8px rgba(15, 45, 89, 0.35);
 }
 
+.edit-button {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+}
+
+.edit-button:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+  transform: translateY(-1px);
+}
+
+.archive-button {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+}
+
+.archive-button:hover {
+  background: #fee2e2;
+  color: #b91c1c;
+  transform: translateY(-1px);
+}
+
+.restore-button {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+}
+
+.restore-button:hover {
+  background: #d1fae5;
+  color: #047857;
+  transform: translateY(-1px);
+}
+
 /* ==========================================================================
-   EXECUTIVE DIGITAL STUDENT SMARTPASS & VIP CARD MODAL
-   State-of-the-Art Physical / Digital Smartcard Aesthetics
+   PROFESSIONAL STUDENT PROFILE & AUTHENTIC SCHOOL ID MODAL
+   Clean, Elegant, Real-World School Identity & Print System
    ========================================================================== */
 
 .profile-dialog {
   border: 0;
-  border-radius: 28px;
+  border-radius: 16px;
   padding: 0;
-  max-width: 530px;
-  width: 94vw;
-  box-shadow: 0 35px 90px -20px rgba(0, 0, 0, 0.8), 0 0 50px rgba(37, 99, 235, 0.25);
+  max-width: 620px;
+  width: 92vw;
+  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.25), 0 0 1px rgba(15, 23, 42, 0.1);
   background: transparent;
   margin: auto;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .profile-dialog::backdrop {
-  background: radial-gradient(circle at center, rgba(14, 34, 66, 0.88) 0%, rgba(4, 9, 20, 0.96) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .profile-modal-shell {
-  background: linear-gradient(180deg, #091322 0%, #060c17 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.12);
-  border-radius: 28px;
+  background: #ffffff;
+  border: 1px solid var(--slate-300);
+  border-radius: 16px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  max-height: 88vh;
+  box-shadow: var(--shadow-lg);
 }
 
-.profile-modal-topbar {
+.profile-modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 22px;
-  background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px 22px;
+  background: #ffffff;
+  border-bottom: 1.5px solid var(--slate-200);
 }
 
-.credential-auth-tag {
-  display: inline-flex;
+.modal-header-left {
+  display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 10px;
+  gap: 12px;
+}
+
+.modal-header-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.modal-header-title {
+  font-size: 17px;
   font-weight: 800;
-  letter-spacing: 0.1em;
-  color: #93c5fd;
-  text-transform: uppercase;
+  color: var(--slate-900);
+  margin: 0;
+  line-height: 1.2;
 }
 
-.auth-dot-live {
-  width: 7px;
-  height: 7px;
+.modal-header-subtitle {
+  font-size: 12px;
+  color: var(--slate-500);
+  margin: 2px 0 0;
+  font-weight: 500;
+}
+
+.btn-modal-close {
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: #38bdf8;
-  box-shadow: 0 0 10px #38bdf8;
-  animation: pulseCyan 2s infinite;
-}
-
-@keyframes pulseCyan {
-  0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
-  70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(56, 189, 248, 0); }
-  100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
-}
-
-.btn-modal-dismiss {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #cbd5e1;
+  background: var(--slate-100);
+  border: 1px solid var(--slate-200);
+  color: var(--slate-600);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.15s ease;
 }
 
-.btn-modal-dismiss:hover {
-  background: rgba(239, 68, 68, 0.25);
-  color: #f87171;
-  border-color: rgba(239, 68, 68, 0.4);
+.btn-modal-close:hover {
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fca5a5;
   transform: rotate(90deg);
 }
 
@@ -1683,405 +2361,157 @@ input:focus, select:focus, textarea:focus {
   padding: 20px 22px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  max-height: 80vh;
+  gap: 16px;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  scrollbar-color: var(--slate-300) transparent;
 }
 
 .profile-modal-body::-webkit-scrollbar {
   width: 6px;
 }
 .profile-modal-body::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--slate-300);
   border-radius: 6px;
 }
 
-/* Masterpiece Physical / Digital PVC Smart Card */
-.smart-pass-card {
-  position: relative;
-  border-radius: 22px;
-  padding: 22px 20px;
-  background: linear-gradient(135deg, #09172e 0%, #11284d 40%, #0c1c38 80%, #071224 100%);
-  border: 1.5px solid rgba(245, 158, 11, 0.45);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 0 24px rgba(37, 99, 235, 0.15);
+/* ==========================================================================
+   AUTHENTIC CR80 PHYSICAL/DIGITAL STUDENT ID CARD
+   ========================================================================== */
+.id-card-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.school-id-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
   overflow: hidden;
+  color: var(--slate-900);
+  transition: all 0.2s ease;
+}
+
+.id-card-header {
+  background: linear-gradient(135deg, #0a1931 0%, #1e3a8a 100%);
   color: #ffffff;
-}
-
-.smart-pass-card::before {
-  content: "";
-  position: absolute;
-  top: -60%;
-  left: -60%;
-  width: 220%;
-  height: 220%;
-  background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.04) 47%, rgba(255, 255, 255, 0.09) 50%, transparent 53%);
-  pointer-events: none;
-}
-
-.card-security-pattern {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    radial-gradient(rgba(245, 158, 11, 0.08) 1px, transparent 0),
-    radial-gradient(rgba(59, 130, 246, 0.06) 1px, transparent 0);
-  background-size: 14px 14px;
-  background-position: 0 0, 7px 7px;
-  opacity: 0.9;
-  pointer-events: none;
-}
-
-.card-security-hologram {
-  position: absolute;
-  right: 18px;
-  bottom: 80px;
-  font-family: var(--font-heading);
-  font-size: 26px;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.035);
-  transform: rotate(-18deg);
-  pointer-events: none;
-  text-transform: uppercase;
-  user-select: none;
-}
-
-/* Card Header Band: Gold Crest & EMV Chip */
-.card-header-band {
+  padding: 10px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 20px;
-  border-bottom: 1.5px solid rgba(245, 158, 11, 0.3);
-  padding-bottom: 14px;
-  position: relative;
-  z-index: 1;
+  gap: 10px;
 }
 
-.card-school-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.school-crest-emblem {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(217, 119, 6, 0.15) 100%);
-  border: 1.5px solid rgba(245, 158, 11, 0.6);
-  color: #fbbf24;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 16px rgba(245, 158, 11, 0.2);
-  flex-shrink: 0;
-}
-
-.brand-school-name {
-  font-family: var(--font-heading);
-  font-size: 15px;
-  font-weight: 900;
-  letter-spacing: 0.05em;
-  background: linear-gradient(180deg, #ffffff 0%, #fde047 60%, #eab308 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 0;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
-.brand-school-sub {
-  font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #93c5fd;
-  text-transform: uppercase;
-  display: block;
-  margin-top: 2px;
-}
-
-.card-header-right {
+.id-school-brand {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-/* Realistic EMV Smartcard Chip */
-.emv-gold-chip {
-  width: 38px;
-  height: 28px;
-  border-radius: 5px;
-  background: linear-gradient(135deg, #fef08a 0%, #d97706 45%, #b45309 85%, #fde047 100%);
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 2px 6px rgba(0, 0, 0, 0.4);
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.emv-gold-chip .chip-line.horizontal {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.35);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-.emv-gold-chip .chip-line.vertical {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: rgba(0, 0, 0, 0.35);
-  box-shadow: 1px 0 0 rgba(255, 255, 255, 0.3);
-}
-
-.smart-status-badge {
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 0.06em;
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
-  background: rgba(16, 185, 129, 0.2);
-  border: 1.5px solid #10b981;
-  color: #34d399;
-  box-shadow: 0 0 14px rgba(16, 185, 129, 0.35);
-  text-transform: uppercase;
-}
-
-/* Card Identity Grid */
-.card-identity-grid {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
-}
-
-.biometric-photo-frame {
-  width: 82px;
-  height: 82px;
-  border-radius: 18px;
-  border: 2.5px solid #f59e0b;
-  background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4), 0 0 16px rgba(245, 158, 11, 0.25);
-  position: relative;
-  overflow: hidden;
+.id-school-crest {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 
-.biometric-photo-frame img {
+.id-school-title {
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.id-school-subtitle {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #93c5fd;
+  text-transform: uppercase;
+  display: block;
+}
+
+.id-status-badge {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+}
+
+.id-status-badge.status-active {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+.id-status-badge.status-suspended {
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+/* Card Content: 3-Column Clean Layout */
+.id-card-content {
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: #ffffff;
+}
+
+@media (max-width: 580px) {
+  .id-card-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.id-photo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.id-photo-box {
+  width: 82px;
+  height: 98px;
+  border-radius: 8px;
+  border: 1.5px solid #cbd5e1;
+  background: #f8fafc;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+}
+
+.id-photo-box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.biometric-initials-avatar {
+.id-photo-initials {
   font-family: var(--font-heading);
   font-size: 26px;
-  font-weight: 900;
-  color: #ffffff;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-}
-
-.biometric-seal-stamp {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(217, 119, 6, 0.92);
-  color: #ffffff;
-  font-size: 7.5px;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  padding: 2px 0;
-  text-transform: uppercase;
-}
-
-.id-type-label {
-  display: block;
-  font-size: 9.5px;
   font-weight: 800;
-  letter-spacing: 0.12em;
-  color: #f59e0b;
-  text-transform: uppercase;
-  margin-bottom: 3px;
-}
-
-.card-student-name {
-  font-family: var(--font-heading);
-  font-size: 22px;
-  font-weight: 800;
-  color: #ffffff;
-  margin: 0 0 8px;
-  line-height: 1.2;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-}
-
-.card-badge-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.smart-id-pill {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  font-weight: 800;
-  padding: 3px 9px;
-  border-radius: 6px;
-  background: rgba(245, 158, 11, 0.15);
-  border: 1px solid rgba(245, 158, 11, 0.4);
-  color: #fde047;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-}
-
-.smart-class-pill {
-  font-size: 11.5px;
-  font-weight: 700;
-  padding: 3px 9px;
-  border-radius: 6px;
-  background: rgba(59, 130, 246, 0.15);
-  border: 1px solid rgba(59, 130, 246, 0.35);
-  color: #93c5fd;
-}
-
-.smart-plan-pill {
-  font-size: 11.5px;
-  font-weight: 700;
-  padding: 3px 9px;
-  border-radius: 6px;
-  background: rgba(168, 85, 247, 0.15);
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  color: #d8b4fe;
-}
-
-/* Services HUD (Heads-Up-Display) Bar */
-.card-hud-strip {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr auto 1.3fr;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 14px;
-  padding: 10px 14px;
-  margin-bottom: 20px;
-  backdrop-filter: blur(8px);
-  position: relative;
-  z-index: 1;
-}
-
-.hud-item {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.hud-label {
-  font-size: 9px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #94a3b8;
-}
-
-.hud-val {
-  font-size: 12.5px;
-  font-weight: 700;
-  color: #f8fafc;
-}
-
-.hud-divider {
-  width: 1px;
-  height: 26px;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.hud-val-price {
-  font-family: var(--font-heading);
-  font-size: 16px;
-  font-weight: 900;
-  color: #34d399;
-  text-shadow: 0 0 10px rgba(52, 211, 153, 0.3);
-}
-
-/* Scannable Zone with Viewfinder Brackets */
-.card-scannable-zone {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  background: rgba(0, 0, 0, 0.32);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 16px;
-  padding: 14px;
-  backdrop-filter: blur(6px);
-  position: relative;
-  z-index: 1;
-}
-
-.qr-viewfinder-frame {
-  position: relative;
-  width: 110px;
-  height: 110px;
-  background: #ffffff;
-  border-radius: 10px;
-  padding: 5px;
-  flex-shrink: 0;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
-}
-
-.qr-viewfinder-frame .corner {
-  position: absolute;
-  width: 13px;
-  height: 13px;
-  border-color: #f59e0b;
-}
-
-.qr-viewfinder-frame .corner.top-left {
-  top: -3px;
-  left: -3px;
-  border-top: 2.5px solid #f59e0b;
-  border-left: 2.5px solid #f59e0b;
-}
-
-.qr-viewfinder-frame .corner.top-right {
-  top: -3px;
-  right: -3px;
-  border-top: 2.5px solid #f59e0b;
-  border-right: 2.5px solid #f59e0b;
-}
-
-.qr-viewfinder-frame .corner.bottom-left {
-  bottom: -3px;
-  left: -3px;
-  border-bottom: 2.5px solid #f59e0b;
-  border-left: 2.5px solid #f59e0b;
-}
-
-.qr-viewfinder-frame .corner.bottom-right {
-  bottom: -3px;
-  right: -3px;
-  border-bottom: 2.5px solid #f59e0b;
-  border-right: 2.5px solid #f59e0b;
-}
-
-.qr-canvas-holder {
+  color: #1e40af;
+  background: #eff6ff;
   width: 100%;
   height: 100%;
   display: flex;
@@ -2089,223 +2519,322 @@ input:focus, select:focus, textarea:focus {
   justify-content: center;
 }
 
-.smart-qr-image {
+.id-card-type-tag {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.id-details-container {
+  flex: 1;
+}
+
+.id-field-label {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  text-transform: uppercase;
+  display: block;
+}
+
+.id-student-name {
+  font-size: 19px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 1px 0 10px;
+  line-height: 1.2;
+}
+
+.id-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+}
+
+.id-meta-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.id-meta-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.id-meta-val {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.id-code-pill {
+  font-family: var(--font-mono, monospace);
+  color: #1e40af;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 1px 6px;
+  border-radius: 4px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.id-fee-highlight {
+  color: #047857;
+  font-weight: 800;
+}
+
+.id-qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.id-qr-box {
+  width: 90px;
+  height: 90px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.id-qr-code {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.qr-security-text {
-  flex: 1;
-}
-
-.qr-headline {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
+.id-qr-caption {
+  font-size: 9.5px;
   font-weight: 800;
-  letter-spacing: 0.05em;
-  color: #f59e0b;
-  margin-bottom: 4px;
-}
-
-.qr-subtext {
-  font-size: 11px;
-  color: #94a3b8;
-  line-height: 1.4;
-  margin: 0 0 10px;
-}
-
-.security-barcode-strip {
-  background: rgba(255, 255, 255, 0.04);
-  padding: 6px 8px;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.barcode-bars {
-  display: block;
-  width: 100%;
-  height: 14px;
-  background: repeating-linear-gradient(90deg, #cbd5e1 0, #cbd5e1 2px, transparent 2px, transparent 4px, #cbd5e1 4px, #cbd5e1 6px, transparent 6px, transparent 8px, #cbd5e1 8px, #cbd5e1 9px, transparent 9px, transparent 12px);
-  border-radius: 1px;
-  opacity: 0.85;
-}
-
-.barcode-code {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.06em;
   color: #64748b;
-  margin-top: 3px;
+  text-transform: uppercase;
+}
+
+.id-barcode-text {
+  font-family: var(--font-mono, monospace);
+  font-size: 9px;
   font-weight: 700;
-  text-align: center;
+  color: #94a3b8;
 }
 
-/* Emergency Guardian Dispatch Deck */
-.emergency-contact-deck {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(30, 41, 59, 0.5) 100%);
-  border: 1.5px solid rgba(245, 158, 11, 0.28);
-  border-radius: 16px;
+.id-card-footer {
+  padding: 6px 16px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+/* ==========================================================================
+   STUDENT INFORMATION & GUARDIAN GRID
+   ========================================================================== */
+.profile-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 600px) {
+  .profile-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.profile-info-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
   padding: 14px 16px;
-  backdrop-filter: blur(8px);
 }
 
-.deck-header {
+.info-card-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 10px;
 }
 
-.deck-icon-bubble {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: rgba(245, 158, 11, 0.2);
-  color: #fbbf24;
+.info-card-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(245, 158, 11, 0.35);
   flex-shrink: 0;
 }
 
-.deck-tag {
-  font-size: 9px;
+.info-card-title {
+  font-size: 12px;
   font-weight: 800;
-  letter-spacing: 0.08em;
-  color: #fbbf24;
   text-transform: uppercase;
-  display: block;
+  letter-spacing: 0.04em;
+  color: #334155;
 }
 
-.deck-title {
-  font-size: 13.5px;
-  font-weight: 800;
-  color: #f8fafc;
-  margin: 1px 0 0;
-}
-
-.deck-content {
+.guardian-info-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
-  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.guardian-name {
-  display: block;
-  font-size: 13px;
+.guardian-name-text {
+  font-size: 13.5px;
   font-weight: 700;
-  color: #ffffff;
+  color: #0f172a;
+  display: block;
 }
 
-.guardian-number-row {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  color: #94a3b8;
+.guardian-phone-text {
+  font-family: var(--font-mono, monospace);
   font-size: 12.5px;
+  color: #64748b;
+  display: block;
   margin-top: 2px;
-  font-family: var(--font-mono);
 }
 
-.btn-deck-call {
+.btn-call-parent {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 7px 16px;
-  border-radius: var(--radius-full);
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: #ffffff;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #1e293b;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
   text-decoration: none;
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.15s ease;
+  white-space: nowrap;
 }
 
-.btn-deck-call:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.5);
-  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+.btn-call-parent:hover {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #1d4ed8;
+  transform: translateY(-1px);
 }
 
-/* Modal Bottom Actions Dock */
-.profile-modal-dock {
+.service-details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.service-detail-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+}
+
+.service-detail-label {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.service-detail-val {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   MODAL ACTIONS FOOTER
+   ========================================================================== */
+.profile-modal-footer {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 10px;
-  padding: 16px 22px;
-  background: rgba(255, 255, 255, 0.03);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 14px 22px;
+  background: #ffffff;
+  border-top: 1.5px solid #f1f5f9;
   flex-wrap: wrap;
 }
 
-.btn-dock-primary {
-  background: linear-gradient(135deg, #d97706 0%, #b45309 50%, #78350f 100%);
+.modal-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-print-id {
+  background: #1d4ed8;
   color: #ffffff;
-  border: 1px solid rgba(253, 224, 71, 0.4);
-  padding: 10px 18px;
-  border-radius: 12px;
-  font-weight: 800;
+  border: 1px solid #1d4ed8;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-weight: 700;
   font-size: 13.5px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  box-shadow: 0 4px 18px rgba(217, 119, 6, 0.35);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(29, 78, 216, 0.25);
+  transition: all 0.18s ease;
 }
 
-.btn-dock-primary:hover {
+.btn-print-id:hover {
+  background: #1e40af;
+  border-color: #1e40af;
   transform: translateY(-1px);
-  box-shadow: 0 6px 22px rgba(217, 119, 6, 0.45);
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #92400e 100%);
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.35);
 }
 
-.btn-dock-secondary {
-  background: rgba(255, 255, 255, 0.08);
-  color: #f8fafc;
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
-  padding: 10px 16px;
-  border-radius: 12px;
+.btn-edit-student {
+  background: #ffffff;
+  color: #334155;
+  border: 1.5px solid #cbd5e1;
+  padding: 9px 16px;
+  border-radius: 8px;
   font-weight: 700;
   font-size: 13px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.18s ease;
 }
 
-.btn-dock-secondary:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-1px);
+.btn-edit-student:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
 }
 
-.btn-dock-ghost {
+.btn-ghost-cancel {
   background: transparent;
-  color: #94a3b8;
+  color: #64748b;
   border: 0;
-  padding: 10px 14px;
-  font-weight: 700;
+  padding: 9px 14px;
+  font-weight: 600;
   font-size: 13px;
   cursor: pointer;
   transition: color 0.15s;
 }
 
-.btn-dock-ghost:hover {
-  color: #ffffff;
+.btn-ghost-cancel:hover {
+  color: #0f172a;
 }
 
-/* ID Card Print View Styles */
+/* ==========================================================================
+   CLEAN STANDARD PRINT SPEC FOR STUDENT ID CARD
+   ========================================================================== */
 @media print {
   body.printing-id-card * {
     visibility: hidden;
@@ -2327,17 +2856,17 @@ input:focus, select:focus, textarea:focus {
     background: transparent;
   }
   body.printing-id-card #studentIdCardPrintArea {
-    width: 90mm;
-    margin: 10mm auto;
-    border: 1.5px solid #000;
-    border-radius: 8px;
-    padding: 6mm;
+    width: 86mm;
+    margin: 15mm auto;
+    border: 1.5px solid #0f172a;
+    border-radius: 6px;
     box-shadow: none !important;
+    background: #ffffff !important;
     color: #000000 !important;
   }
-  body.printing-id-card .profile-modal-topbar,
-  body.printing-id-card .profile-modal-dock,
-  body.printing-id-card .emergency-contact-deck {
+  body.printing-id-card .profile-modal-header,
+  body.printing-id-card .profile-modal-footer,
+  body.printing-id-card .profile-info-grid {
     display: none !important;
   }
 }
@@ -2656,22 +3185,157 @@ input:focus, select:focus, textarea:focus {
 .status.absent { background: var(--warning-100); color: var(--warning-700); }
 
 /* ==========================================================================
-   KPI SUMMARY TILES (AUDIT & REPORTS)
+   KPI SUMMARY TILES & BALANCED AUDIT GRIDS
    ========================================================================== */
 
+/* Legacy fallback */
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
-  margin: 26px 0;
+  margin: 24px 0;
 }
 
+/* Symmetrical 3x2 Grid for Daily Audit (3 on top row, 3 on bottom row) */
+.audit-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+/* Symmetrical 4-column Grid for Period Reports */
+.period-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin: 20px 0 24px;
+}
+
+.audit-kpi-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid var(--slate-200);
+  border-radius: 16px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.audit-kpi-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.03);
+  border-color: #cbd5e1;
+}
+
+.audit-kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3.5px;
+}
+
+.kpi-theme-paid::before      { background: linear-gradient(90deg, #10b981, #34d399); }
+.kpi-theme-absent::before    { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+.kpi-theme-owing::before     { background: linear-gradient(90deg, #ef4444, #f87171); }
+.kpi-theme-expected::before  { background: linear-gradient(90deg, #2563eb, #60a5fa); }
+.kpi-theme-collected::before { background: linear-gradient(90deg, #059669, #10b981); }
+.kpi-theme-debt::before      { background: linear-gradient(90deg, #dc2626, #ef4444); }
+
+.audit-kpi-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.audit-kpi-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.audit-kpi-card:hover .audit-kpi-icon-box {
+  transform: scale(1.08);
+}
+
+.kpi-theme-paid .audit-kpi-icon-box      { background: #ecfdf5; color: #059669; }
+.kpi-theme-absent .audit-kpi-icon-box    { background: #fffbeb; color: #d97706; }
+.kpi-theme-owing .audit-kpi-icon-box     { background: #fef2f2; color: #dc2626; }
+.kpi-theme-expected .audit-kpi-icon-box  { background: #eff6ff; color: #2563eb; }
+.kpi-theme-collected .audit-kpi-icon-box { background: #f0fdf4; color: #16a34a; }
+.kpi-theme-debt .audit-kpi-icon-box      { background: #fef2f2; color: #b91c1c; }
+
+.audit-kpi-pill {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+.kpi-theme-paid .audit-kpi-pill      { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+.kpi-theme-absent .audit-kpi-pill    { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+.kpi-theme-owing .audit-kpi-pill     { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+.kpi-theme-expected .audit-kpi-pill  { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
+.kpi-theme-collected .audit-kpi-pill { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+.kpi-theme-debt .audit-kpi-pill      { background: #fef2f2; color: #b91c1c; border: 1px solid #fca5a5; }
+
+.audit-kpi-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.audit-kpi-val {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+}
+
+.kpi-theme-paid .audit-kpi-val      { color: #059669; }
+.kpi-theme-absent .audit-kpi-val    { color: #d97706; }
+.kpi-theme-owing .audit-kpi-val     { color: #dc2626; }
+.kpi-theme-expected .audit-kpi-val  { color: #1e293b; }
+.kpi-theme-collected .audit-kpi-val { color: #047857; }
+.kpi-theme-debt .audit-kpi-val      { color: #b91c1c; }
+
+.audit-kpi-label {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--slate-700);
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.audit-kpi-subtext {
+  font-size: 11px;
+  color: var(--slate-400);
+  font-weight: 500;
+}
+
+/* Legacy summary-card fallback */
 .summary-card {
   background: var(--white);
   border: 1px solid var(--slate-200);
   border-left: 5px solid var(--brand-800);
   border-radius: var(--radius-md);
-  padding: 20px 22px;
+  padding: 18px 20px;
   box-shadow: var(--shadow-sm);
   transition: transform 0.18s, box-shadow 0.18s;
 }
@@ -2684,17 +3348,17 @@ input:focus, select:focus, textarea:focus {
 .summary-card strong {
   display: block;
   font-family: var(--font-heading);
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 800;
   color: var(--slate-900);
   line-height: 1.2;
 }
 
 .summary-card span {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
   color: var(--slate-500);
-  margin-top: 5px;
+  margin-top: 4px;
   display: block;
   text-transform: uppercase;
   letter-spacing: 0.03em;
@@ -2702,15 +3366,177 @@ input:focus, select:focus, textarea:focus {
 
 .summary-card.paid { border-left-color: var(--success-500); }
 .summary-card.paid strong { color: var(--success-700); }
-
 .summary-card.owing { border-left-color: var(--danger-500); }
 .summary-card.owing strong { color: var(--danger-700); }
-
 .summary-card.absent { border-left-color: var(--warning-500); }
 .summary-card.absent strong { color: var(--warning-700); }
 
-.toolbar-card {
+/* Table Total Footer Row */
+.audit-table-foot {
+  border-top: 2px solid var(--slate-300);
+}
+
+.table-total-row td {
+  background: #f8fafc !important;
+  font-weight: 800;
+  font-size: 13.5px;
+  color: var(--slate-900);
+  border-top: 2px solid #cbd5e1 !important;
+  padding: 12px 14px !important;
+}
+
+/* ==========================================================================
+   EXECUTIVE CONTROL PANELS (AUDIT & REPORTS TOOLBARS)
+   ========================================================================== */
+
+.tracking-control-panel,
+.reports-control-panel {
+  background: #ffffff;
+  border: 1px solid var(--slate-200);
+  border-radius: 16px;
+  padding: 18px 22px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
   margin-bottom: 22px;
+}
+
+.tracking-toolbar-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.reports-toolbar-grid {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.tracking-date-group {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.date-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.date-calendar-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--slate-400);
+  pointer-events: none;
+}
+
+.date-input-wrapper input[type="date"] {
+  padding-left: 36px;
+  min-width: 175px;
+  height: 42px;
+  border-radius: 10px;
+  font-weight: 700;
+  color: var(--slate-800);
+}
+
+.quick-date-pills {
+  display: flex;
+  gap: 6px;
+  padding-bottom: 2px;
+}
+
+.quick-date-btn {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.quick-date-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.school-day-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.school-day-indicator.active {
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.school-day-indicator.inactive {
+  background: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.school-day-indicator.inactive .pulse-dot {
+  background: #f59e0b;
+  box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+}
+
+.tracking-actions-group,
+.reports-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-pdf-export {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1.5px solid #cbd5e1;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.btn-pdf-export:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+.btn-pdf-export:active {
+  transform: scale(0.97);
+}
+
+.pdf-tag {
+  background: #fee2e2;
+  color: #dc2626;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  margin-left: 2px;
 }
 
 .tracking-toolbar, .reports-toolbar {
@@ -2742,12 +3568,22 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* ==========================================================================
-   SETTINGS & CLOUD CONFIG
+   SETTINGS & CLOUD CONFIG (CENTERED EXECUTIVE LAYOUT)
    ========================================================================== */
+
+.settings-wrap {
+  max-width: 940px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
 
 .cloud-config-card {
   border-left: 5px solid var(--accent-600);
-  margin-bottom: 26px;
+  margin-bottom: 0;
+  border-radius: 16px;
+  padding: 24px 28px;
 }
 
 .cloud-card-header {
@@ -2758,11 +3594,17 @@ input:focus, select:focus, textarea:focus {
 }
 
 .cloud-icon-box {
-  font-size: 30px;
+  font-size: 28px;
   background: var(--accent-50);
-  padding: 10px 14px;
+  color: var(--accent-600);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: var(--radius-md);
   border: 1px solid var(--accent-100);
+  flex-shrink: 0;
 }
 
 .card-subtext {
@@ -2795,22 +3637,54 @@ input:focus, select:focus, textarea:focus {
   border: 1px solid var(--slate-200);
 }
 
+.form-card-header-simple {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+  border-bottom: 1.5px solid #f1f5f9;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.form-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--brand-900);
+}
+
+.sub-notice {
+  font-size: 12px;
+  color: var(--slate-500);
+  font-weight: 600;
+}
+
 .school-days-group {
   grid-column: span 2;
   border: 1.5px solid var(--slate-200);
-  border-radius: var(--radius-md);
+  border-radius: 12px;
   padding: 16px 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
+  margin: 8px 0;
 }
 
 .school-days-group legend {
   font-weight: 800;
   color: var(--slate-700);
   padding: 0 8px;
-  font-size: 12.5px;
+  font-size: 12px;
   text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.days-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 12px;
+  width: 100%;
 }
 
 .checkbox-label {
@@ -2818,9 +3692,19 @@ input:focus, select:focus, textarea:focus {
   align-items: center;
   gap: 8px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13.5px;
   margin: 0;
   cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  transition: all 0.15s ease;
+}
+
+.checkbox-label:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
 }
 
 .checkbox-label input {
@@ -3240,14 +4124,157 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* ==========================================================================
-   PRINT ENGINE (A4 & COMPACT THERMAL)
+   OFFICIAL ACADEMIC PRINT & EXPORT ENGINE (A4 PDF & THERMAL)
    ========================================================================== */
 
+/* Screen default: Hide official print headers and sign-offs */
+.official-print-letterhead,
+.official-print-signoff,
+.print-only {
+  display: none !important;
+}
+
 @media print {
+  @page {
+    size: auto;
+    margin: 10mm 12mm;
+  }
+
   body {
     background: #ffffff !important;
-    font-size: 11pt;
+    font-size: 10pt;
     color: #000000;
+  }
+
+  /* Show print letterhead and signoff */
+  .official-print-letterhead,
+  .official-print-signoff,
+  .print-only {
+    display: block !important;
+  }
+
+  .letterhead-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+  }
+
+  .letterhead-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .letterhead-crest-box {
+    width: 48px;
+    height: 48px;
+    background: #0f172a;
+    color: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+  }
+
+  .letterhead-school-name {
+    font-size: 20px;
+    font-weight: 900;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  .letterhead-motto {
+    font-size: 11px;
+    font-weight: 700;
+    color: #475569;
+    margin: 3px 0 0;
+  }
+
+  .letterhead-meta-box {
+    text-align: right;
+    font-size: 10px;
+    color: #334155;
+    line-height: 1.45;
+  }
+
+  .letterhead-meta-box .meta-key {
+    font-weight: 700;
+    color: #64748b;
+  }
+
+  .letterhead-gold-bar {
+    height: 3px;
+    background: #0f172a;
+    margin-bottom: 14px;
+  }
+
+  .signoff-signature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 32px;
+    padding-top: 14px;
+    page-break-inside: avoid;
+  }
+
+  .signoff-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .signoff-line {
+    width: 80%;
+    border-top: 1.5px dashed #64748b;
+    margin-bottom: 8px;
+  }
+
+  .signoff-title {
+    font-size: 11px;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  .signoff-sub {
+    font-size: 9px;
+    color: #64748b;
+  }
+
+  .signoff-date {
+    font-size: 9px;
+    color: #94a3b8;
+    margin-top: 6px;
+  }
+
+  .signoff-stamp-box {
+    width: 100px;
+    height: 60px;
+    border: 1.5px dashed #94a3b8;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8.5px;
+    font-weight: 800;
+    color: #94a3b8;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .print-legal-notice {
+    margin-top: 20px;
+    padding-top: 8px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 8px;
+    color: #94a3b8;
+    text-align: center;
   }
 
   /* Thermal Receipt Print Mode */
@@ -3284,67 +4311,139 @@ input:focus, select:focus, textarea:focus {
     width: 100% !important;
   }
 
-  /* Reports & Daily Tracking Print Mode */
-  body:not(.printing-receipt) .app-header,
-  body:not(.printing-receipt) .app-nav,
-  body:not(.printing-receipt) #students,
-  body:not(.printing-receipt) #register,
-  body:not(.printing-receipt) .tracking-toolbar,
-  body:not(.printing-receipt) .reports-toolbar,
-  body:not(.printing-receipt) #toast,
-  body:not(.printing-receipt) .tool-btns,
-  body:not(.printing-receipt) .form-footer,
-  body:not(.printing-receipt) .pos-action-strip,
-  body:not(.printing-receipt) .class-filter-bar,
-  body:not(.printing-receipt) .receipt-dialog {
+  /* Daily Audit PDF Mode */
+  body.printing-audit-pdf .app-header,
+  body.printing-audit-pdf .app-nav,
+  body.printing-audit-pdf #students,
+  body.printing-audit-pdf #register,
+  body.printing-audit-pdf #reports,
+  body.printing-audit-pdf #settings,
+  body.printing-audit-pdf .tracking-control-panel,
+  body.printing-audit-pdf .reports-control-panel,
+  body.printing-audit-pdf .view-header,
+  body.printing-audit-pdf #toast,
+  body.printing-audit-pdf .receipt-dialog,
+  body.printing-audit-pdf .receipt-modal-backdrop {
     display: none !important;
   }
 
-  body:not(.printing-receipt) .app-main {
+  body.printing-audit-pdf #tracking {
+    display: block !important;
+  }
+
+  /* Executive Report PDF Mode */
+  body.printing-report-pdf .app-header,
+  body.printing-report-pdf .app-nav,
+  body.printing-report-pdf #students,
+  body.printing-report-pdf #register,
+  body.printing-report-pdf #tracking,
+  body.printing-report-pdf #settings,
+  body.printing-report-pdf .tracking-control-panel,
+  body.printing-report-pdf .reports-control-panel,
+  body.printing-report-pdf .view-header,
+  body.printing-report-pdf #toast,
+  body.printing-report-pdf .receipt-dialog,
+  body.printing-report-pdf .receipt-modal-backdrop {
+    display: none !important;
+  }
+
+  body.printing-report-pdf #reports {
+    display: block !important;
+  }
+
+  /* Fallback print when triggered from browser Ctrl+P without mode */
+  body:not(.printing-receipt):not(.printing-audit-pdf):not(.printing-report-pdf) .app-header,
+  body:not(.printing-receipt):not(.printing-audit-pdf):not(.printing-report-pdf) .app-nav,
+  body:not(.printing-receipt):not(.printing-audit-pdf):not(.printing-report-pdf) #toast,
+  body:not(.printing-receipt):not(.printing-audit-pdf):not(.printing-report-pdf) .tracking-control-panel,
+  body:not(.printing-receipt):not(.printing-audit-pdf):not(.printing-report-pdf) .reports-control-panel,
+  body:not(.printing-receipt):not(.printing-audit-pdf):not(.printing-report-pdf) .receipt-dialog {
+    display: none !important;
+  }
+
+  .app-main {
     max-width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
   }
 
-  body:not(.printing-receipt) .card {
+  .card {
     border: 0 !important;
     box-shadow: none !important;
     padding: 0 !important;
+    background: transparent !important;
   }
 
-  body:not(.printing-receipt) #reports,
-  body:not(.printing-receipt) #tracking {
-    display: block !important;
-  }
-
-  body:not(.printing-receipt) .data-table {
+  .data-table {
     border-collapse: collapse;
     width: 100%;
+    margin-top: 8px;
   }
 
-  body:not(.printing-receipt) .data-table th,
-  body:not(.printing-receipt) .data-table td {
-    border: 1px solid #cbd5e1 !important;
-    padding: 7px 10px !important;
+  .data-table th,
+  .data-table td {
+    border: 1px solid #94a3b8 !important;
+    padding: 6px 8px !important;
     color: #000000 !important;
+    font-size: 9.5pt !important;
   }
 
-  body:not(.printing-receipt) .data-table th {
+  .data-table th {
     background: #f1f5f9 !important;
+    font-weight: 800 !important;
   }
 
-  body.printing-tracking #reports {
+  .audit-kpi-grid,
+  .period-kpi-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+    margin: 12px 0 16px !important;
+  }
+
+  .period-kpi-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .audit-kpi-card {
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: none !important;
+    padding: 8px 12px !important;
+    border-radius: 8px !important;
+    page-break-inside: avoid;
+  }
+
+  .audit-kpi-val {
+    font-size: 18px !important;
+  }
+
+  .audit-kpi-icon-box {
+    display: none !important;
+  }
+
+  .audit-kpi-top {
+    margin-bottom: 4px !important;
+  }
+
+  .audit-kpi-subtext {
     display: none !important;
   }
 }
 
-/* Responsive Breakpoints */
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
 @media (max-width: 1024px) {
   .pos-layout {
     grid-template-columns: 1fr;
   }
   .pos-totals-panel {
     grid-template-columns: 1fr;
+  }
+  .audit-kpi-grid,
+  .period-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
   .kpi-grid, .metrics-strip {
     grid-template-columns: repeat(2, 1fr);
@@ -3362,8 +4461,21 @@ input:focus, select:focus, textarea:focus {
   .grid-2, .grid-2-custom {
     grid-template-columns: 1fr;
   }
-  .kpi-grid, .metrics-strip {
+  .audit-kpi-grid,
+  .period-kpi-grid,
+  .kpi-grid,
+  .metrics-strip {
     grid-template-columns: 1fr;
+  }
+  .tracking-toolbar-grid,
+  .reports-toolbar-grid {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .tracking-actions-group,
+  .reports-actions-group {
+    width: 100%;
+    justify-content: flex-end;
   }
   .search-box {
     width: 100%;
@@ -3444,6 +4556,7 @@ input:focus, select:focus, textarea:focus {
     <section id="students" class="page-view">
       <div class="view-header learners-view-header">
         <div class="view-header-content">
+          <span class="view-eyebrow">ACADEMIC REGISTRATION &amp; IDENTITY MANAGEMENT</span>
           <div class="view-title-row">
             <h2>Learners Directory &amp; Profiles</h2>
             <span class="live-pos-badge" id="activeStudentHeaderBadge">
@@ -3451,64 +4564,87 @@ input:focus, select:focus, textarea:focus {
               <span id="headerBadgeCount">4 Learners Enrolled</span>
             </span>
           </div>
-          <p>Register learners, manage canteen &amp; transit subscriptions, view digital ID profiles, and generate scannable QR passes.</p>
+          <p>Register learners, manage nutrition &amp; transit plans, view biometric digital ID profiles, and generate scannable QR passes.</p>
         </div>
         <div class="view-header-actions">
-          <button id="toggleAddStudentBtn" class="btn btn-primary btn-add-learner" type="button">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            <span id="toggleAddStudentBtnText">+ Add New Learner</span>
+          <button id="toggleAddStudentBtn" class="btn btn-add-learner" type="button">
+            <span id="toggleAddStudentBtnIcon" class="btn-icon-wrapper">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </span>
+            <span id="toggleAddStudentBtnText">Add New Learner</span>
           </button>
         </div>
       </div>
 
-      <!-- Stat Summary Cards -->
+      <!-- Stat Summary Cards: Executive Fintech Strip -->
       <div class="metrics-strip">
-        <div class="metric-card">
-          <div class="metric-icon-box bg-blue">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <div class="metric-card metric-card-blue">
+          <div class="metric-top-row">
+            <div class="metric-icon-box bg-blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <span class="metric-kpi-tag tag-blue">Total Roster</span>
           </div>
-          <div>
-            <h5>Total Learners</h5>
-            <strong id="metricTotalStudents">0</strong>
-          </div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-icon-box bg-green">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
-          </div>
-          <div>
-            <h5>Canteen Only</h5>
-            <strong id="metricCanteenOnly">0</strong>
+          <div class="metric-body">
+            <strong id="metricTotalStudents" class="metric-num">0</strong>
+            <h5 class="metric-label">Total Learners</h5>
+            <span class="metric-subtext">Active enrolled database</span>
           </div>
         </div>
-        <div class="metric-card">
-          <div class="metric-icon-box bg-purple">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="13" rx="2"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+
+        <div class="metric-card metric-card-green">
+          <div class="metric-top-row">
+            <div class="metric-icon-box bg-green">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
+            </div>
+            <span class="metric-kpi-tag tag-green">Nutrition Plan</span>
           </div>
-          <div>
-            <h5>Bus &amp; Canteen</h5>
-            <strong id="metricBusCanteen">0</strong>
+          <div class="metric-body">
+            <strong id="metricCanteenOnly" class="metric-num">0</strong>
+            <h5 class="metric-label">Canteen Only</h5>
+            <span class="metric-subtext">Lunch meals subscription</span>
           </div>
         </div>
-        <div class="metric-card">
-          <div class="metric-icon-box bg-amber">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+
+        <div class="metric-card metric-card-purple">
+          <div class="metric-top-row">
+            <div class="metric-icon-box bg-purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="13" rx="2"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+            </div>
+            <span class="metric-kpi-tag tag-purple">Transit Combo</span>
           </div>
-          <div>
-            <h5>Sibling Plans</h5>
-            <strong id="metricFamilyDiscount">0</strong>
+          <div class="metric-body">
+            <strong id="metricBusCanteen" class="metric-num">0</strong>
+            <h5 class="metric-label">Bus &amp; Canteen</h5>
+            <span class="metric-subtext">Transit &amp; meal bundle</span>
+          </div>
+        </div>
+
+        <div class="metric-card metric-card-amber">
+          <div class="metric-top-row">
+            <div class="metric-icon-box bg-amber">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </div>
+            <span class="metric-kpi-tag tag-amber">Family Savings</span>
+          </div>
+          <div class="metric-body">
+            <strong id="metricFamilyDiscount" class="metric-num">0</strong>
+            <h5 class="metric-label">Sibling Plans</h5>
+            <span class="metric-subtext">Multi-child discount tiers</span>
           </div>
         </div>
       </div>
 
       <!-- Professional Collapsible Learner Registration & Edit Card -->
       <div id="studentFormCard" class="card student-form-card" hidden>
+        <div class="form-card-accent-bar"></div>
         <div class="form-card-header">
           <div class="form-title-group">
             <div class="form-icon-circle">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
             </div>
             <div>
+              <div class="form-badge-pill" id="studentFormModeBadge">LEARNER REGISTRATION</div>
               <h3 id="studentFormTitle">Register New Learner</h3>
               <p id="studentFormSubtitle" class="card-subtext">Fill in learner information, select canteen meal &amp; transit services, and add parent/guardian contact.</p>
             </div>
@@ -3520,15 +4656,26 @@ input:focus, select:focus, textarea:focus {
 
         <form id="studentForm" autocomplete="off">
           <div class="student-form-layout">
-            <!-- Left: Photo Upload & Avatar Preview -->
+            <!-- Left: Photo Upload & Biometric ID Preview -->
             <div class="photo-section">
               <div class="photo-uploader-box">
-                <div class="photo-circle" id="studentPhotoPreview" title="Click to upload student photo">
-                  <span id="photoPlaceholderText">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                    <small>Upload Photo</small>
-                  </span>
-                  <img id="studentPhotoImg" src="" alt="Student Preview" hidden>
+                <div class="photo-uploader-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                  <span>BIOMETRIC PHOTO ID</span>
+                </div>
+                <div class="photo-circle-container">
+                  <div class="photo-circle" id="studentPhotoPreview" title="Click to upload student photo">
+                    <span id="photoPlaceholderText">
+                      <div class="photo-camera-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                      </div>
+                      <small>Upload Photo</small>
+                    </span>
+                    <img id="studentPhotoImg" src="" alt="Student Preview" hidden>
+                  </div>
+                  <button type="button" class="photo-change-badge-btn" id="photoChangeFloatingBtn" title="Choose image" onclick="document.getElementById('studentPhotoInput').click()">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                  </button>
                 </div>
                 <div class="photo-uploader-controls">
                   <label class="btn-photo-pick" for="studentPhotoInput">
@@ -3541,43 +4688,54 @@ input:focus, select:focus, textarea:focus {
                     <span>Remove</span>
                   </button>
                 </div>
-                <span class="photo-hint">Passport photo · JPEG or PNG</span>
+                <div class="photo-specs-card">
+                  <span>35×45mm Standard Format</span>
+                  <small>JPG / PNG · Max 5MB</small>
+                </div>
               </div>
             </div>
 
-            <!-- Right: Structured Form Fields -->
+            <!-- Right: Structured Step Cards -->
             <div class="inputs-section">
               <!-- Fieldset 1: Learner Identity -->
-              <div class="form-fieldset">
-                <span class="fieldset-legend">1. Learner Identity</span>
+              <div class="form-fieldset form-step-card">
+                <div class="fieldset-header">
+                  <span class="step-num-pill">01</span>
+                  <span class="fieldset-legend">Learner Identity &amp; Class</span>
+                </div>
                 <div class="grid-2">
                   <div class="field-wrap">
-                    <label for="studentName">Learner Full Name *</label>
+                    <label for="studentName">Learner Full Name <span class="req-star">*</span></label>
                     <div class="input-with-icon">
                       <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                       <input id="studentName" required placeholder="e.g. Kwame Mensah">
                     </div>
                   </div>
                   <div class="field-wrap">
-                    <label for="studentClass">Class / Grade *</label>
+                    <label for="studentClass">Class / Grade <span class="req-star">*</span></label>
                     <div class="input-with-icon">
                       <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                      <input id="studentClass" required placeholder="e.g. Basic 4">
+                      <input id="studentClass" required placeholder="e.g. Basic 3">
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Fieldset 2: Parent / Guardian Contact Details (Requested Feature) -->
-              <div class="form-fieldset">
-                <span class="fieldset-legend">2. Parent / Guardian Contact Details</span>
+              <!-- Fieldset 2: Guardian Details -->
+              <div class="form-fieldset form-step-card guardian-step-card">
+                <div class="fieldset-header">
+                  <span class="step-num-pill step-pill-green">02</span>
+                  <span class="fieldset-legend">Parent / Guardian Contact Details</span>
+                  <span class="fieldset-sub-tag">Emergency Dispatch</span>
+                </div>
                 <div class="grid-2">
                   <div class="field-wrap">
-                    <label for="studentParentContact">Parent / Guardian Phone Number *</label>
+                    <label for="studentParentContact">Parent / Guardian Phone Number <span class="req-star">*</span></label>
                     <div class="input-with-icon">
                       <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                       <input id="studentParentContact" type="tel" placeholder="e.g. 024 123 4567 / +233 ...">
                     </div>
+                    <small class="field-hint-text">Phone is encoded on scannable QR Pass for emergency cashier contact</small>
                   </div>
                   <div class="field-wrap">
                     <label for="studentParentName">Parent / Guardian Name (Optional)</label>
@@ -3585,16 +4743,20 @@ input:focus, select:focus, textarea:focus {
                       <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                       <input id="studentParentName" placeholder="e.g. Mr. Mensah (Father / Guardian)">
                     </div>
+                    <small class="field-hint-text">Printed on learner's biometric physical ID pass credentials</small>
                   </div>
                 </div>
               </div>
 
               <!-- Fieldset 3: Services & Sibling Tier -->
-              <div class="form-fieldset">
-                <span class="fieldset-legend">3. Services &amp; Sibling Tier</span>
+              <div class="form-fieldset form-step-card">
+                <div class="fieldset-header">
+                  <span class="step-num-pill step-pill-purple">03</span>
+                  <span class="fieldset-legend">Canteen &amp; Transit Subscriptions</span>
+                </div>
                 <div class="grid-3">
                   <div class="field-wrap">
-                    <label for="studentPaymentType">Meal &amp; Bus Plan *</label>
+                    <label for="studentPaymentType">Meal &amp; Bus Plan <span class="req-star">*</span></label>
                     <select id="studentPaymentType">
                       <option value="Canteen">Canteen Only</option>
                       <option value="Bus &amp; Canteen">Bus &amp; Canteen</option>
@@ -3603,35 +4765,46 @@ input:focus, select:focus, textarea:focus {
                   <div class="field-wrap">
                     <label for="studentDistance">Bus Route Distance</label>
                     <select id="studentDistance" disabled>
-                      <option value="">Not Applicable</option>
-                      <option value="Short">Short Distance</option>
-                      <option value="Medium">Medium Distance</option>
-                      <option value="Long">Long Distance</option>
+                      <option value="">Not Applicable (Canteen Only)</option>
+                      <option value="Short">Short Distance Route</option>
+                      <option value="Medium">Medium Distance Route</option>
+                      <option value="Long">Long Distance Route</option>
                     </select>
                   </div>
                   <div class="field-wrap">
-                    <label for="familyMembers">Siblings in School *</label>
+                    <label for="familyMembers">Siblings in School <span class="req-star">*</span></label>
                     <input id="familyMembers" type="number" min="1" max="6" required value="1" placeholder="1–6">
                   </div>
                 </div>
               </div>
 
-              <!-- Fieldset 4: Enrollment & Live Rate Estimate -->
-              <div class="form-fieldset">
-                <span class="fieldset-legend">4. School Status &amp; Rate Preview</span>
-                <div class="grid-2">
+              <!-- Fieldset 4: Enrollment & Live Rate Breakdown -->
+              <div class="form-fieldset form-step-card rate-calc-step-card">
+                <div class="fieldset-header">
+                  <span class="step-num-pill step-pill-amber">04</span>
+                  <span class="fieldset-legend">Enrollment Status &amp; Live Fee Preview</span>
+                </div>
+                <div class="grid-2 align-items-center">
                   <div class="field-wrap">
                     <label for="studentStatus">Enrollment Status</label>
                     <select id="studentStatus">
-                      <option value="Active">Active Student</option>
-                      <option value="Left">Left School</option>
+                      <option value="Active">Active Enrolled Student</option>
+                      <option value="Left">Left School / Transferred</option>
                     </select>
                   </div>
                   <div class="field-wrap">
-                    <label>Live Estimated Daily Charge</label>
-                    <div class="rate-preview-pill" id="formLiveRatePreview">
-                      <span>Daily Fee:</span>
-                      <strong id="formLiveRateValue">GH₵ 10.00</strong>
+                    <div class="live-rate-breakdown-card" id="formLiveRatePreview">
+                      <div class="rate-breakdown-left">
+                        <span class="rate-breakdown-label">ESTIMATED DAILY TARIFF</span>
+                        <div class="rate-breakdown-tags" id="formRateBreakdownTags">
+                          <span class="calc-tag" id="formRateBaseTag">Meal: GH₵ 10.00</span>
+                          <span class="calc-tag" id="formRateBusTag">Transit: None</span>
+                        </div>
+                      </div>
+                      <div class="rate-breakdown-right">
+                        <strong id="formLiveRateValue" class="rate-total-num">GH₵ 10.00</strong>
+                        <span class="rate-freq-pill">per school day</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -3640,11 +4813,13 @@ input:focus, select:focus, textarea:focus {
           </div>
 
           <div class="form-footer">
-            <button id="saveStudentButton" class="btn btn-primary" type="submit">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-              <span>Save Learner Profile</span>
-            </button>
-            <button id="cancelStudentEditButton" class="btn btn-secondary" type="button">Cancel</button>
+            <div class="form-footer-left">
+              <button id="saveStudentButton" class="btn btn-primary btn-save-student" type="submit">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                <span>Save Learner Profile</span>
+              </button>
+              <button id="cancelStudentEditButton" class="btn btn-secondary" type="button">Cancel</button>
+            </div>
             <span id="studentFormMessage" class="form-feedback"></span>
           </div>
         </form>
@@ -3953,31 +5128,80 @@ input:focus, select:focus, textarea:focus {
 
     <!-- ==================== VIEW 3: DAILY AUDIT / TRACKING ==================== -->
     <section id="tracking" class="page-view">
-      <div class="view-header">
-        <div>
-          <h2>Daily Canteen Audit &amp; Reconciliation</h2>
+      <div class="view-header view-header-center">
+        <div class="view-header-content">
+          <div class="view-title-row">
+            <h2>Daily Canteen Audit &amp; Reconciliation</h2>
+            <span class="view-header-badge audit-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+              <span>Ledger &amp; Reconciliation</span>
+            </span>
+          </div>
           <p>Complete reconciliation of daily attendance, revenue collected, and learner debt.</p>
         </div>
       </div>
 
-      <div class="card toolbar-card">
-        <div class="tracking-toolbar">
-          <div class="field-wrap">
-            <label for="trackingDate">Audit Date</label>
-            <input id="trackingDate" type="date">
+      <div class="card toolbar-card tracking-control-panel">
+        <div class="tracking-toolbar-grid">
+          <div class="tracking-date-group">
+            <div class="field-wrap">
+              <label for="trackingDate">Audit Reference Date</label>
+              <div class="date-input-wrapper">
+                <svg class="date-calendar-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <input id="trackingDate" type="date">
+              </div>
+            </div>
+            <div class="quick-date-pills">
+              <button type="button" class="quick-date-btn" id="auditTodayBtn">Today</button>
+              <button type="button" class="quick-date-btn" id="auditYesterdayBtn">Yesterday</button>
+            </div>
           </div>
-          <button id="refreshTracking" class="btn btn-primary" type="button">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
-            <span>Refresh Audit</span>
-          </button>
-          <button id="printTracking" class="btn btn-secondary" type="button">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-            <span>Print Tracking Sheet</span>
-          </button>
+
+          <div class="tracking-status-badge-wrap" id="auditDayStatusWrap">
+            <span class="school-day-indicator active" id="auditDayStatusBadge">
+              <span class="pulse-dot"></span>
+              <span id="auditDayStatusText">Active School Day</span>
+            </span>
+          </div>
+
+          <div class="tracking-actions-group">
+            <button id="refreshTracking" class="btn btn-primary" type="button" title="Recalculate and refresh audit figures">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+              <span>Refresh Audit</span>
+            </button>
+            <button id="printTracking" class="btn btn-pdf-export" type="button" title="Print or save as PDF tracking sheet">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+              <span>Print / Save PDF</span>
+              <span class="pdf-tag">PDF</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <div id="summaryCards" class="kpi-grid"></div>
+      <!-- Official Academic Print Header (Visible only when Printing / Saving as PDF) -->
+      <div class="official-print-letterhead print-only">
+        <div class="letterhead-header">
+          <div class="letterhead-brand">
+            <div class="letterhead-crest-box">
+              <span class="crest-symbol">CBA</span>
+            </div>
+            <div class="letterhead-titles">
+              <h1 class="letterhead-school-name">COSMAT BASIC ACADEMY</h1>
+              <p class="letterhead-motto">Official Canteen Attendance &amp; Revenue Reconciliation Audit</p>
+            </div>
+          </div>
+          <div class="letterhead-meta-box">
+            <div class="meta-entry"><span class="meta-key">Audit Reference:</span> <strong id="printTrackingDateText">--</strong></div>
+            <div class="meta-entry"><span class="meta-key">Document ID:</span> <strong id="printTrackingDocId">AUD-DAILY</strong></div>
+            <div class="meta-entry"><span class="meta-key">Generated:</span> <span id="printTrackingTimestamp">--</span></div>
+            <div class="meta-entry"><span class="meta-key">Bursary Status:</span> <span>Certified Ledger</span></div>
+          </div>
+        </div>
+        <div class="letterhead-gold-bar"></div>
+      </div>
+
+      <!-- Balanced 3x2 KPI Grid (3 on top row, 3 on bottom row) -->
+      <div id="summaryCards" class="audit-kpi-grid"></div>
 
       <div class="card table-card">
         <div class="table-container">
@@ -3995,22 +5219,56 @@ input:focus, select:focus, textarea:focus {
               </tr>
             </thead>
             <tbody id="trackingList"></tbody>
+            <tfoot id="trackingTableFoot" class="audit-table-foot"></tfoot>
           </table>
+        </div>
+      </div>
+
+      <!-- Official Academic Print Sign-off Block (Visible only when Printing / Saving as PDF) -->
+      <div class="official-print-signoff print-only">
+        <div class="signoff-signature-grid">
+          <div class="signoff-col">
+            <div class="signoff-line"></div>
+            <span class="signoff-title">Canteen Supervisor</span>
+            <span class="signoff-sub">Name &amp; Signature</span>
+            <span class="signoff-date">Date: ____________________</span>
+          </div>
+          <div class="signoff-col">
+            <div class="signoff-line"></div>
+            <span class="signoff-title">School Accountant / Bursar</span>
+            <span class="signoff-sub">Verification &amp; Check</span>
+            <span class="signoff-date">Date: ____________________</span>
+          </div>
+          <div class="signoff-col signoff-stamp-col">
+            <div class="signoff-stamp-box">
+              <span>OFFICIAL INSTITUTION SEAL</span>
+            </div>
+            <span class="signoff-title">Headmaster Approval</span>
+          </div>
+        </div>
+        <div class="print-legal-notice">
+          This document is an authentic financial reconciliation statement generated by Cosmat Basic Academy Canteen System. Any discrepancy must be reported to the Bursar's Office within 48 hours.
         </div>
       </div>
     </section>
 
     <!-- ==================== VIEW 4: REPORTS & DEBTORS ==================== -->
     <section id="reports" class="page-view">
-      <div class="view-header">
-        <div>
-          <h2>Executive Reports &amp; Debtors Register</h2>
+      <div class="view-header view-header-center">
+        <div class="view-header-content">
+          <div class="view-title-row">
+            <h2>Executive Reports &amp; Debtors Register</h2>
+            <span class="view-header-badge report-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+              <span>Executive Financials</span>
+            </span>
+          </div>
           <p>Generate period collection summaries and official debt statements for parents and administration.</p>
         </div>
       </div>
 
-      <div class="card toolbar-card">
-        <div class="reports-toolbar">
+      <div class="card toolbar-card reports-control-panel">
+        <div class="reports-toolbar-grid">
           <div class="field-wrap">
             <label for="reportType">Report Frequency</label>
             <select id="reportType">
@@ -4022,29 +5280,57 @@ input:focus, select:focus, textarea:focus {
           </div>
           <div class="field-wrap">
             <label for="reportDate">Reference Date</label>
-            <input id="reportDate" type="date">
+            <div class="date-input-wrapper">
+              <svg class="date-calendar-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              <input id="reportDate" type="date">
+            </div>
           </div>
-          <button id="generateReports" class="btn btn-primary" type="button">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-            <span>Generate Report</span>
-          </button>
-          <button id="printReports" class="btn btn-secondary" type="button">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-            <span>Print Official Report</span>
-          </button>
+          <div class="reports-actions-group">
+            <button id="generateReports" class="btn btn-primary" type="button" title="Generate summary analytics and debtors ledger">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <span>Generate Report</span>
+            </button>
+            <button id="printReports" class="btn btn-pdf-export" type="button" title="Print or save official report as PDF">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+              <span>Print / Save PDF</span>
+              <span class="pdf-tag">PDF</span>
+            </button>
+          </div>
         </div>
       </div>
 
       <div id="reportCalendarNotice" class="alert-banner" hidden></div>
 
       <div id="reportPrintArea">
+        <!-- Official Academic Print Header for Reports -->
+        <div class="official-print-letterhead print-only">
+          <div class="letterhead-header">
+            <div class="letterhead-brand">
+              <div class="letterhead-crest-box">
+                <span class="crest-symbol">CBA</span>
+              </div>
+              <div class="letterhead-titles">
+                <h1 class="letterhead-school-name">COSMAT BASIC ACADEMY</h1>
+                <p class="letterhead-motto">Executive Revenue Collection &amp; Outstanding Debtors Statement</p>
+              </div>
+            </div>
+            <div class="letterhead-meta-box">
+              <div class="meta-entry"><span class="meta-key">Report Cycle:</span> <strong id="printReportPeriodText">--</strong></div>
+              <div class="meta-entry"><span class="meta-key">Document ID:</span> <strong id="printReportDocId">REP-EXEC</strong></div>
+              <div class="meta-entry"><span class="meta-key">Generated:</span> <span id="printReportTimestamp">--</span></div>
+              <div class="meta-entry"><span class="meta-key">Audit Status:</span> <span>Certified Statement</span></div>
+            </div>
+          </div>
+          <div class="letterhead-gold-bar"></div>
+        </div>
+
         <!-- Daily Report View -->
         <div id="dailyReportBlock" hidden>
           <div class="report-header-banner">
             <h3 id="dailyReportTitle">Daily Report</h3>
             <p id="dailyReportSubtitle"></p>
           </div>
-          <div id="dailyReportCards" class="kpi-grid"></div>
+          <div id="dailyReportCards" class="audit-kpi-grid"></div>
           <div class="card table-card">
             <div class="table-container">
               <table class="data-table">
@@ -4061,6 +5347,7 @@ input:focus, select:focus, textarea:focus {
                   </tr>
                 </thead>
                 <tbody id="dailyReportList"></tbody>
+                <tfoot id="dailyReportTableFoot" class="audit-table-foot"></tfoot>
               </table>
             </div>
           </div>
@@ -4072,7 +5359,7 @@ input:focus, select:focus, textarea:focus {
             <h3 id="periodReportTitle">Weekly Collection &amp; Debtors Report</h3>
             <p id="periodReportSubtitle"></p>
           </div>
-          <div id="periodReportCards" class="kpi-grid"></div>
+          <div id="periodReportCards" class="period-kpi-grid"></div>
           <div class="card table-card">
             <div class="card-toolbar">
               <h3 id="periodDebtorsTitle">Outstanding Debtors List</h3>
@@ -4091,8 +5378,36 @@ input:focus, select:focus, textarea:focus {
                   </tr>
                 </thead>
                 <tbody id="weeklyDebtorsList"></tbody>
+                <tfoot id="debtorsTableFoot" class="audit-table-foot"></tfoot>
               </table>
             </div>
+          </div>
+        </div>
+
+        <!-- Official Academic Print Sign-off Block for Reports -->
+        <div class="official-print-signoff print-only">
+          <div class="signoff-signature-grid">
+            <div class="signoff-col">
+              <div class="signoff-line"></div>
+              <span class="signoff-title">School Bursar / Accountant</span>
+              <span class="signoff-sub">Compiled &amp; Reconciled</span>
+              <span class="signoff-date">Date: ____________________</span>
+            </div>
+            <div class="signoff-col">
+              <div class="signoff-line"></div>
+              <span class="signoff-title">Head of Administration</span>
+              <span class="signoff-sub">Executive Review</span>
+              <span class="signoff-date">Date: ____________________</span>
+            </div>
+            <div class="signoff-col signoff-stamp-col">
+              <div class="signoff-stamp-box">
+                <span>OFFICIAL INSTITUTION SEAL</span>
+              </div>
+              <span class="signoff-title">Headmaster Approval</span>
+            </div>
+          </div>
+          <div class="print-legal-notice">
+            Official Executive Statement of Cosmat Basic Academy. All listed debtors are subject to school arrears recovery policy.
           </div>
         </div>
       </div>
@@ -4100,130 +5415,148 @@ input:focus, select:focus, textarea:focus {
 
     <!-- ==================== VIEW 5: SETTINGS & CLOUD ==================== -->
     <section id="settings" class="page-view">
-      <div class="view-header">
-        <div>
-          <h2>School Settings &amp; Google Cloud Sync</h2>
+      <div class="view-header view-header-center">
+        <div class="view-header-content">
+          <div class="view-title-row">
+            <h2>School Settings &amp; Google Cloud Sync</h2>
+            <span class="view-header-badge cloud-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+              <span>Cloud Infrastructure</span>
+            </span>
+          </div>
           <p>Configure term dates, school days, and manage live database synchronization.</p>
         </div>
       </div>
 
-      <!-- Google Cloud Status Card -->
-      <div class="card cloud-config-card">
-        <div class="cloud-card-header">
-          <div class="cloud-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+      <div class="settings-wrap">
+        <!-- Google Cloud Status Card -->
+        <div class="card cloud-config-card">
+          <div class="cloud-card-header">
+            <div class="cloud-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+            </div>
+            <div>
+              <h3>Google Workspace Cloud Integration</h3>
+              <p class="card-subtext">Google Sheets live database, Google Drive PDF receipts, and learner photo storage.</p>
+            </div>
           </div>
-          <div>
-            <h3>Google Workspace Cloud Integration</h3>
-            <p class="card-subtext">Google Sheets live database, Google Drive PDF receipts, and learner photo storage.</p>
+
+          <div class="cloud-input-row">
+            <div class="field-wrap flex-1">
+              <label for="cloudApiUrlInput">Google Apps Script Web App URL</label>
+              <input id="cloudApiUrlInput" placeholder="https://script.google.com/macros/s/.../exec">
+            </div>
+            <div class="cloud-actions">
+              <button id="testConnectCloudBtn" class="btn btn-primary" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                <span>Connect</span>
+              </button>
+              <button id="disconnectCloudBtn" class="btn btn-secondary" type="button">Disconnect</button>
+            </div>
+          </div>
+
+          <div id="cloudConnectionStatus" class="cloud-live-indicator">
+            <span id="cloudStatusIcon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </span>
+            <span id="cloudStatusMsg">Connected to Google Cloud. Changes automatically sync to Google Sheets &amp; Drive.</span>
           </div>
         </div>
 
-        <div class="cloud-input-row">
-          <div class="field-wrap flex-1">
-            <label for="cloudApiUrlInput">Google Apps Script Web App URL</label>
-            <input id="cloudApiUrlInput" placeholder="https://script.google.com/macros/s/.../exec">
+        <!-- Academic Term Configuration -->
+        <form id="settingsForm" class="card form-card">
+          <div class="form-card-header-simple">
+            <div class="form-section-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              <span>Academic Calendar &amp; Term Settings</span>
+            </div>
+            <span class="sub-notice">Required for correct billing cycle calculation</span>
           </div>
-          <div class="cloud-actions">
-            <button id="testConnectCloudBtn" class="btn btn-primary" type="button">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-              <span>Connect</span>
+
+          <div class="grid-2">
+            <div class="field-wrap">
+              <label for="academicYear">Academic Year *</label>
+              <input id="academicYear" placeholder="e.g. 2026/2027" required>
+            </div>
+            <div class="field-wrap">
+              <label for="schoolTerm">Current Term *</label>
+              <select id="schoolTerm">
+                <option value="Term 1">Term 1</option>
+                <option value="Term 2">Term 2</option>
+                <option value="Term 3">Term 3</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field-wrap">
+              <label for="termStart">Term Start Date *</label>
+              <input id="termStart" type="date" required>
+            </div>
+            <div class="field-wrap">
+              <label for="termEnd">Term End Date *</label>
+              <input id="termEnd" type="date" required>
+            </div>
+          </div>
+
+          <fieldset class="school-days-group">
+            <legend>Active School Days</legend>
+            <div class="days-checkbox-grid">
+              <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="1" checked> Monday</label>
+              <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="2" checked> Tuesday</label>
+              <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="3" checked> Wednesday</label>
+              <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="4" checked> Thursday</label>
+              <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="5" checked> Friday</label>
+              <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="6"> Saturday</label>
+              <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="0"> Sunday</label>
+            </div>
+          </fieldset>
+
+          <div class="form-footer">
+            <button class="btn btn-primary" type="submit">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+              <span>Save Academic Calendar</span>
             </button>
-            <button id="disconnectCloudBtn" class="btn btn-secondary" type="button">Disconnect</button>
+            <span id="settingsSummary" class="form-feedback"></span>
           </div>
-        </div>
-
-        <div id="cloudConnectionStatus" class="cloud-live-indicator">
-          <span id="cloudStatusIcon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-          </span>
-          <span id="cloudStatusMsg">Connected to Google Cloud. Changes automatically sync to Google Sheets &amp; Drive.</span>
-        </div>
-      </div>
-
-      <!-- Academic Term Configuration -->
-      <form id="settingsForm" class="card form-card">
-        <div class="grid-2">
-          <div class="field-wrap">
-            <label for="academicYear">Academic Year *</label>
-            <input id="academicYear" placeholder="e.g. 2026/2027" required>
-          </div>
-          <div class="field-wrap">
-            <label for="schoolTerm">Current Term *</label>
-            <select id="schoolTerm">
-              <option value="Term 1">Term 1</option>
-              <option value="Term 2">Term 2</option>
-              <option value="Term 3">Term 3</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="grid-2">
-          <div class="field-wrap">
-            <label for="termStart">Term Start Date *</label>
-            <input id="termStart" type="date" required>
-          </div>
-          <div class="field-wrap">
-            <label for="termEnd">Term End Date *</label>
-            <input id="termEnd" type="date" required>
-          </div>
-        </div>
-
-        <fieldset class="school-days-group">
-          <legend>Active School Days</legend>
-          <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="1" checked> Monday</label>
-          <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="2" checked> Tuesday</label>
-          <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="3" checked> Wednesday</label>
-          <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="4" checked> Thursday</label>
-          <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="5" checked> Friday</label>
-          <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="6"> Saturday</label>
-          <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="0"> Sunday</label>
-        </fieldset>
-
-        <div class="form-footer">
-          <button class="btn btn-primary" type="submit">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-            <span>Save Academic Calendar</span>
-          </button>
-          <span id="settingsSummary" class="form-feedback"></span>
-        </div>
-      </form>
-
-      <!-- Holiday Management -->
-      <div class="card holiday-card">
-        <div class="card-toolbar">
-          <div>
-            <h3>Holidays &amp; School Closures</h3>
-            <p class="card-subtext">Dates listed here are protected and excluded from billing and debtor accumulations.</p>
-          </div>
-        </div>
-
-        <form id="holidayForm" class="holiday-add-form">
-          <div class="field-wrap">
-            <label for="holidayDate">Closure Date *</label>
-            <input id="holidayDate" type="date" required>
-          </div>
-          <div class="field-wrap flex-1">
-            <label for="holidayReason">Closure Reason / Holiday Name *</label>
-            <input id="holidayReason" required placeholder="e.g. Independence Day Holiday">
-          </div>
-          <button class="btn btn-secondary btn-add-holiday" type="submit">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            <span>Add Closure</span>
-          </button>
         </form>
 
-        <div class="table-container">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Reason</th>
-                <th class="text-right">Action</th>
-              </tr>
-            </thead>
-            <tbody id="holidayList"></tbody>
-          </table>
+        <!-- Holiday Management -->
+        <div class="card holiday-card">
+          <div class="card-toolbar">
+            <div>
+              <h3>Holidays &amp; School Closures</h3>
+              <p class="card-subtext">Dates listed here are protected and excluded from billing and debtor accumulations.</p>
+            </div>
+          </div>
+
+          <form id="holidayForm" class="holiday-add-form">
+            <div class="field-wrap">
+              <label for="holidayDate">Closure Date *</label>
+              <input id="holidayDate" type="date" required>
+            </div>
+            <div class="field-wrap flex-1">
+              <label for="holidayReason">Closure Reason / Holiday Name *</label>
+              <input id="holidayReason" required placeholder="e.g. Independence Day Holiday">
+            </div>
+            <button class="btn btn-secondary btn-add-holiday" type="submit">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Add Closure</span>
+            </button>
+          </form>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Reason</th>
+                  <th class="text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="holidayList"></tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
@@ -4386,169 +5719,163 @@ input:focus, select:focus, textarea:focus {
     </div>
   </dialog>
 
-  <!-- ==================== EXECUTIVE DIGITAL STUDENT PASS & SMARTCARD MODAL ==================== -->
+  <!-- ==================== PROFESSIONAL STUDENT PROFILE & ID CARD MODAL ==================== -->
   <dialog id="learnerProfileModal" class="profile-dialog">
     <div class="profile-modal-shell">
-      <!-- Top Action Bar (Glassmorphic) -->
-      <div class="profile-modal-topbar">
-        <div class="credential-auth-tag">
-          <span class="auth-dot-live"></span>
-          <span class="auth-label">OFFICIAL DIGITAL STUDENT CREDENTIAL</span>
+      <!-- Modal Header (Clean White / Light Slate) -->
+      <div class="profile-modal-header">
+        <div class="modal-header-left">
+          <div class="modal-header-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><line x1="15" y1="8" x2="17" y2="8"></line><line x1="15" y1="12" x2="17" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>
+          </div>
+          <div>
+            <h3 class="modal-header-title">Student Profile &amp; Digital ID Pass</h3>
+            <p class="modal-header-subtitle">Official verified student credential &amp; canteen payment pass</p>
+          </div>
         </div>
-        <button id="closeProfileModalBtn" type="button" class="btn-modal-dismiss" title="Close Pass">
+        <button id="closeProfileModalBtn" type="button" class="btn-modal-close" title="Close">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       </div>
 
-      <!-- Scrollable Pass Container -->
+      <!-- Modal Body (Scrollable) -->
       <div class="profile-modal-body">
-        <!-- Physical / Digital PVC Smart Card -->
-        <div class="smart-pass-card" id="studentIdCardPrintArea">
-          <!-- Card Security Guilloche Pattern & Watermark Background -->
-          <div class="card-security-pattern"></div>
-          <div class="card-security-hologram">COSMAT VERIFIED</div>
-
-          <!-- Card Header: Gold Foil Branding & EMV Chip -->
-          <div class="card-header-band">
-            <div class="card-school-brand">
-              <div class="school-crest-emblem">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                  <path d="M2 17l10 5 10-5"></path>
-                  <path d="M2 12l10 5 10-5"></path>
-                </svg>
-              </div>
-              <div class="school-brand-titles">
-                <h4 class="brand-school-name">COSMAT BASIC ACADEMY</h4>
-                <span class="brand-school-sub">CANTEEN &amp; TRANSIT SMARTPASS</span>
-              </div>
-            </div>
-
-            <div class="card-header-right">
-              <!-- Metallic Gold EMV Chip Graphic -->
-              <div class="emv-gold-chip" title="Biometric Smartcard Chip">
-                <span class="chip-line horizontal"></span>
-                <span class="chip-line vertical"></span>
-              </div>
-              <!-- Status Chip -->
-              <div class="smart-status-badge" id="profileModalStatusPill">ACTIVE PASS</div>
-            </div>
-          </div>
-
-          <!-- Card Body: Photo & Credentials -->
-          <div class="card-identity-grid">
-            <div class="card-photo-col">
-              <div class="biometric-photo-frame" id="profileModalPhotoFrame">
-                <img id="profileModalPhotoImg" src="" alt="Student Photo" hidden>
-                <div id="profileModalInitials" class="biometric-initials-avatar">KM</div>
-                <div class="biometric-seal-stamp">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-                  <span>SECURE</span>
+        
+        <!-- Authentic School Student ID Card (Printable Standard CR80 Style) -->
+        <div class="id-card-wrap">
+          <div class="school-id-card" id="studentIdCardPrintArea">
+            <!-- School Header Band -->
+            <div class="id-card-header">
+              <div class="id-school-brand">
+                <div class="id-school-crest">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                    <path d="M2 17l10 5 10-5"></path>
+                    <path d="M2 12l10 5 10-5"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="id-school-title">COSMAT BASIC ACADEMY</h4>
+                  <span class="id-school-subtitle">OFFICIAL STUDENT IDENTITY &amp; CANTEEN PASS</span>
                 </div>
               </div>
-            </div>
-
-            <div class="card-info-col">
-              <span class="id-type-label">ENROLLED LEARNER</span>
-              <h2 id="profileModalName" class="card-student-name">Kwame Mensah</h2>
-              
-              <div class="card-badge-row">
-                <span class="smart-id-pill" id="profileModalId">STU-1001</span>
-                <span class="smart-class-pill" id="profileModalClass">Basic 3</span>
-                <span class="smart-plan-pill" id="profileModalPlan">Canteen Only</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Services HUD (Heads-Up-Display) Bar -->
-          <div class="card-hud-strip">
-            <div class="hud-item">
-              <span class="hud-label">Transit Route</span>
-              <strong class="hud-val" id="profileModalDistance">Not Applicable</strong>
-            </div>
-            <div class="hud-divider"></div>
-            <div class="hud-item">
-              <span class="hud-label">Family Discount</span>
-              <strong class="hud-val" id="profileModalFamily">1 Sibling (Tier 1)</strong>
-            </div>
-            <div class="hud-divider"></div>
-            <div class="hud-item hud-highlight">
-              <span class="hud-label">Daily Standard Charge</span>
-              <strong class="hud-val-price" id="profileModalDailyFee">GH₵ 10.00</strong>
-            </div>
-          </div>
-
-          <!-- Bottom Half: High-Tech QR Viewfinder & Barcode -->
-          <div class="card-scannable-zone">
-            <!-- QR Viewfinder with Corner Brackets -->
-            <div class="qr-viewfinder-frame">
-              <span class="corner top-left"></span>
-              <span class="corner top-right"></span>
-              <span class="corner bottom-left"></span>
-              <span class="corner bottom-right"></span>
-              <div class="qr-canvas-holder">
-                <img id="profileModalQrImg" class="smart-qr-image" src="" alt="Student Canteen QR Pass">
+              <div class="id-card-meta">
+                <span class="id-status-badge status-active" id="profileModalStatusPill">ACTIVE PASS</span>
               </div>
             </div>
 
-            <div class="qr-security-text">
-              <div class="qr-headline">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect></svg>
-                <span>OFFICIAL POS VERIFICATION PASS</span>
+            <!-- Card Main Content -->
+            <div class="id-card-content">
+              <!-- Left: Photo Frame -->
+              <div class="id-photo-container">
+                <div class="id-photo-box" id="profileModalPhotoFrame">
+                  <img id="profileModalPhotoImg" src="" alt="Student Photo" hidden>
+                  <div id="profileModalInitials" class="id-photo-initials">KM</div>
+                </div>
+                <span class="id-card-type-tag">STUDENT</span>
               </div>
-              <p class="qr-subtext">Scan at the Canteen POS terminal or school bus reader for contactless real-time meal billing &amp; transit check-in.</p>
-              
-              <!-- Realistic Simulated Barcode -->
-              <div class="security-barcode-strip">
-                <span class="barcode-bars"></span>
-                <span class="barcode-code" id="profileModalBarcodeText">COSMAT-STU-1001-CANTEEN</span>
+
+              <!-- Center: Student Details -->
+              <div class="id-details-container">
+                <span class="id-field-label">FULL NAME</span>
+                <h3 id="profileModalName" class="id-student-name">Kwame Mensah</h3>
+                
+                <div class="id-meta-grid">
+                  <div class="id-meta-item">
+                    <span class="id-meta-label">STUDENT ID</span>
+                    <strong id="profileModalId" class="id-meta-val id-code-pill">STU-1001</strong>
+                  </div>
+                  <div class="id-meta-item">
+                    <span class="id-meta-label">CLASS / GRADE</span>
+                    <strong id="profileModalClass" class="id-meta-val">Basic 3</strong>
+                  </div>
+                  <div class="id-meta-item">
+                    <span class="id-meta-label">SERVICE PLAN</span>
+                    <strong id="profileModalPlan" class="id-meta-val">Canteen Only</strong>
+                  </div>
+                  <div class="id-meta-item">
+                    <span class="id-meta-label">DAILY TARIFF</span>
+                    <strong id="profileModalDailyFee" class="id-meta-val id-fee-highlight">GH₵ 10.00</strong>
+                  </div>
+                </div>
               </div>
+
+              <!-- Right: Clean High-Res QR Code -->
+              <div class="id-qr-container">
+                <div class="id-qr-box">
+                  <img id="profileModalQrImg" class="id-qr-code" src="" alt="Student Canteen QR Pass">
+                </div>
+                <span class="id-qr-caption">SCAN AT POS</span>
+                <span class="id-barcode-text" id="profileModalBarcodeText">COSMAT-STU-1001</span>
+              </div>
+            </div>
+
+            <!-- Card Bottom Hairline Footer -->
+            <div class="id-card-footer">
+              <span>Academic Year: 2026 / 2027</span>
+              <span>Valid for Canteen &amp; Campus Services</span>
             </div>
           </div>
         </div>
 
-        <!-- Emergency Guardian Dispatch Card -->
-        <div class="emergency-contact-deck">
-          <div class="deck-header">
-            <div class="deck-icon-bubble">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            </div>
-            <div>
-              <span class="deck-tag">SAFETY &amp; GUARDIAN DISPATCH</span>
-              <h5 class="deck-title">Parent / Emergency Contact</h5>
-            </div>
-          </div>
-
-          <div class="deck-content">
-            <div class="guardian-meta">
-              <strong id="profileModalParentName" class="guardian-name">Mrs. Grace Mensah (Mother)</strong>
-              <div class="guardian-number-row">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                <span id="profileModalParentPhone" class="guardian-phone">024 112 3456</span>
+        <!-- Student Information & Parent Contact Section -->
+        <div class="profile-info-grid">
+          <!-- Emergency Contact Card -->
+          <div class="profile-info-card">
+            <div class="info-card-header">
+              <div class="info-card-icon bg-green">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
               </div>
+              <span class="info-card-title">Emergency Guardian Contact</span>
             </div>
-
-            <div class="guardian-action-btns">
-              <a id="profileModalCallBtn" href="tel:" class="btn-deck-call" target="_blank">
+            <div class="guardian-info-row">
+              <div>
+                <strong id="profileModalParentName" class="guardian-name-text">Mrs. Grace Mensah (Mother)</strong>
+                <span id="profileModalParentPhone" class="guardian-phone-text">024 112 3456</span>
+              </div>
+              <a id="profileModalCallBtn" href="tel:" class="btn-call-parent">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                <span>Call Guardian</span>
+                <span>Call Phone</span>
               </a>
             </div>
           </div>
+
+          <!-- Subscription Plan Card -->
+          <div class="profile-info-card">
+            <div class="info-card-header">
+              <div class="info-card-icon bg-blue">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
+              </div>
+              <span class="info-card-title">Nutrition &amp; Transit Details</span>
+            </div>
+            <div class="service-details-list">
+              <div class="service-detail-item">
+                <span class="service-detail-label">Transit Route:</span>
+                <strong id="profileModalDistance" class="service-detail-val">Not Applicable</strong>
+              </div>
+              <div class="service-detail-item">
+                <span class="service-detail-label">Family Discount:</span>
+                <strong id="profileModalFamily" class="service-detail-val">1 Sibling(s) (Tier 1)</strong>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
 
-      <!-- Modal Bottom Actions Dock -->
-      <div class="profile-modal-dock">
-        <button id="printStudentIdCardBtn" class="btn-dock-primary" type="button">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-          <span>Print Smart PVC Pass</span>
-        </button>
-        <button id="editStudentFromProfileBtn" class="btn-dock-secondary" type="button">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-          <span>Edit Profile</span>
-        </button>
-        <button id="closeProfileBtn" class="btn-dock-ghost" type="button">Dismiss</button>
+      <!-- Modal Footer (Clean, Fixed, Never Cut Off) -->
+      <div class="profile-modal-footer">
+        <div class="modal-footer-left">
+          <button id="printStudentIdCardBtn" class="btn btn-primary btn-print-id" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            <span>Print Student ID Card</span>
+          </button>
+          <button id="editStudentFromProfileBtn" class="btn btn-secondary btn-edit-student" type="button">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+            <span>Edit Information</span>
+          </button>
+        </div>
+        <button id="closeProfileBtn" class="btn-ghost-cancel" type="button">Close</button>
       </div>
     </div>
   </dialog>
@@ -5208,14 +6535,36 @@ window.stateStore = new StateStore();
   }
 
   function updateFormRatePreview() {
+    const paymentType = $('studentPaymentType')?.value || 'Canteen';
+    const distance = $('studentDistance')?.value || '';
+    const familyMembers = Number($('familyMembers')?.value) || 1;
+
     const dummy = {
-      paymentType: $('studentPaymentType')?.value || 'Canteen',
-      distance: $('studentDistance')?.value || '',
-      familyMembers: Number($('familyMembers')?.value) || 1
+      paymentType,
+      distance,
+      familyMembers
     };
     const rate = stateStore.chargeFor(dummy);
     if ($('formLiveRateValue')) {
       $('formLiveRateValue').textContent = money(rate);
+    }
+
+    const baseMealRate = Number(stateStore.rates.Canteen?.[familyMembers] || (familyMembers > 1 ? 20 : 10));
+    const baseTag = $('formRateBaseTag');
+    const busTag = $('formRateBusTag');
+
+    if (baseTag) {
+      baseTag.textContent = `Meal: ${money(baseMealRate)}`;
+    }
+    if (busTag) {
+      if (paymentType === 'Bus & Canteen') {
+        const busAddition = Math.max(0, rate - baseMealRate);
+        busTag.textContent = `Transit (${distance || 'Short'}): +${money(busAddition > 0 ? busAddition : (distance === 'Long' ? 8 : (distance === 'Medium' ? 7 : 6)))}`;
+        busTag.style.display = 'inline-block';
+      } else {
+        busTag.textContent = 'Transit: None';
+        busTag.style.display = 'inline-block';
+      }
     }
   }
 
@@ -5226,19 +6575,29 @@ window.stateStore = new StateStore();
   // Toggle Learner Registration Form
   function toggleStudentForm(open) {
     const card = $('studentFormCard');
+    const toggleBtn = $('toggleAddStudentBtn');
     const btnText = $('toggleAddStudentBtnText');
+    const btnIcon = $('toggleAddStudentBtnIcon');
     if (!card) return;
 
     const shouldOpen = open !== undefined ? open : card.hidden;
     if (shouldOpen) {
       card.hidden = false;
-      if (btnText) btnText.textContent = '✕ Close Form';
+      if (toggleBtn) toggleBtn.classList.add('is-open');
+      if (btnText) btnText.textContent = 'Close Form';
+      if (btnIcon) {
+        btnIcon.innerHTML = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+      }
       updateDistanceVisibility();
       updateFormRatePreview();
       setTimeout(() => $('studentName')?.focus(), 100);
     } else {
       card.hidden = true;
-      if (btnText) btnText.textContent = '+ Add New Learner';
+      if (toggleBtn) toggleBtn.classList.remove('is-open');
+      if (btnText) btnText.textContent = 'Add New Learner';
+      if (btnIcon) {
+        btnIcon.innerHTML = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>`;
+      }
       resetStudentForm();
     }
   }
@@ -5294,7 +6653,8 @@ window.stateStore = new StateStore();
     studentPhotoBase64 = null;
     editingStudentId = null;
     $('studentFormTitle').textContent = 'Register New Learner';
-    $('saveStudentButton').innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> <span>Save Learner Profile</span>';
+    if ($('studentFormModeBadge')) $('studentFormModeBadge').textContent = 'LEARNER REGISTRATION';
+    $('saveStudentButton').innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> <span>Save Learner Profile</span>';
     $('cancelStudentEditButton').hidden = false;
     $('studentFormMessage').textContent = '';
     updateDistanceVisibility();
@@ -5378,7 +6738,8 @@ window.stateStore = new StateStore();
     }
 
     $('studentFormTitle').textContent = `Edit Learner: ${student.name} (${student.id})`;
-    $('saveStudentButton').innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> <span>Update Learner Profile</span>';
+    if ($('studentFormModeBadge')) $('studentFormModeBadge').textContent = `EDITING RECORD: ${student.id}`;
+    $('saveStudentButton').innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> <span>Update Learner Profile</span>';
     $('studentFormMessage').textContent = `Editing profile for ${student.name}. Existing payments remain safe.`;
     
     updateFormRatePreview();
@@ -5413,13 +6774,14 @@ window.stateStore = new StateStore();
     const statusPill = $('profileModalStatusPill');
     if (statusPill) {
       statusPill.textContent = student.status === 'Active' ? 'ACTIVE PASS' : 'SUSPENDED';
-      statusPill.style.background = student.status === 'Active' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)';
-      statusPill.style.borderColor = student.status === 'Active' ? '#10b981' : '#ef4444';
-      statusPill.style.color = student.status === 'Active' ? '#34d399' : '#f87171';
+      statusPill.className = student.status === 'Active' ? 'id-status-badge status-active' : 'id-status-badge status-suspended';
+      statusPill.style.background = '';
+      statusPill.style.borderColor = '';
+      statusPill.style.color = '';
     }
 
     if ($('profileModalBarcodeText')) {
-      $('profileModalBarcodeText').textContent = `COSMAT-${student.id}-${student.paymentType.replace(/[^a-zA-Z]/g, '').toUpperCase()}`;
+      $('profileModalBarcodeText').textContent = student.id;
     }
 
     // Photo / Initials
@@ -6085,26 +7447,106 @@ window.stateStore = new StateStore();
   // DAILY TRACKING AUDIT (PAGE 3)
   // ===========================================================================
   function summaryHtml(summary) {
-    return [
-      ['Paid Learners', summary.paid, 'paid'],
-      ['Absent Learners', summary.absent, 'absent'],
-      ['Learners Owing', summary.owing, 'owing'],
-      ['Total Collected', money(summary.collected), 'paid'],
-      ['Total Expected', money(summary.expected), ''],
-      ['Outstanding Debt', money(summary.outstanding), 'owing']
-    ].map(([label, val, kind]) => `
-      <div class="summary-card ${kind}">
-        <strong>${val}</strong>
-        <span>${label}</span>
+    const cards = [
+      {
+        id: 'kpi-paid',
+        label: 'Paid Learners',
+        val: summary.paid,
+        tag: 'PRESENT &amp; PAID',
+        subtext: 'Full dues cleared for today',
+        theme: 'paid',
+        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>`
+      },
+      {
+        id: 'kpi-absent',
+        label: 'Absent Learners',
+        val: summary.absent,
+        tag: 'EXCUSED',
+        subtext: 'Non-billed attendance today',
+        theme: 'absent',
+        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="17" y1="8" x2="23" y2="14"></line><line x1="23" y1="8" x2="17" y2="14"></line></svg>`
+      },
+      {
+        id: 'kpi-owing',
+        label: 'Learners Owing',
+        val: summary.owing,
+        tag: 'OUTSTANDING DEBT',
+        subtext: 'Learners with unpaid balance',
+        theme: 'owing',
+        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><circle cx="19" cy="11" r="3"></circle><line x1="19" y1="10" x2="19" y2="12"></line></svg>`
+      },
+      {
+        id: 'kpi-expected',
+        label: 'Total Expected',
+        val: money(summary.expected),
+        tag: 'TARGET REVENUE',
+        subtext: 'Based on present attendance',
+        theme: 'expected',
+        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`
+      },
+      {
+        id: 'kpi-collected',
+        label: 'Total Collected',
+        val: money(summary.collected),
+        tag: 'VERIFIED CASH',
+        subtext: 'Actual funds in cash vault',
+        theme: 'collected',
+        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg>`
+      },
+      {
+        id: 'kpi-debt',
+        label: 'Outstanding Debt',
+        val: money(summary.outstanding),
+        tag: 'UNCOLLECTED BALANCE',
+        subtext: 'Pending parent remittance',
+        theme: 'debt',
+        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`
+      }
+    ];
+
+    return cards.map(c => `
+      <div class="audit-kpi-card kpi-theme-${c.theme}">
+        <div class="audit-kpi-top">
+          <div class="audit-kpi-icon-box">
+            ${c.icon}
+          </div>
+          <span class="audit-kpi-pill">${c.tag}</span>
+        </div>
+        <div class="audit-kpi-body">
+          <strong class="audit-kpi-val">${c.val}</strong>
+          <span class="audit-kpi-label">${c.label}</span>
+          <span class="audit-kpi-subtext">${c.subtext}</span>
+        </div>
       </div>
     `).join('');
   }
 
   function renderTracking() {
     const date = $('trackingDate')?.value;
-    if (!stateStore.isSchoolDay(date)) {
+    const isValid = stateStore.isSchoolDay(date);
+
+    // Update School Day indicator in toolbar
+    const statusBadge = $('auditDayStatusBadge');
+    const statusText = $('auditDayStatusText');
+    if (statusBadge && statusText) {
+      if (isValid) {
+        statusBadge.className = 'school-day-indicator active';
+        statusText.textContent = 'Active School Day';
+      } else {
+        statusBadge.className = 'school-day-indicator inactive';
+        statusText.textContent = stateStore.schoolDayReason(date) || 'Non-School Day';
+      }
+    }
+
+    // Update Print Letterhead Metadata
+    if ($('printTrackingDateText')) $('printTrackingDateText').textContent = date ? new Date(date + 'T00:00:00').toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' }) : '--';
+    if ($('printTrackingDocId')) $('printTrackingDocId').textContent = `AUD-${(date || today()).replace(/-/g, '')}-CBA`;
+    if ($('printTrackingTimestamp')) $('printTrackingTimestamp').textContent = new Date().toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' });
+
+    if (!isValid) {
       $('summaryCards').innerHTML = summaryHtml({ paid: 0, absent: 0, owing: 0, collected: 0, expected: 0, outstanding: 0 });
       $('trackingList').innerHTML = `<tr><td class="empty" colspan="8">No records: ${date} is ${stateStore.schoolDayReason(date)}.</td></tr>`;
+      if ($('trackingTableFoot')) $('trackingTableFoot').innerHTML = '';
       return;
     }
 
@@ -6124,14 +7566,43 @@ window.stateStore = new StateStore();
         <td>${escapeHtml(r.remarks) || '—'}</td>
       </tr>
     `).join('') : '<tr><td class="empty" colspan="8">No active learners registered.</td></tr>';
+
+    const tfoot = $('trackingTableFoot');
+    if (tfoot) {
+      if (rows.length) {
+        tfoot.innerHTML = `
+          <tr class="table-total-row">
+            <td colspan="3"><strong>DAILY TOTALS (${rows.length} Learners Reconciled)</strong></td>
+            <td><strong>${money(summary.expected)}</strong></td>
+            <td><strong class="text-green">${money(summary.collected)}</strong></td>
+            <td><strong class="${summary.outstanding > 0 ? 'text-red' : ''}">${money(summary.outstanding)}</strong></td>
+            <td colspan="2"><span class="badge ${summary.outstanding === 0 ? 'badge-green' : 'badge-amber'}">${summary.outstanding === 0 ? 'All Settled' : 'Debt Outstanding'}</span></td>
+          </tr>
+        `;
+      } else {
+        tfoot.innerHTML = '';
+      }
+    }
   }
+
+  // Quick Date Shortcut Pills
+  $('auditTodayBtn')?.addEventListener('click', () => {
+    if ($('trackingDate')) $('trackingDate').value = today();
+    renderTracking();
+  });
+  $('auditYesterdayBtn')?.addEventListener('click', () => {
+    const d = new Date();
+    d.setDate(d.getDate() - 1);
+    if ($('trackingDate')) $('trackingDate').value = d.toISOString().slice(0, 10);
+    renderTracking();
+  });
 
   $('refreshTracking')?.addEventListener('click', renderTracking);
   $('printTracking')?.addEventListener('click', () => {
     renderTracking();
-    document.body.classList.add('printing-tracking');
+    document.body.classList.add('printing-audit-pdf');
     window.print();
-    setTimeout(() => document.body.classList.remove('printing-tracking'), 600);
+    setTimeout(() => document.body.classList.remove('printing-audit-pdf'), 1000);
   });
 
   // ===========================================================================
@@ -6182,6 +7653,10 @@ window.stateStore = new StateStore();
     const notice = $('reportCalendarNotice');
     notice.hidden = true;
 
+    // Update Print Letterhead Metadata
+    if ($('printReportDocId')) $('printReportDocId').textContent = `REP-${type.toUpperCase()}-${date.replace(/-/g, '')}`;
+    if ($('printReportTimestamp')) $('printReportTimestamp').textContent = new Date().toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' });
+
     if (isDaily) {
       const valid = stateStore.isSchoolDay(date);
       const rows = stateStore.dailyRows(date);
@@ -6192,20 +7667,37 @@ window.stateStore = new StateStore();
         notice.textContent = `Selected date is ${stateStore.schoolDayReason(date)}.`;
       }
 
-      $('dailyReportTitle').textContent = `Daily Canteen Report — ${date}`;
+      const formattedDate = new Date(date + 'T00:00:00').toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' });
+      $('dailyReportTitle').textContent = `Daily Canteen Register & Audit Report`;
+      $('dailyReportSubtitle').textContent = `Official daily reconciliation for ${formattedDate}`;
+      if ($('printReportPeriodText')) $('printReportPeriodText').textContent = formattedDate;
+
       $('dailyReportCards').innerHTML = summaryHtml(summary);
       $('dailyReportList').innerHTML = rows.map(r => `
         <tr>
           <td><strong>${escapeHtml(r.studentName)}</strong></td>
           <td>${escapeHtml(r.class)}</td>
-          <td>${r.attendance}</td>
+          <td><span class="badge ${r.attendance === 'Present' ? 'badge-green' : 'badge-amber'}">${r.attendance}</span></td>
           <td>${money(r.expectedCharge)}</td>
-          <td>${money(r.actualPaid)}</td>
-          <td>${money(r.outstanding)}</td>
+          <td><strong class="text-green">${money(r.actualPaid)}</strong></td>
+          <td><strong class="${r.outstanding > 0 ? 'text-red' : ''}">${money(r.outstanding)}</strong></td>
           <td><span class="status ${r.status.toLowerCase()}">${r.status}</span></td>
           <td>${escapeHtml(r.remarks) || '—'}</td>
         </tr>
       `).join('');
+
+      const dailyFoot = $('dailyReportTableFoot');
+      if (dailyFoot) {
+        dailyFoot.innerHTML = `
+          <tr class="table-total-row">
+            <td colspan="3"><strong>DAILY TOTALS (${rows.length} Learners)</strong></td>
+            <td><strong>${money(summary.expected)}</strong></td>
+            <td><strong class="text-green">${money(summary.collected)}</strong></td>
+            <td><strong class="${summary.outstanding > 0 ? 'text-red' : ''}">${money(summary.outstanding)}</strong></td>
+            <td colspan="2"><span class="badge ${summary.outstanding === 0 ? 'badge-green' : 'badge-amber'}">${summary.outstanding === 0 ? 'All Settled' : 'Debt Outstanding'}</span></td>
+          </tr>
+        `;
+      }
       return;
     }
 
@@ -6236,17 +7728,58 @@ window.stateStore = new StateStore();
 
     const titleMap = { weekly: 'Weekly Collection & Debtors', monthly: 'Monthly Collection & Debtors', termly: 'Termly Collection & Debtors' };
     $('periodReportTitle').textContent = `${titleMap[type]} Report`;
-    $('periodReportSubtitle').textContent = dates.length ? `${dates[0]} to ${dates[dates.length - 1]}` : 'Configure term dates in Settings';
+    const periodSpan = dates.length ? `${dates[0]} to ${dates[dates.length - 1]}` : 'Configure term dates in Settings';
+    $('periodReportSubtitle').textContent = `Reporting Period: ${periodSpan}`;
+    if ($('printReportPeriodText')) $('printReportPeriodText').textContent = `${type.toUpperCase()} (${periodSpan})`;
 
-    $('periodReportCards').innerHTML = [
-      ['Total Expected', money(summary.expected), ''],
-      ['Total Collected', money(summary.collected), 'paid'],
-      ['Total Outstanding Debt', money(summary.outstanding), 'owing'],
-      ['Total Learners Owing', debtorRows.length, 'owing']
-    ].map(([lbl, val, kind]) => `
-      <div class="summary-card ${kind}">
-        <strong>${val}</strong>
-        <span>${lbl}</span>
+    const reportCards = [
+      {
+        label: 'Total Expected',
+        val: money(summary.expected),
+        tag: 'BILLING TARGET',
+        subtext: 'Cumulative expected charges',
+        theme: 'expected',
+        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`
+      },
+      {
+        label: 'Total Collected',
+        val: money(summary.collected),
+        tag: 'TOTAL REVENUE',
+        subtext: 'Total fees collected to date',
+        theme: 'collected',
+        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg>`
+      },
+      {
+        label: 'Total Outstanding Debt',
+        val: money(summary.outstanding),
+        tag: 'TOTAL DEBT',
+        subtext: 'Accumulated uncollected balances',
+        theme: 'debt',
+        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`
+      },
+      {
+        label: 'Total Learners Owing',
+        val: debtorRows.length,
+        tag: 'DEBTOR COUNT',
+        subtext: 'Students with arrears',
+        theme: 'owing',
+        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`
+      }
+    ];
+
+    $('periodReportCards').innerHTML = reportCards.map(c => `
+      <div class="audit-kpi-card kpi-theme-${c.theme}">
+        <div class="audit-kpi-top">
+          <div class="audit-kpi-icon-box">
+            ${c.icon}
+          </div>
+          <span class="audit-kpi-pill">${c.tag}</span>
+        </div>
+        <div class="audit-kpi-body">
+          <strong class="audit-kpi-val">${c.val}</strong>
+          <span class="audit-kpi-label">${c.label}</span>
+          <span class="audit-kpi-subtext">${c.subtext}</span>
+        </div>
       </div>
     `).join('');
 
@@ -6258,9 +7791,26 @@ window.stateStore = new StateStore();
         <td>${money(d.expected)}</td>
         <td><strong class="text-green">${money(d.paid)}</strong></td>
         <td><strong class="text-red">${money(d.outstanding)}</strong></td>
-        <td>${d.daysOwing} day(s)</td>
+        <td><span class="badge ${d.daysOwing > 2 ? 'badge-red' : 'badge-amber'}">${d.daysOwing} day(s)</span></td>
       </tr>
     `).join('') : `<tr><td class="empty" colspan="6">No outstanding debtors for this ${type}!</td></tr>`;
+
+    const debtorsFoot = $('debtorsTableFoot');
+    if (debtorsFoot) {
+      if (debtorRows.length) {
+        debtorsFoot.innerHTML = `
+          <tr class="table-total-row">
+            <td colspan="2"><strong>TOTALS (${debtorRows.length} Debtors)</strong></td>
+            <td><strong>${money(debtorRows.reduce((s, d) => s + d.expected, 0))}</strong></td>
+            <td><strong class="text-green">${money(debtorRows.reduce((s, d) => s + d.paid, 0))}</strong></td>
+            <td><strong class="text-red">${money(summary.outstanding)}</strong></td>
+            <td>—</td>
+          </tr>
+        `;
+      } else {
+        debtorsFoot.innerHTML = '';
+      }
+    }
   }
 
   $('generateReports')?.addEventListener('click', () => {
@@ -6269,7 +7819,9 @@ window.stateStore = new StateStore();
   });
   $('printReports')?.addEventListener('click', () => {
     renderReports();
+    document.body.classList.add('printing-report-pdf');
     window.print();
+    setTimeout(() => document.body.classList.remove('printing-report-pdf'), 1000);
   });
 
   // ===========================================================================
