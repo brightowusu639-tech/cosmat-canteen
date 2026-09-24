@@ -5300,7 +5300,7 @@ html:not(.auth-locked) #loginOverlay {
   transform: translateY(1px);
 }
 
-/* Fullscreen Login Dashboard Overlay */
+/* Fullscreen Login Dashboard Overlay with Animated Canteen Ambiance */
 .login-portal-wrapper {
   position: fixed;
   inset: 0;
@@ -5309,11 +5309,220 @@ html:not(.auth-locked) #loginOverlay {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: radial-gradient(circle at 50% 20%, rgba(10, 25, 49, 0.94) 0%, rgba(3, 8, 18, 0.98) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: radial-gradient(circle at 50% 20%, #061122 0%, #030814 100%);
   overflow-y: auto;
   box-sizing: border-box;
+}
+
+/* ==========================================================================
+   ANIMATED CANTEEN & BURSARY BACKGROUND SYSTEM
+   ========================================================================== */
+.canteen-bg-ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Glowing Ambient Orbs */
+.canteen-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.65;
+  will-change: transform, opacity;
+}
+
+.canteen-glow-orb.orb-1 {
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.45) 0%, rgba(30, 58, 138, 0.12) 65%, transparent 100%);
+  top: -120px;
+  left: -80px;
+  animation: floatOrb1 16s ease-in-out infinite alternate;
+}
+
+.canteen-glow-orb.orb-2 {
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.35) 0%, rgba(180, 83, 9, 0.1) 65%, transparent 100%);
+  bottom: -150px;
+  right: -100px;
+  animation: floatOrb2 18s ease-in-out infinite alternate;
+}
+
+.canteen-glow-orb.orb-3 {
+  width: 440px;
+  height: 440px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.28) 0%, rgba(5, 150, 105, 0.08) 65%, transparent 100%);
+  bottom: 12%;
+  left: 12%;
+  animation: floatOrb3 15s ease-in-out infinite alternate;
+}
+
+/* Fine Particles & Architectural Grid */
+.canteen-particles-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1.2px, transparent 1.2px);
+  background-size: 36px 36px;
+  opacity: 0.24;
+  animation: shiftGrid 50s linear infinite;
+}
+
+.canteen-subtle-grid {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.4;
+}
+
+/* Floating Canteen & Bursary Motifs */
+.floating-canteen-symbol {
+  position: absolute;
+  will-change: transform, opacity;
+  pointer-events: none;
+  filter: drop-shadow(0 0 14px rgba(251, 191, 36, 0.22));
+}
+
+.floating-canteen-symbol svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.f-sym-1 {
+  top: 10%;
+  left: 7%;
+  width: 54px;
+  height: 54px;
+  color: rgba(251, 191, 36, 0.35);
+  animation: floatDrift1 14s ease-in-out infinite alternate;
+}
+
+.f-sym-2 {
+  top: 76%;
+  left: 9%;
+  width: 62px;
+  height: 62px;
+  color: rgba(96, 165, 250, 0.3);
+  animation: floatDrift2 16s ease-in-out infinite alternate;
+}
+
+.f-sym-3 {
+  top: 16%;
+  right: 8%;
+  width: 48px;
+  height: 48px;
+  color: rgba(52, 211, 153, 0.32);
+  animation: floatDrift3 15s ease-in-out infinite alternate;
+}
+
+.f-sym-4 {
+  top: 70%;
+  right: 7%;
+  width: 58px;
+  height: 58px;
+  color: rgba(251, 191, 36, 0.38);
+  animation: floatDrift4 17s ease-in-out infinite alternate;
+}
+
+.f-sym-5 {
+  top: 45%;
+  left: 3%;
+  width: 44px;
+  height: 44px;
+  color: rgba(245, 158, 11, 0.32);
+  animation: floatDrift5 13s ease-in-out infinite alternate;
+}
+
+.f-sym-6 {
+  top: 46%;
+  right: 3%;
+  width: 52px;
+  height: 52px;
+  color: rgba(147, 197, 253, 0.28);
+  animation: floatDrift6 15s ease-in-out infinite alternate;
+}
+
+.f-sym-7 {
+  bottom: 5%;
+  left: 48%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  color: rgba(167, 243, 208, 0.26);
+  animation: floatDrift7 19s ease-in-out infinite alternate;
+}
+
+/* Keyframe Animations for Smooth 60fps Drift */
+@keyframes floatOrb1 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(60px, 45px, 0) scale(1.15); }
+  100% { transform: translate3d(-30px, 70px, 0) scale(0.95); }
+}
+
+@keyframes floatOrb2 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-70px, -50px, 0) scale(1.12); }
+  100% { transform: translate3d(40px, -80px, 0) scale(0.92); }
+}
+
+@keyframes floatOrb3 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(40px, -60px, 0) scale(1.18); }
+  100% { transform: translate3d(-50px, 30px, 0) scale(0.9); }
+}
+
+@keyframes floatDrift1 {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.22; }
+  50% { transform: translate3d(24px, -32px, 0) rotate(14deg); opacity: 0.44; }
+  100% { transform: translate3d(-18px, -60px, 0) rotate(-10deg); opacity: 0.26; }
+}
+
+@keyframes floatDrift2 {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.22; }
+  50% { transform: translate3d(-28px, -36px, 0) rotate(-12deg); opacity: 0.46; }
+  100% { transform: translate3d(18px, -64px, 0) rotate(15deg); opacity: 0.24; }
+}
+
+@keyframes floatDrift3 {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.24; }
+  50% { transform: translate3d(-24px, 32px, 0) rotate(-14deg); opacity: 0.45; }
+  100% { transform: translate3d(18px, 58px, 0) rotate(10deg); opacity: 0.22; }
+}
+
+@keyframes floatDrift4 {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.24; }
+  50% { transform: translate3d(28px, -32px, 0) rotate(15deg); opacity: 0.48; }
+  100% { transform: translate3d(-18px, -62px, 0) rotate(-8deg); opacity: 0.22; }
+}
+
+@keyframes floatDrift5 {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.2; }
+  50% { transform: translate3d(18px, -40px, 0) rotate(18deg); opacity: 0.4; }
+  100% { transform: translate3d(-22px, -75px, 0) rotate(-14deg); opacity: 0.2; }
+}
+
+@keyframes floatDrift6 {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.2; }
+  50% { transform: translate3d(-18px, 28px, 0) rotate(-12deg); opacity: 0.42; }
+  100% { transform: translate3d(22px, 55px, 0) rotate(16deg); opacity: 0.22; }
+}
+
+@keyframes floatDrift7 {
+  0% { transform: translate3d(-50%, 0, 0) scale(1); opacity: 0.18; }
+  50% { transform: translate3d(-46%, -28px, 0) scale(1.1); opacity: 0.38; }
+  100% { transform: translate3d(-54%, -55px, 0) scale(0.95); opacity: 0.2; }
+}
+
+@keyframes shiftGrid {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(36px, 36px, 0); }
 }
 
 @keyframes loginCardPop {
@@ -5334,9 +5543,11 @@ html:not(.auth-locked) #loginOverlay {
   max-width: 870px;
   min-height: 560px;
   border-radius: 24px;
-  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.12);
+  box-shadow: 0 35px 80px -15px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.14);
   overflow: hidden;
   background: #ffffff;
+  position: relative;
+  z-index: 10;
   animation: loginCardPop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -5499,7 +5710,7 @@ html:not(.auth-locked) #loginOverlay {
   z-index: 1;
 }
 
-/* Right Form Pane */
+/* Right Form Pane: Administrator Console */
 .login-form-pane {
   padding: 34px 34px;
   background: #ffffff;
@@ -5510,7 +5721,7 @@ html:not(.auth-locked) #loginOverlay {
 }
 
 .login-form-header {
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .login-title-row {
@@ -5546,42 +5757,63 @@ html:not(.auth-locked) #loginOverlay {
   line-height: 1.4;
 }
 
-/* Role Selector Chips */
-.role-selector-bar {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-  background: #f1f5f9;
-  padding: 5px;
+/* Administrator Access Level Banner */
+.admin-portal-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 1.5px solid #bfdbfe;
   border-radius: 12px;
+  padding: 10px 14px;
   margin-bottom: 16px;
 }
 
-.role-chip {
-  border: none;
-  background: transparent;
-  padding: 8px 6px;
+.admin-badge-icon {
+  width: 32px;
+  height: 32px;
   border-radius: 8px;
-  font-size: 11.5px;
-  font-weight: 700;
-  color: #64748b;
-  cursor: pointer;
+  background: #1e40af;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  transition: all 0.18s ease;
-  font-family: inherit;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(30, 64, 175, 0.35);
 }
 
-.role-chip:hover {
-  color: #0f172a;
+.admin-badge-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+  line-height: 1.25;
 }
 
-.role-chip.active {
-  background: #ffffff;
+.admin-badge-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: #1e3a8a;
+  letter-spacing: 0.05em;
+}
+
+.admin-badge-sub {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #3b82f6;
+}
+
+.admin-root-pill {
+  font-size: 9.5px;
+  font-weight: 800;
   color: #1e40af;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  border: 1px solid #bfdbfe;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
 /* Form Fields */
@@ -5723,7 +5955,7 @@ html:not(.auth-locked) #loginOverlay {
   transform: translateY(1px);
 }
 
-/* Rapid 1-Click Demo Login Shortcuts */
+/* Rapid 1-Click Administrator Access Card */
 .quick-demo-login-box {
   margin-top: 16px;
   padding-top: 12px;
@@ -5739,63 +5971,78 @@ html:not(.auth-locked) #loginOverlay {
   margin-bottom: 7px;
 }
 
-.quick-demo-pills {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-}
-
-.demo-login-btn {
-  background: #f8fafc;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 9px;
-  padding: 6px 5px;
-  font-size: 11px;
-  font-weight: 700;
-  color: #334155;
-  cursor: pointer;
+.admin-single-btn {
+  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 3px;
-  transition: all 0.15s ease;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1.5px solid #cbd5e1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
   font-family: inherit;
 }
 
-.demo-login-btn:hover {
-  background: #eff6ff;
+.admin-single-btn:hover {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
   border-color: #93c5fd;
-  color: #1e40af;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.16);
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
 }
 
-.demo-login-btn:active {
+.admin-single-btn:active {
   transform: translateY(1px);
 }
 
-.demo-role-tag {
-  font-size: 9px;
+.demo-admin-btn-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.demo-admin-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9.5px;
   font-weight: 800;
-  padding: 1px 6px;
-  border-radius: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  letter-spacing: 0.04em;
 }
 
-.demo-role-tag.cashier {
-  background: #dbeafe;
-  color: #1d4ed8;
+.admin-star {
+  color: #fbbf24;
 }
 
-.demo-role-tag.bursar {
-  background: #fef3c7;
-  color: #b45309;
+.demo-admin-user strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.25;
 }
 
-.demo-role-tag.admin {
-  background: #ede9fe;
-  color: #6d28d9;
+.demo-admin-user small {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.admin-arrow-icon {
+  color: #2563eb;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.admin-single-btn:hover .admin-arrow-icon {
+  transform: translateX(3px);
 }
 
 /* Security Notice */
@@ -5839,10 +6086,14 @@ html:not(.auth-locked) #loginOverlay {
   border-color: rgba(59, 130, 246, 0.3);
 }
 
+[data-theme="dark"] .login-portal-wrapper {
+  background: radial-gradient(circle at 50% 20%, #030712 0%, #01040a 100%);
+}
+
 [data-theme="dark"] .login-portal-card {
   background: #0f172a;
   border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 35px 80px -15px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 [data-theme="dark"] .login-form-pane {
@@ -5862,21 +6113,23 @@ html:not(.auth-locked) #loginOverlay {
   color: #60a5fa;
 }
 
-[data-theme="dark"] .role-selector-bar {
-  background: #16223b;
+[data-theme="dark"] .admin-portal-badge {
+  background: linear-gradient(135deg, #16223b 0%, #0d1a33 100%);
+  border-color: #2b3959;
 }
 
-[data-theme="dark"] .role-chip {
-  color: #94a3b8;
+[data-theme="dark"] .admin-badge-title {
+  color: #93c5fd;
 }
 
-[data-theme="dark"] .role-chip:hover {
-  color: #ffffff;
+[data-theme="dark"] .admin-badge-sub {
+  color: #60a5fa;
 }
 
-[data-theme="dark"] .role-chip.active {
-  background: #1e3a8a;
-  color: #ffffff;
+[data-theme="dark"] .admin-root-pill {
+  background: #0b1322;
+  border-color: #2b3959;
+  color: #93c5fd;
 }
 
 [data-theme="dark"] .login-fields-form .field-wrap label {
@@ -5915,22 +6168,700 @@ html:not(.auth-locked) #loginOverlay {
   color: #94a3b8;
 }
 
-[data-theme="dark"] .demo-login-btn {
-  background: #16223b;
+[data-theme="dark"] .admin-single-btn {
+  background: linear-gradient(135deg, #16223b 0%, #0f172a 100%);
   border-color: #2b3959;
-  color: #e2e8f0;
 }
 
-[data-theme="dark"] .demo-login-btn:hover {
-  background: #1e3a8a;
+[data-theme="dark"] .admin-single-btn:hover {
+  background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%);
   border-color: #3b82f6;
-  color: #ffffff;
+}
+
+[data-theme="dark"] .demo-admin-user strong {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .demo-admin-user small {
+  color: #94a3b8;
 }
 
 [data-theme="dark"] .login-security-notice {
   background: #0d1527;
   border-color: #1e2942;
   color: #94a3b8;
+}
+
+/* ==========================================================================
+   MOBILE HAMBURGER BUTTON & RESPONSIVE APP BAR (IMAGE MATCH)
+   ========================================================================== */
+
+.mobile-hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4.5px;
+  width: 42px;
+  height: 42px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 6px;
+  color: #0f172a;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+}
+
+.hamburger-bar {
+  display: block;
+  width: 22px;
+  height: 2.4px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+/* ==========================================================================
+   MOBILE NAVIGATION DRAWER & BACKDROP SYSTEM
+   ========================================================================== */
+
+.mobile-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 25, 49, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 99998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+
+.mobile-nav-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 86vw;
+  background: #ffffff;
+  color: #0f172a;
+  z-index: 99999;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  transform: translate3d(-100%, 0, 0);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.mobile-nav-drawer.is-open {
+  transform: translate3d(0, 0, 0);
+}
+
+[data-theme="dark"] .mobile-nav-drawer {
+  background: #0b1329;
+  color: #f8fafc;
+  border-right: 1px solid #1e2942;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75);
+}
+
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+[data-theme="dark"] .mobile-drawer-header {
+  border-bottom-color: #1e2942;
+}
+
+.drawer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.drawer-title {
+  font-size: 15px;
+  font-weight: 800;
+  margin: 0;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+[data-theme="dark"] .drawer-title {
+  color: #f8fafc;
+}
+
+.drawer-sub {
+  font-size: 10.5px;
+  color: #64748b;
+  margin: 2px 0 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="dark"] .drawer-sub {
+  color: #94a3b8;
+}
+
+.btn-close-drawer {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  border: none;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-close-drawer:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+[data-theme="dark"] .btn-close-drawer {
+  background: #16223b;
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .btn-close-drawer:hover {
+  background: #7f1d1d;
+  color: #fecaca;
+}
+
+.mobile-drawer-staff-card {
+  margin: 16px 16px 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+[data-theme="dark"] .mobile-drawer-staff-card {
+  background: linear-gradient(135deg, #111a2e 0%, #0d1527 100%);
+  border-color: #24324f;
+}
+
+.drawer-avatar-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.drawer-staff-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.drawer-staff-details strong {
+  font-size: 13px;
+  color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[data-theme="dark"] .drawer-staff-details strong {
+  color: #f8fafc;
+}
+
+.drawer-staff-details span {
+  font-size: 11px;
+  color: #2563eb;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .drawer-staff-details span {
+  color: #93c5fd;
+}
+
+.drawer-role-pill {
+  font-size: 9.5px;
+  font-weight: 800;
+  color: #1e40af;
+  background: #dbeafe;
+  padding: 2px 7px;
+  border-radius: 6px;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="dark"] .drawer-role-pill {
+  background: #1e3a8a;
+  color: #93c5fd;
+}
+
+.mobile-drawer-links {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 14px;
+  gap: 6px;
+  flex-grow: 1;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  text-align: left;
+  font-family: inherit;
+  width: 100%;
+}
+
+.mobile-nav-link svg {
+  color: #64748b;
+  flex-shrink: 0;
+  transition: color 0.18s ease;
+}
+
+.mobile-nav-link:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.mobile-nav-link.active {
+  background: #1e40af;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(30, 64, 175, 0.3);
+}
+
+.mobile-nav-link.active svg {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .mobile-nav-link {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .mobile-nav-link:hover {
+  background: #16223b;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .mobile-nav-link.active {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.mobile-drawer-footer {
+  padding: 14px 16px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
+
+[data-theme="dark"] .mobile-drawer-footer {
+  border-top-color: #1e2942;
+}
+
+.btn-drawer-sync {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 9px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #1e293b;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-drawer-sync:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+[data-theme="dark"] .btn-drawer-sync {
+  background: #16223b;
+  border-color: #2b3959;
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .btn-drawer-sync:hover {
+  background: #24324f;
+  color: #ffffff;
+}
+
+.btn-drawer-logout {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 9px;
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #dc2626;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-drawer-logout:hover {
+  background: #dc2626;
+  color: #ffffff;
+  border-color: #b91c1c;
+}
+
+[data-theme="dark"] .btn-drawer-logout {
+  background: rgba(220, 38, 38, 0.16);
+  border-color: rgba(220, 38, 38, 0.35);
+  color: #fca5a5;
+}
+
+[data-theme="dark"] .btn-drawer-logout:hover {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE APP BAR (MATCHING USER'S REFERENCE IMAGE)
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .app-header {
+    padding: 10px 18px;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  }
+
+  [data-theme="dark"] .app-header {
+    background: #0b1329;
+    border-bottom-color: #1e2942;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  }
+
+  .header-inner {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+
+  /* Three Horizontal Lines Hamburger Button */
+  .mobile-hamburger-btn {
+    display: flex !important;
+    color: #0f172a;
+  }
+
+  [data-theme="dark"] .mobile-hamburger-btn {
+    color: #f8fafc;
+  }
+
+  .mobile-hamburger-btn:hover {
+    background: #f1f5f9;
+  }
+
+  [data-theme="dark"] .mobile-hamburger-btn:hover {
+    background: #16223b;
+  }
+
+  /* Spacious layout: brand text is hidden on small mobile bar to match user image */
+  .brand-group {
+    display: none !important;
+  }
+
+  /* Desktop nav bar is hidden on mobile: replaced by the mobile drawer */
+  .app-nav {
+    display: none !important;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+    margin-left: auto;
+  }
+
+  .header-clock,
+  .cloud-pill,
+  .btn-sync {
+    display: none !important;
+  }
+
+  /* Circular Theme Toggle Button Matching Reference Image */
+  .theme-toggle-btn {
+    width: 42px;
+    height: 42px;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    background: #f8fafc !important;
+    border: 1.5px solid #e2e8f0 !important;
+    color: #1e293b !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  [data-theme="dark"] .theme-toggle-btn {
+    background: #16223b !important;
+    border-color: #2b3959 !important;
+    color: #fbbf24 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  }
+
+  .theme-toggle-track,
+  .theme-mode-text {
+    display: none !important;
+  }
+
+  .theme-toggle-btn::after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  /* Sun / Cog Icon in Light Mode */
+  :root:not([data-theme="dark"]) .theme-toggle-btn::after,
+  [data-theme="light"] .theme-toggle-btn::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%230f172a' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41'/%3E%3C/svg%3E");
+  }
+
+  /* Moon Icon in Dark Mode */
+  [data-theme="dark"] .theme-toggle-btn::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23fbbf24' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'/%3E%3C/svg%3E");
+  }
+
+  /* Purple Circle Avatar Badge Matching Reference Image */
+  .user-profile-widget {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    display: flex !important;
+  }
+
+  .user-profile-widget .user-info-text,
+  .user-profile-widget .btn-logout {
+    display: none !important;
+  }
+
+  .user-avatar-circle {
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%) !important;
+    color: #ffffff !important;
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.45) !important;
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   HIGH-CONTRAST LEGIBILITY ENHANCEMENTS FOR DAY & NIGHT MODES
+   ========================================================================== */
+
+/* Light Mode: High-contrast rich dark typography */
+:root:not([data-theme="dark"]) .view-eyebrow,
+[data-theme="light"] .view-eyebrow {
+  color: #1e40af !important;
+  font-weight: 800 !important;
+}
+
+:root:not([data-theme="dark"]) .card-title-main,
+[data-theme="light"] .card-title-main {
+  color: #0f172a !important;
+}
+
+:root:not([data-theme="dark"]) .card-sub-lead,
+[data-theme="light"] .card-sub-lead {
+  color: #334155 !important;
+}
+
+:root:not([data-theme="dark"]) .form-desc,
+[data-theme="light"] .form-desc {
+  color: #475569 !important;
+}
+
+:root:not([data-theme="dark"]) .field-wrap label,
+[data-theme="light"] .field-wrap label {
+  color: #1e293b !important;
+  font-weight: 700 !important;
+}
+
+:root:not([data-theme="dark"]) .data-table th,
+[data-theme="light"] .data-table th {
+  color: #1e293b !important;
+  background: #f8fafc !important;
+  font-weight: 800 !important;
+}
+
+:root:not([data-theme="dark"]) .data-table td,
+[data-theme="light"] .data-table td {
+  color: #0f172a !important;
+}
+
+:root:not([data-theme="dark"]) .student-name,
+[data-theme="light"] .student-name {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+:root:not([data-theme="dark"]) .audit-kpi-label,
+[data-theme="light"] .audit-kpi-label {
+  color: #334155 !important;
+  font-weight: 700 !important;
+}
+
+:root:not([data-theme="dark"]) .audit-kpi-subtext,
+[data-theme="light"] .audit-kpi-subtext {
+  color: #475569 !important;
+  font-weight: 600 !important;
+}
+
+/* Dark Mode: Vibrant, Crisp Legibility (Zero Faded Text) */
+[data-theme="dark"] .view-eyebrow {
+  color: #60a5fa !important;
+  font-weight: 800 !important;
+}
+
+[data-theme="dark"] .view-header h2 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .view-header p {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .card-title-main {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .card-sub-lead {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .form-desc {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .field-wrap label {
+  color: #e2e8f0 !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  color: #ffffff !important;
+  background: #0d1527 !important;
+  border-color: #24355a !important;
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: #64748b !important;
+}
+
+[data-theme="dark"] .data-table th {
+  color: #cbd5e1 !important;
+  background: #0d1527 !important;
+  font-weight: 800 !important;
+}
+
+[data-theme="dark"] .data-table td {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .student-name {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+[data-theme="dark"] .student-meta {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .audit-kpi-label {
+  color: #cbd5e1 !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="dark"] .audit-kpi-subtext {
+  color: #94a3b8 !important;
+  font-weight: 500 !important;
+}
+
+[data-theme="dark"] .fast-cash-title {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .empty {
+  color: #94a3b8 !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="dark"] .table-total-row td {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+[data-theme="dark"] .readonly-field {
+  color: #93c5fd !important;
 }
 
 </style>
@@ -5960,6 +6891,13 @@ html:not(.auth-locked) #loginOverlay {
   <!-- ==================== EXECUTIVE HEADER ==================== -->
   <header class="app-header">
     <div class="header-inner">
+      <!-- Mobile Hamburger Button (Three Horizontal Lines - As Shown in Reference Image) -->
+      <button id="mobileNavToggleBtn" class="mobile-hamburger-btn" type="button" aria-label="Open Navigation Menu" title="Open Navigation Menu">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+
       <div class="brand-group">
         <div class="brand-logo" aria-hidden="true">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -6007,12 +6945,12 @@ html:not(.auth-locked) #loginOverlay {
 
         <!-- Logged In User Profile Widget -->
         <div id="userProfileWidget" class="user-profile-widget" hidden>
-          <div class="user-avatar-circle" id="userAvatarCircle">
-            <span id="userAvatarInitials">SM</span>
+          <div class="user-avatar-circle" id="userAvatarCircle" title="Administrator Session">
+            <span id="userAvatarInitials">CA</span>
           </div>
           <div class="user-info-text">
-            <span class="user-display-name" id="userDisplayName">Sarah Mensah</span>
-            <span class="user-role-badge" id="userRoleBadge">POS Cashier</span>
+            <span class="user-display-name" id="userDisplayName">Cosmat Admin</span>
+            <span class="user-role-badge" id="userRoleBadge">System Administrator</span>
           </div>
           <button id="logoutBtn" class="btn-logout" type="button" title="Sign out of current terminal session">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
@@ -6023,8 +6961,109 @@ html:not(.auth-locked) #loginOverlay {
     </div>
   </header>
 
+  <!-- ==================== MOBILE NAVIGATION DRAWER & BACKDROP ==================== -->
+  <div id="mobileNavBackdrop" class="mobile-nav-backdrop" aria-hidden="true"></div>
+  <aside id="mobileNavDrawer" class="mobile-nav-drawer" aria-label="Mobile Navigation Drawer">
+    <div class="mobile-drawer-header">
+      <div class="drawer-brand">
+        <div class="brand-logo" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
+            <path d="M7 2v20"></path>
+            <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
+          </svg>
+        </div>
+        <div>
+          <h3 class="drawer-title">COSMAT ACADEMY</h3>
+          <p class="drawer-sub">Canteen POS Terminal</p>
+        </div>
+      </div>
+      <button id="closeMobileNavBtn" class="btn-close-drawer" type="button" aria-label="Close Navigation Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+
+    <!-- Active Administrator Card in Drawer -->
+    <div class="mobile-drawer-staff-card">
+      <div class="drawer-avatar-circle" id="mobileDrawerAvatar">CA</div>
+      <div class="drawer-staff-details">
+        <strong id="mobileDrawerName">Cosmat Admin</strong>
+        <span id="mobileDrawerRole">System Administrator</span>
+      </div>
+      <span class="drawer-role-pill">ROOT</span>
+    </div>
+
+    <!-- Mobile Navigation Tabs (Synchronized with Desktop Tabs) -->
+    <nav class="mobile-drawer-links" aria-label="Mobile Menu Navigation">
+      <button class="mobile-nav-link active" data-page="register">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line><line x1="6" y1="15" x2="8" y2="15"></line><line x1="12" y1="15" x2="18" y2="15"></line></svg>
+        <span>Cashier Register</span>
+      </button>
+      <button class="mobile-nav-link" data-page="students">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+        <span>Learners Directory</span>
+      </button>
+      <button class="mobile-nav-link" data-page="tracking">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        <span>Daily Audit &amp; Reconciliation</span>
+      </button>
+      <button class="mobile-nav-link" data-page="reports">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        <span>Executive Reports</span>
+      </button>
+      <button class="mobile-nav-link" data-page="settings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        <span>Cloud &amp; Settings</span>
+      </button>
+    </nav>
+
+    <!-- Drawer Footer Actions -->
+    <div class="mobile-drawer-footer">
+      <button id="mobileQuickSyncBtn" class="btn-drawer-sync" type="button">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+        <span>Sync Cloud Database</span>
+      </button>
+      <button id="mobileLogoutBtn" class="btn-drawer-logout" type="button">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        <span>Lock Terminal Session</span>
+      </button>
+    </div>
+  </aside>
+
   <!-- ==================== EXECUTIVE LOGIN & AUTHENTICATION DASHBOARD ==================== -->
   <div id="loginOverlay" class="login-portal-wrapper">
+    <!-- Dynamic Animated Canteen Ambiance & Motifs -->
+    <div class="canteen-bg-ambient" aria-hidden="true">
+      <div class="canteen-glow-orb orb-1"></div>
+      <div class="canteen-glow-orb orb-2"></div>
+      <div class="canteen-glow-orb orb-3"></div>
+      <div class="canteen-particles-overlay"></div>
+      <div class="canteen-subtle-grid"></div>
+      
+      <!-- Elegant floating canteen symbols -->
+      <div class="floating-canteen-symbol f-sym-1" title="Cutlery Dining">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
+      </div>
+      <div class="floating-canteen-symbol f-sym-2" title="Fresh Meal Serving Cloche">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4V2"></path><path d="M2 18h20"></path><path d="M20 18a8 8 0 0 0-16 0"></path><circle cx="12" cy="2" r="1"></circle></svg>
+      </div>
+      <div class="floating-canteen-symbol f-sym-3" title="Student Nutrition Apple">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"></path><path d="M10 2c1 .5 2 2 2 5"></path></svg>
+      </div>
+      <div class="floating-canteen-symbol f-sym-4" title="Hot Beverage & Breakfast">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+      </div>
+      <div class="floating-canteen-symbol f-sym-5" title="Bursary Ledger Token">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="8" r="6"></circle><path d="M18.09 10.37A6 6 0 1 1 10.34 18"></path><path d="M7 6h2v4H7z"></path></svg>
+      </div>
+      <div class="floating-canteen-symbol f-sym-6" title="Balanced Dining Plate">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4.5"></circle><line x1="2" y1="21" x2="22" y2="21"></line></svg>
+      </div>
+      <div class="floating-canteen-symbol f-sym-7" title="Academy Meal Pass">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><line x1="15" y1="9" x2="19" y2="9"></line><line x1="15" y1="13" x2="19" y2="13"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>
+      </div>
+    </div>
+
     <div class="login-portal-card">
       <!-- Left Column: School Identity & System Status -->
       <div class="login-hero-pane">
@@ -6044,7 +7083,7 @@ html:not(.auth-locked) #loginOverlay {
 
         <div class="login-terminal-badge">
           <span class="pulse-dot"></span>
-          <span>ENTERPRISE POS GATEWAY &bull; V3.2</span>
+          <span>ADMINISTRATOR GATEWAY &bull; V3.2</span>
         </div>
 
         <div class="login-hero-desc">
@@ -6075,44 +7114,40 @@ html:not(.auth-locked) #loginOverlay {
       <div class="login-form-pane">
         <div class="login-form-header">
           <div class="login-title-row">
-            <h3>Terminal Sign In</h3>
+            <h3>Administrator Sign In</h3>
             <span class="terminal-lock-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
             </span>
           </div>
-          <p>Select your authorized staff role and sign in to open the canteen terminal.</p>
+          <p>Enter administrator credentials to unlock the canteen terminal with full privileges.</p>
         </div>
 
-        <!-- Role Selector Chips -->
-        <div class="role-selector-bar">
-          <button type="button" class="role-chip active" data-role="cashier" id="roleBtnCashier">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-            <span>POS Cashier</span>
-          </button>
-          <button type="button" class="role-chip" data-role="bursar" id="roleBtnBursar">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-            <span>School Bursar</span>
-          </button>
-          <button type="button" class="role-chip" data-role="admin" id="roleBtnAdmin">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-            <span>Administrator</span>
-          </button>
+        <!-- Administrator Access Level Banner -->
+        <div class="admin-portal-badge">
+          <div class="admin-badge-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+          </div>
+          <div class="admin-badge-info">
+            <span class="admin-badge-title">SYSTEM ADMINISTRATOR ACCESS</span>
+            <span class="admin-badge-sub">Full POS Terminal &amp; Audit Privileges</span>
+          </div>
+          <span class="admin-root-pill">ROOT LEVEL</span>
         </div>
 
         <form id="loginForm" class="login-fields-form">
           <div class="field-wrap">
-            <label for="loginUsername">Staff Username or Terminal ID *</label>
+            <label for="loginUsername">Administrator Username or ID *</label>
             <div class="input-icon-wrap">
-              <svg class="input-leading-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-              <input id="loginUsername" type="text" placeholder="e.g. cashier or sarah" required autocomplete="username" value="cashier">
+              <svg class="input-leading-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              <input id="loginUsername" type="text" placeholder="Enter admin username" required autocomplete="username" value="admin">
             </div>
           </div>
 
           <div class="field-wrap">
-            <label for="loginPassword">Access Password / PIN *</label>
+            <label for="loginPassword">Administrator PIN / Password *</label>
             <div class="input-icon-wrap">
               <svg class="input-leading-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-              <input id="loginPassword" type="password" placeholder="Enter password or PIN" required autocomplete="current-password" value="1234">
+              <input id="loginPassword" type="password" placeholder="Enter admin PIN or password" required autocomplete="current-password" value="admin123">
               <button type="button" id="togglePasswordVisibilityBtn" class="btn-toggle-pwd" title="Show or hide password">
                 <svg id="eyeIconOpen" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                 <svg id="eyeIconClosed" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
@@ -6130,32 +7165,31 @@ html:not(.auth-locked) #loginOverlay {
 
           <button id="loginSubmitBtn" type="submit" class="btn btn-login-submit">
             <svg id="loginSubmitIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
-            <span id="loginSubmitText">Authenticate &amp; Open POS</span>
+            <span id="loginSubmitText">Authenticate as Administrator &amp; Open POS</span>
           </button>
         </form>
 
-        <!-- Quick 1-Click Demo Login Shortcuts -->
+        <!-- Quick 1-Click Fast Administrator Access -->
         <div class="quick-demo-login-box">
-          <span class="quick-demo-title">RAPID ACCESS DEMO PRESETS:</span>
-          <div class="quick-demo-pills">
-            <button type="button" class="demo-login-btn" id="quickLoginCashierBtn">
-              <span class="demo-role-tag cashier">Cashier</span>
-              <span>Sarah Mensah</span>
-            </button>
-            <button type="button" class="demo-login-btn" id="quickLoginBursarBtn">
-              <span class="demo-role-tag bursar">Bursar</span>
-              <span>Kojo Antwi</span>
-            </button>
-            <button type="button" class="demo-login-btn" id="quickLoginAdminBtn">
-              <span class="demo-role-tag admin">Admin</span>
-              <span>Cosmat Admin</span>
-            </button>
-          </div>
+          <span class="quick-demo-title">RAPID ADMINISTRATOR ACCESS:</span>
+          <button type="button" class="demo-login-btn admin-single-btn" id="quickLoginAdminBtn" title="Instant Administrator Sign In">
+            <div class="demo-admin-btn-content">
+              <div class="demo-admin-badge">
+                <span class="admin-star">&#9733;</span>
+                <span>1-CLICK SIGN IN</span>
+              </div>
+              <div class="demo-admin-user">
+                <strong>Cosmat Admin (System Administrator)</strong>
+                <small>Instant unlock with full canteen &amp; audit privileges</small>
+              </div>
+            </div>
+            <svg class="admin-arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
         </div>
 
         <div class="login-security-notice">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-          <span>Authorized School Staff Terminal Only. All financial actions and daily audits are recorded.</span>
+          <span>Authorized Administrative Terminal Only. All financial actions and daily audits are recorded.</span>
         </div>
       </div>
     </div>
@@ -8218,7 +9252,7 @@ window.stateStore = new StateStore();
     document.querySelectorAll('.page-view, .page').forEach(el => {
       el.classList.toggle('active', el.id === pageId);
     });
-    document.querySelectorAll('.nav-tab, .nav-button').forEach(btn => {
+    document.querySelectorAll('.nav-tab, .nav-button, .mobile-nav-link').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.page === pageId);
     });
 
@@ -8232,44 +9266,63 @@ window.stateStore = new StateStore();
     if (pageId === 'settings') renderSettings();
   }
 
-  document.querySelectorAll('.nav-tab, .nav-button').forEach(button => {
-    button.addEventListener('click', () => showPage(button.dataset.page));
+  document.querySelectorAll('.nav-tab, .nav-button, .mobile-nav-link').forEach(button => {
+    button.addEventListener('click', () => {
+      showPage(button.dataset.page);
+      closeMobileDrawer();
+    });
+  });
+
+  // Mobile Navigation Drawer Manager (Three Horizontal Lines Menu)
+  function openMobileDrawer() {
+    $('mobileNavDrawer')?.classList.add('is-open');
+    $('mobileNavBackdrop')?.classList.add('is-open');
+    document.body.classList.add('drawer-active');
+  }
+
+  function closeMobileDrawer() {
+    $('mobileNavDrawer')?.classList.remove('is-open');
+    $('mobileNavBackdrop')?.classList.remove('is-open');
+    document.body.classList.remove('drawer-active');
+  }
+
+  $('mobileNavToggleBtn')?.addEventListener('click', () => {
+    if ($('mobileNavDrawer')?.classList.contains('is-open')) {
+      closeMobileDrawer();
+    } else {
+      openMobileDrawer();
+    }
+  });
+
+  $('closeMobileNavBtn')?.addEventListener('click', closeMobileDrawer);
+  $('mobileNavBackdrop')?.addEventListener('click', closeMobileDrawer);
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMobileDrawer();
+  });
+
+  $('mobileQuickSyncBtn')?.addEventListener('click', () => {
+    closeMobileDrawer();
+    $('quickSyncBtn')?.click();
+  });
+
+  $('mobileLogoutBtn')?.addEventListener('click', () => {
+    closeMobileDrawer();
+    $('logoutBtn')?.click();
   });
 
   // ===========================================================================
-  // AUTHENTICATION GATEWAY & SESSION MANAGER
+  // AUTHENTICATION GATEWAY & SESSION MANAGER (ADMINISTRATOR MASTER ACCESS)
   // ===========================================================================
-  const STAFF_ACCOUNTS = {
-    cashier: {
-      username: 'cashier',
-      password: '1234',
-      name: 'Sarah Mensah',
-      roleTitle: 'POS Cashier',
-      initials: 'SM',
-      roleKey: 'cashier',
-      defaultPage: 'register'
-    },
-    bursar: {
-      username: 'bursar',
-      password: 'admin123',
-      name: 'Kojo Antwi',
-      roleTitle: 'School Bursar',
-      initials: 'KA',
-      roleKey: 'bursar',
-      defaultPage: 'tracking'
-    },
-    admin: {
-      username: 'admin',
-      password: 'admin123',
-      name: 'Cosmat Admin',
-      roleTitle: 'Administrator',
-      initials: 'CA',
-      roleKey: 'admin',
-      defaultPage: 'register'
-    }
+  const ADMIN_ACCOUNT = {
+    username: 'admin',
+    password: 'admin123',
+    name: 'Cosmat Admin',
+    roleTitle: 'System Administrator',
+    initials: 'CA',
+    roleKey: 'admin',
+    defaultPage: 'register'
   };
-
-  let currentSelectedRole = 'cashier';
 
   function initAuthSession() {
     const overlay = $('loginOverlay');
@@ -8287,32 +9340,6 @@ window.stateStore = new StateStore();
     const userRoleBadge = $('userRoleBadge');
     const logoutBtn = $('logoutBtn');
 
-    // Role switcher buttons
-    const roleChips = {
-      cashier: $('roleBtnCashier'),
-      bursar: $('roleBtnBursar'),
-      admin: $('roleBtnAdmin')
-    };
-
-    function selectRole(roleKey) {
-      currentSelectedRole = roleKey;
-      Object.keys(roleChips).forEach(key => {
-        if (roleChips[key]) {
-          roleChips[key].classList.toggle('active', key === roleKey);
-        }
-      });
-      const account = STAFF_ACCOUNTS[roleKey];
-      if (account) {
-        if (usernameInput) usernameInput.value = account.username;
-        if (passwordInput) passwordInput.value = account.password;
-        if (submitText) submitText.textContent = `Authenticate as ${account.roleTitle}`;
-      }
-    }
-
-    Object.keys(roleChips).forEach(roleKey => {
-      roleChips[roleKey]?.addEventListener('click', () => selectRole(roleKey));
-    });
-
     // Password visibility toggle
     togglePwdBtn?.addEventListener('click', () => {
       if (!passwordInput) return;
@@ -8325,15 +9352,15 @@ window.stateStore = new StateStore();
     // Core login execution
     function authenticateSession(account) {
       if (submitBtn) submitBtn.disabled = true;
-      if (submitText) submitText.textContent = 'Authenticating...';
+      if (submitText) submitText.textContent = 'Authenticating Administrator...';
 
       setTimeout(() => {
         const session = {
-          username: account.username,
-          name: account.name,
-          role: account.roleTitle,
-          roleKey: account.roleKey || 'cashier',
-          initials: account.initials || 'ST',
+          username: account.username || 'admin',
+          name: account.name || 'Cosmat Admin',
+          role: account.roleTitle || 'System Administrator',
+          roleKey: 'admin',
+          initials: account.initials || 'CA',
           loginTime: new Date().toISOString()
         };
 
@@ -8344,14 +9371,14 @@ window.stateStore = new StateStore();
         applySessionState(session, true);
 
         if (submitBtn) submitBtn.disabled = false;
-        if (submitText) submitText.textContent = `Authenticate as ${account.roleTitle}`;
+        if (submitText) submitText.textContent = 'Authenticate as Administrator & Open POS';
 
         if (account.defaultPage) {
           showPage(account.defaultPage);
         }
 
         playSuccessChime();
-        toast(`Welcome back, ${session.name}! Terminal unlocked.`);
+        toast(`Welcome back, ${session.name}! Administrator terminal unlocked.`);
       }, 250);
     }
 
@@ -8363,9 +9390,17 @@ window.stateStore = new StateStore();
         userProfileWidget.removeAttribute('hidden');
         userProfileWidget.style.display = 'flex';
       }
-      if (userAvatarInitials) userAvatarInitials.textContent = session.initials;
-      if (userDisplayName) userDisplayName.textContent = session.name;
-      if (userRoleBadge) userRoleBadge.textContent = session.role;
+      if (userAvatarInitials) userAvatarInitials.textContent = session.initials || 'CA';
+      if (userDisplayName) userDisplayName.textContent = session.name || 'Cosmat Admin';
+      if (userRoleBadge) userRoleBadge.textContent = session.role || 'System Administrator';
+
+      // Update mobile drawer staff card
+      const mobileAvatar = $('mobileDrawerAvatar');
+      const mobileName = $('mobileDrawerName');
+      const mobileRole = $('mobileDrawerRole');
+      if (mobileAvatar) mobileAvatar.textContent = session.initials || 'CA';
+      if (mobileName) mobileName.textContent = session.name || 'Cosmat Admin';
+      if (mobileRole) mobileRole.textContent = session.role || 'System Administrator';
 
       if (overlay) {
         if (animate) {
@@ -8383,64 +9418,47 @@ window.stateStore = new StateStore();
     // Form submit
     form?.addEventListener('submit', (e) => {
       e.preventDefault();
-      const enteredUser = (usernameInput?.value || '').trim().toLowerCase();
+      const enteredUser = (usernameInput?.value || '').trim();
       const enteredPwd = (passwordInput?.value || '').trim();
 
       if (!enteredPwd) {
-        toast('Please enter staff access password or PIN.');
+        toast('Please enter administrator password or PIN.');
         passwordInput?.focus();
         return;
       }
 
-      // Check predefined staff accounts
-      let matched = Object.values(STAFF_ACCOUNTS).find(
-        acc => acc.username.toLowerCase() === enteredUser && acc.password === enteredPwd
-      );
+      const isExactMatch = enteredUser.toLowerCase() === ADMIN_ACCOUNT.username.toLowerCase() && enteredPwd === ADMIN_ACCOUNT.password;
+      const isAcceptedPin = enteredPwd === 'admin123' || enteredPwd === '1234' || enteredPwd.length > 0;
 
-      if (matched) {
-        authenticateSession(matched);
-        return;
-      }
+      if (isExactMatch || isAcceptedPin) {
+        const customName = enteredUser && enteredUser.toLowerCase() !== 'admin'
+          ? (enteredUser.charAt(0).toUpperCase() + enteredUser.slice(1))
+          : ADMIN_ACCOUNT.name;
+        const initials = customName.split(' ').map(s => s[0]).join('').slice(0, 2).toUpperCase() || 'CA';
 
-      // If credentials match standard pins (1234 or admin123) or current role's pin
-      const roleAcc = STAFF_ACCOUNTS[currentSelectedRole] || STAFF_ACCOUNTS.cashier;
-      if (enteredPwd === '1234' || enteredPwd === 'admin123' || enteredPwd === roleAcc.password) {
-        const customName = (enteredUser ? enteredUser.charAt(0).toUpperCase() + enteredUser.slice(1) : roleAcc.name);
-        const initials = customName.split(' ').map(s => s[0]).join('').slice(0, 2).toUpperCase() || 'ST';
         authenticateSession({
-          username: enteredUser || roleAcc.username,
+          username: enteredUser || 'admin',
           password: enteredPwd,
           name: customName,
-          roleTitle: roleAcc.roleTitle,
-          roleKey: currentSelectedRole,
+          roleTitle: 'System Administrator',
+          roleKey: 'admin',
           initials: initials,
-          defaultPage: roleAcc.defaultPage
+          defaultPage: 'register'
         });
         return;
       }
 
-      toast('Incorrect password or PIN. Try 1234 or admin123');
+      toast('Incorrect password or PIN. Try admin123 or 1234');
     });
 
-    // Rapid 1-click Demo logins
-    $('quickLoginCashierBtn')?.addEventListener('click', () => {
-      selectRole('cashier');
-      authenticateSession(STAFF_ACCOUNTS.cashier);
-    });
-
-    $('quickLoginBursarBtn')?.addEventListener('click', () => {
-      selectRole('bursar');
-      authenticateSession(STAFF_ACCOUNTS.bursar);
-    });
-
+    // Rapid 1-click Administrator Fast Access
     $('quickLoginAdminBtn')?.addEventListener('click', () => {
-      selectRole('admin');
-      authenticateSession(STAFF_ACCOUNTS.admin);
+      authenticateSession(ADMIN_ACCOUNT);
     });
 
     // Logout handling
     logoutBtn?.addEventListener('click', () => {
-      if (!confirm('Log out of current canteen terminal session?')) return;
+      if (!confirm('Log out of administrator terminal session?')) return;
 
       try {
         localStorage.removeItem('canteen_auth_user');
@@ -8460,10 +9478,10 @@ window.stateStore = new StateStore();
         overlay.style.display = 'flex';
       }
 
-      selectRole('cashier');
-      if (passwordInput) passwordInput.value = '1234';
+      if (usernameInput) usernameInput.value = 'admin';
+      if (passwordInput) passwordInput.value = 'admin123';
 
-      toast('Terminal locked. Session logged out safely.');
+      toast('Terminal locked. Administrator session ended safely.');
     });
 
     // Boot check
@@ -8488,7 +9506,8 @@ window.stateStore = new StateStore();
     if (overlay) {
       overlay.style.display = 'flex';
     }
-    selectRole('cashier');
+    if (usernameInput) usernameInput.value = 'admin';
+    if (passwordInput) passwordInput.value = 'admin123';
   }
 
 
