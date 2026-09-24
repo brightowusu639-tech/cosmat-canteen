@@ -113,6 +113,10 @@ html {
   scroll-behavior: smooth;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -285,23 +289,30 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   NAVIGATION BAR
+   NAVIGATION BAR — CENTERED & EXECUTIVE (IMAGE 1)
    ========================================================================== */
 
 .app-nav {
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.95);
   border-bottom: 1px solid var(--slate-200);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
   padding: 8px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(10px);
 }
 
 .nav-container {
   max-width: 1360px;
   margin: 0 auto;
   display: flex;
-  gap: 10px;
+  justify-content: center; /* Center-aligned for first image */
+  align-items: center;
+  gap: 8px;
   overflow-x: auto;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .nav-container::-webkit-scrollbar {
@@ -311,32 +322,41 @@ h1, h2, h3, h4, h5 {
 .nav-tab {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 700;
+  gap: 8px;
+  padding: 9px 18px;
+  font-size: 13.5px;
+  font-weight: 600;
   color: var(--slate-600);
   background: transparent;
-  border: 1.5px solid transparent;
-  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
   cursor: pointer;
-  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
 }
 
 .nav-tab:hover {
   background: var(--slate-100);
   color: var(--slate-900);
+  border-color: var(--slate-200);
+  transform: translateY(-1px);
 }
 
 .nav-tab.active {
   background: var(--brand-900);
   color: var(--white);
-  box-shadow: 0 4px 14px rgba(10, 25, 49, 0.22);
+  border-color: var(--brand-900);
+  box-shadow: 0 4px 14px rgba(10, 25, 49, 0.25);
+  font-weight: 700;
 }
 
 .tab-icon {
   font-size: 16px;
+  transition: transform 0.15s ease;
+}
+
+.nav-tab:hover .tab-icon {
+  transform: scale(1.08);
 }
 
 /* ==========================================================================
@@ -364,7 +384,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .view-header {
-  margin-bottom: 24px;
+  margin-bottom: 22px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -372,15 +392,51 @@ h1, h2, h3, h4, h5 {
   gap: 16px;
 }
 
+.view-title-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
 .view-header h2 {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 800;
   color: var(--brand-900);
 }
 
+.live-pos-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  animation: pulseGreen 2s infinite;
+}
+
+@keyframes pulseGreen {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
 .view-header p {
   margin: 4px 0 0;
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--slate-500);
   font-weight: 500;
 }
@@ -399,25 +455,55 @@ h1, h2, h3, h4, h5 {
   box-shadow: var(--shadow-md);
 }
 
+/* Premium Attendance Policy Alert Banner */
 .alert-banner {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 14px;
-  background: #fffdf7;
-  border: 1px solid #fef3c7;
-  border-left: 4.5px solid var(--warning-500);
-  color: #92400e;
-  padding: 14px 20px;
+  background: linear-gradient(135deg, #fffdf7 0%, #fefce8 100%);
+  border: 1px solid #fef08a;
+  border-left: 4.5px solid #f59e0b;
+  color: #854d0e;
+  padding: 12px 18px;
   border-radius: var(--radius-md);
-  margin-bottom: 22px;
-  font-size: 13.5px;
-  line-height: 1.55;
-  box-shadow: var(--shadow-xs);
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.05);
 }
 
-.alert-icon {
-  font-size: 20px;
+.alert-icon-box {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #fef3c7;
+  color: #d97706;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+}
+
+.alert-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.alert-title-tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #fef08a;
+  color: #713f12;
+  text-transform: uppercase;
+}
+
+.alert-text {
+  color: #713f12;
 }
 
 /* ==========================================================================
@@ -540,66 +626,75 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* ==========================================================================
-   CLASS QUICK-FILTER PILLS BAR
+   CLASS QUICK-FILTER PILLS BAR (IMAGE 2)
    ========================================================================== */
 
 .class-filter-bar {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   overflow-x: auto;
-  padding-bottom: 8px;
-  margin-bottom: 18px;
-  scrollbar-width: thin;
+  padding: 6px;
+  margin-bottom: 22px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-full);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.class-filter-bar::-webkit-scrollbar {
+  display: none;
 }
 
 .filter-chip {
-  background: var(--white);
-  border: 1.5px solid var(--slate-200);
+  background: transparent;
+  border: 1px solid transparent;
   color: var(--slate-600);
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 700;
   padding: 6px 14px;
   border-radius: var(--radius-full);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
 }
 
 .filter-chip:hover {
-  background: var(--accent-50);
-  border-color: var(--accent-400);
-  color: var(--accent-600);
+  background: var(--white);
+  color: var(--slate-900);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
 .filter-chip.active {
   background: var(--brand-900);
   color: var(--white);
   border-color: var(--brand-900);
-  box-shadow: 0 2px 8px rgba(10, 25, 49, 0.2);
+  box-shadow: 0 2px 8px rgba(10, 25, 49, 0.22);
 }
 
 /* ==========================================================================
-   CASHIER POS REGISTER (VIEW 2)
+   CASHIER POS REGISTER — EXECUTIVE FINTECH LAYOUT (IMAGE 2)
    ========================================================================== */
 
 .pos-card {
-  padding: 30px;
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-md);
-  border: 1.5px solid #dce6f2;
+  padding: 28px 32px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06), 0 0 0 1px #e2e8f0;
+  border: none;
+  background: var(--white);
 }
 
 .pos-layout {
   display: grid;
-  grid-template-columns: 1.18fr 1fr;
+  grid-template-columns: 1.15fr 1fr;
   gap: 36px;
 }
 
 .pos-col-learner, .pos-col-financials {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
 /* Student Search Input */
@@ -612,9 +707,16 @@ input:focus, select:focus, textarea:focus {
 }
 
 .lookup-input-box input {
-  padding-right: 48px;
-  font-size: 15px;
+  padding-right: 56px;
+  font-size: 14.5px;
   font-weight: 600;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+}
+
+.lookup-input-box input:focus {
+  border-color: var(--accent-600);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
 }
 
 .lookup-status-icon {
@@ -625,20 +727,23 @@ input:focus, select:focus, textarea:focus {
   pointer-events: none;
   font-size: 15px;
   color: var(--slate-400);
+  display: flex;
+  align-items: center;
 }
 
 .shortcut-badge {
   position: absolute;
-  right: 38px;
+  right: 36px;
   top: 50%;
   transform: translateY(-50%);
   font-family: var(--font-mono);
   font-size: 10px;
+  font-weight: 700;
   background: var(--slate-100);
   color: var(--slate-500);
-  border: 1px solid var(--slate-300);
+  border: 1px solid var(--slate-200);
   padding: 2px 6px;
-  border-radius: var(--radius-xs);
+  border-radius: 4px;
   pointer-events: none;
 }
 
@@ -649,9 +754,9 @@ input:focus, select:focus, textarea:focus {
   right: 0;
   z-index: 80;
   background: var(--white);
-  border: 1.5px solid var(--slate-300);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-xl);
+  border: 1.5px solid var(--slate-200);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.15);
   max-height: 280px;
   overflow-y: auto;
 }
@@ -659,8 +764,8 @@ input:focus, select:focus, textarea:focus {
 .match {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 12px 16px;
+  gap: 12px;
+  padding: 11px 16px;
   border-bottom: 1px solid var(--slate-100);
   cursor: pointer;
   transition: all 0.12s ease;
@@ -675,8 +780,8 @@ input:focus, select:focus, textarea:focus {
 }
 
 .match-avatar {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--accent-100) 0%, #bfdbfe 100%);
   color: var(--accent-600);
@@ -684,54 +789,95 @@ input:focus, select:focus, textarea:focus {
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: 14px;
+  font-size: 13.5px;
   flex-shrink: 0;
 }
 
 .match-info strong {
   display: block;
-  font-size: 14.5px;
+  font-size: 14px;
   color: var(--slate-900);
 }
 
 .match-info small {
   color: var(--slate-500);
-  font-size: 12.5px;
-  margin-top: 2px;
+  font-size: 12px;
+  margin-top: 1px;
   display: block;
+}
+
+/* Unselected Helper State */
+.learner-empty-placeholder {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #f8fafc;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 14px;
+  padding: 14px 18px;
+  color: var(--slate-500);
+  transition: all 0.2s ease;
+}
+
+.learner-empty-placeholder:hover {
+  border-color: var(--accent-400);
+  background: var(--accent-50);
+}
+
+.placeholder-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  color: var(--slate-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.placeholder-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.placeholder-text strong {
+  font-size: 13.5px;
+  color: var(--slate-700);
+  font-weight: 700;
+}
+
+.placeholder-text span {
+  font-size: 12px;
+  color: var(--slate-400);
+  margin-top: 2px;
 }
 
 /* Selected Learner POS Badge Card */
 .learner-pos-badge {
   display: flex;
   align-items: center;
-  gap: 18px;
-  background: linear-gradient(135deg, #f8fafc 0%, #eef3f9 100%);
-  border: 1.5px solid #cbdceb;
-  border-radius: var(--radius-lg);
-  padding: 16px 20px;
-  box-shadow: var(--shadow-sm);
-  animation: glowCard 2s infinite alternate;
-}
-
-@keyframes glowCard {
-  0% { border-color: #cbdceb; }
-  100% { border-color: #93c5fd; box-shadow: 0 0 16px rgba(147, 197, 253, 0.3); }
+  gap: 16px;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+  border: 1.5px solid #bfdbfe;
+  border-radius: 14px;
+  padding: 14px 18px;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
 }
 
 .learner-avatar-box {
-  width: 58px;
-  height: 58px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--brand-800) 0%, var(--accent-600) 100%);
+  background: linear-gradient(135deg, var(--brand-900) 0%, var(--accent-600) 100%);
   color: var(--white);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border: 3px solid var(--white);
-  box-shadow: var(--shadow-md);
+  border: 2.5px solid var(--white);
+  box-shadow: 0 2px 8px rgba(10, 25, 49, 0.15);
 }
 
 .learner-avatar-box img {
@@ -741,16 +887,34 @@ input:focus, select:focus, textarea:focus {
 }
 
 .learner-initials {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 
-.learner-meta-details h4 {
-  font-size: 18px;
+.learner-name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.learner-name-row h4 {
+  font-size: 16.5px;
   font-weight: 800;
-  margin-bottom: 6px;
   color: var(--brand-900);
+  margin: 0;
+}
+
+.learner-verified-chip {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: #dcfce7;
+  color: #15803d;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
 }
 
 .pill-group {
@@ -760,13 +924,13 @@ input:focus, select:focus, textarea:focus {
 }
 
 .pill {
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 700;
-  padding: 4px 10px;
+  padding: 3.5px 9px;
   border-radius: var(--radius-full);
 }
 
-.pill-class { background: #e2e8f0; color: #334155; }
+.pill-class { background: #f1f5f9; color: #334155; }
 .pill-plan { background: #dbeafe; color: #1e40af; }
 .pill-family { background: #fef3c7; color: #92400e; }
 .pill-bus { background: #ede9fe; color: #6b21a8; }
@@ -774,12 +938,13 @@ input:focus, select:focus, textarea:focus {
 /* Attendance Segmented Selector */
 .attendance-select {
   font-weight: 700;
-  font-size: 14.5px;
-  border-width: 2px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 1.5px solid #cbd5e1;
 }
 
 /* ==========================================================================
-   FINANCIAL TOTALIZER PANELS (POS NUMPAD FEEL)
+   FINANCIAL TOTALIZER PANELS (HIGH-END FINTECH TILES)
    ========================================================================== */
 
 .pos-totals-panel {
@@ -789,111 +954,153 @@ input:focus, select:focus, textarea:focus {
 }
 
 .total-block {
-  border-radius: var(--radius-md);
-  padding: 14px 16px;
+  border-radius: 14px;
+  padding: 13px 15px;
   display: flex;
   flex-direction: column;
-  transition: all 0.2s ease;
+  justify-content: space-between;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   border: 1.5px solid var(--slate-200);
+  background: var(--white);
 }
 
-.total-expected {
-  background: #f8fafc;
-  border-color: var(--slate-300);
+.total-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
 }
 
 .total-label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
-  color: var(--slate-500);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
+.total-expected {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  border-color: #cbd5e1;
+}
+.total-expected .total-label { color: #64748b; }
+.total-expected svg { color: #94a3b8; }
+
 .total-value {
   border: 0;
   padding: 0;
-  margin-top: 8px;
+  margin-top: 4px;
   font-family: var(--font-heading);
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 800;
   color: var(--slate-900);
   background: transparent !important;
 }
 
 .total-paid {
-  background: linear-gradient(135deg, #f0fdf4 0%, var(--success-50) 100%);
-  border-color: var(--success-500);
-  box-shadow: 0 0 16px rgba(16, 185, 129, 0.15);
+  background: linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%);
+  border-color: #22c55e;
+  box-shadow: 0 4px 18px rgba(34, 197, 94, 0.12);
+}
+.total-paid .total-label { color: #15803d; }
+.total-paid svg { color: #16a34a; }
+
+.currency-input-wrap {
+  display: flex;
+  align-items: center;
+  background: var(--white);
+  border: 1.5px solid #86efac;
+  border-radius: 8px;
+  padding: 2px 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: all 0.15s ease;
+  margin-top: 4px;
+}
+
+.currency-input-wrap:focus-within {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.22);
+}
+
+.currency-prefix {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 800;
+  color: #15803d;
+  margin-right: 4px;
+  user-select: none;
 }
 
 .total-value-input {
-  margin-top: 8px;
+  border: none !important;
+  background: transparent !important;
+  padding: 4px 0 !important;
+  margin: 0 !important;
   font-family: var(--font-heading);
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 900;
-  color: var(--success-700);
-  background: var(--white);
-  border: 2px solid var(--success-500);
-  border-radius: var(--radius-sm);
-  padding: 5px 10px;
-  box-shadow: var(--shadow-xs);
-}
-
-.total-value-input:focus {
-  border-color: var(--success-600);
-  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.25);
+  color: #15803d;
+  box-shadow: none !important;
+  outline: none !important;
+  width: 100%;
 }
 
 .total-balance {
-  background: linear-gradient(135deg, #fff1f2 0%, var(--danger-50) 100%);
-  border-color: #fda4af;
+  background: linear-gradient(145deg, #ffffff 0%, #fef2f2 100%);
+  border-color: #fca5a5;
 }
+.total-balance .total-label { color: #b91c1c; }
+.total-balance svg { color: #ef4444; }
 
 .total-balance-val {
-  color: var(--danger-600);
-  font-size: 22px;
-  font-weight: 900;
+  color: #dc2626 !important;
+  font-size: 21px !important;
+  font-weight: 900 !important;
+  border: 0;
+  background: transparent !important;
 }
 
 /* Fast-Click Cash Chips */
 .fast-cash-bar {
   display: flex;
   align-items: center;
-  gap: 12px;
-  background: var(--slate-50);
-  border: 1.5px solid var(--slate-200);
-  border-radius: var(--radius-md);
-  padding: 12px 16px;
+  justify-content: space-between;
+  gap: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 10px 14px;
   flex-wrap: wrap;
 }
 
 .fast-cash-title {
-  font-size: 12.5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
   font-weight: 800;
   color: var(--slate-600);
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
 }
 
 .fast-cash-chips {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
 }
 
 .cash-chip {
   background: var(--white);
-  border: 1.5px solid var(--slate-300);
+  border: 1.5px solid #cbd5e1;
   color: var(--brand-900);
   font-family: var(--font-heading);
-  font-size: 13.5px;
+  font-size: 12.5px;
   font-weight: 700;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: var(--shadow-xs);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
 .cash-chip:hover {
@@ -904,14 +1111,14 @@ input:focus, select:focus, textarea:focus {
 }
 
 .cash-chip:active {
-  transform: scale(0.94);
+  transform: scale(0.95);
 }
 
 .chip-exact {
   background: var(--accent-600);
   color: var(--white);
   border-color: var(--accent-600);
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
 }
 
 .chip-exact:hover {
@@ -921,12 +1128,25 @@ input:focus, select:focus, textarea:focus {
 
 .chip-clear {
   color: var(--slate-500);
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+.chip-clear:hover {
+  background: var(--slate-200);
+  color: var(--slate-800);
+}
+
+.remarks-wrap textarea {
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  resize: vertical;
 }
 
 .pos-action-strip {
-  margin-top: 26px;
-  padding-top: 20px;
-  border-top: 1.5px solid var(--slate-200);
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1.5px solid #e2e8f0;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -934,14 +1154,35 @@ input:focus, select:focus, textarea:focus {
 }
 
 .btn-pos-save {
-  font-size: 16px;
+  font-size: 14.5px;
   font-weight: 800;
-  padding: 13px 30px;
-  background: linear-gradient(135deg, var(--accent-600) 0%, #1e40af 100%);
+  padding: 12px 26px;
+  background: linear-gradient(135deg, var(--brand-900) 0%, #1d4ed8 100%);
+  box-shadow: 0 4px 16px rgba(10, 25, 49, 0.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-pos-save:hover {
+  box-shadow: 0 6px 20px rgba(10, 25, 49, 0.35);
+  transform: translateY(-1px);
+}
+
+.kbd-badge {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: var(--white);
+  font-weight: 700;
+  margin-left: 2px;
 }
 
 .pos-feedback {
-  font-size: 13.5px;
+  font-size: 13px;
   color: var(--slate-500);
   font-weight: 500;
 }
@@ -2244,17 +2485,24 @@ input:focus, select:focus, textarea:focus {
     <section id="register" class="page-view active">
       <div class="view-header">
         <div>
-          <h2>Daily Canteen Cashier Register</h2>
-          <p>Instant checkout: rates and sibling discounts are calculated automatically.</p>
+          <div class="view-title-row">
+            <h2>Daily Canteen Cashier Register</h2>
+            <span class="live-pos-badge">
+              <span class="pulse-dot"></span>
+              <span>POS Terminal Ready</span>
+            </span>
+          </div>
+          <p>Instant checkout: rates, bus route fees, and sibling discounts are computed in real-time.</p>
         </div>
       </div>
 
       <div class="alert-banner">
-        <div class="alert-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <div class="alert-icon-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
         </div>
-        <div>
-          <strong>Attendance Policy:</strong> Mark a learner <em>Absent</em> if they did not attend school today (they will not be billed). Present learners who pay less than the expected charge accumulate an outstanding debt.
+        <div class="alert-content">
+          <span class="alert-title-tag">ATTENDANCE POLICY</span>
+          <span class="alert-text">Mark a learner <em>Absent</em> if they did not attend school today (they will not be billed). Present learners who pay less than the expected charge accumulate an outstanding debt.</span>
         </div>
       </div>
 
@@ -2299,6 +2547,17 @@ input:focus, select:focus, textarea:focus {
               </div>
             </div>
 
+            <!-- Unselected Helper State -->
+            <div id="noStudentPlaceholder" class="learner-empty-placeholder">
+              <div class="placeholder-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </div>
+              <div class="placeholder-text">
+                <strong>No learner selected</strong>
+                <span>Search by name above or choose a class chip to load fee rates</span>
+              </div>
+            </div>
+
             <!-- Interactive Selected Student Card -->
             <div id="selectedStudentProfile" class="learner-pos-badge" hidden>
               <div class="learner-avatar-box">
@@ -2306,7 +2565,10 @@ input:focus, select:focus, textarea:focus {
                 <div id="canteenStudentInitials" class="learner-initials">ST</div>
               </div>
               <div class="learner-meta-details">
-                <h4 id="selectedStudentName">Select a student</h4>
+                <div class="learner-name-row">
+                  <h4 id="selectedStudentName">Select a student</h4>
+                  <span class="learner-verified-chip">Active</span>
+                </div>
                 <div class="pill-group">
                   <span id="badgeClass" class="pill pill-class">Class</span>
                   <span id="badgePlan" class="pill pill-plan">Plan</span>
@@ -2320,7 +2582,7 @@ input:focus, select:focus, textarea:focus {
             <div class="grid-2">
               <div class="field-wrap">
                 <label for="canteenClass">Enrolled Class</label>
-                <input id="canteenClass" readonly placeholder="Auto-filled" class="readonly-field">
+                <input id="canteenClass" readonly placeholder="Auto-filled from profile" class="readonly-field">
               </div>
               <div class="field-wrap">
                 <label for="attendance">Attendance Status *</label>
@@ -2341,26 +2603,41 @@ input:focus, select:focus, textarea:focus {
             <div class="pos-totals-panel">
               <!-- Expected -->
               <div class="total-block total-expected">
-                <span class="total-label">EXPECTED CHARGE</span>
+                <div class="total-header">
+                  <span class="total-label">EXPECTED CHARGE</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+                </div>
                 <input id="expectedCharge" readonly value="GH₵ 0.00" class="total-value">
               </div>
 
               <!-- Paid -->
               <div class="total-block total-paid">
-                <span class="total-label">AMOUNT COLLECTED *</span>
-                <input id="actualPaid" type="number" min="0" step="0.01" value="0.00" inputmode="decimal" class="total-value-input">
+                <div class="total-header">
+                  <span class="total-label">AMOUNT COLLECTED *</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                </div>
+                <div class="currency-input-wrap">
+                  <span class="currency-prefix">GH₵</span>
+                  <input id="actualPaid" type="number" min="0" step="0.01" value="0.00" inputmode="decimal" class="total-value-input">
+                </div>
               </div>
 
               <!-- Balance -->
               <div class="total-block total-balance">
-                <span class="total-label">OUTSTANDING DEBT</span>
+                <div class="total-header">
+                  <span class="total-label">OUTSTANDING DEBT</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                </div>
                 <input id="outstanding" readonly value="GH₵ 0.00" class="total-value total-balance-val">
               </div>
             </div>
 
             <!-- Fast-Click Cash Presets -->
             <div class="fast-cash-bar">
-              <span class="fast-cash-title">Quick Cash:</span>
+              <span class="fast-cash-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                <span>Quick Cash:</span>
+              </span>
               <div class="fast-cash-chips">
                 <button type="button" class="cash-chip chip-exact" data-quick="exact">⚡ Exact</button>
                 <button type="button" class="cash-chip" data-quick="10">GH₵ 10</button>
@@ -2382,7 +2659,8 @@ input:focus, select:focus, textarea:focus {
         <div class="pos-action-strip">
           <button id="saveRecordButton" class="btn btn-primary btn-pos-save" type="submit">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-            <span>Save Daily Record (Enter)</span>
+            <span>Save Daily Record</span>
+            <kbd class="kbd-badge">Enter</kbd>
           </button>
           <button id="cancelEditButton" class="btn btn-secondary" type="button" hidden>Cancel Edit</button>
           <button id="printCurrentReceiptBtn" class="btn btn-receipt" type="button" hidden>
@@ -2392,6 +2670,7 @@ input:focus, select:focus, textarea:focus {
           <span id="selectedStudentMessage" class="pos-feedback">Search and select an active student to begin.</span>
         </div>
       </form>
+
 
       <!-- Transactions Log Table -->
       <div class="card table-card">
@@ -3707,7 +3986,9 @@ window.stateStore = new StateStore();
 
     // Populate preview card
     const profileCard = $('selectedStudentProfile');
-    profileCard.hidden = false;
+    if (profileCard) profileCard.hidden = false;
+    const placeholder = $('noStudentPlaceholder');
+    if (placeholder) placeholder.hidden = true;
     $('selectedStudentName').textContent = student.name;
     $('badgeClass').textContent = student.class;
     $('badgePlan').textContent = student.paymentType;
@@ -3772,7 +4053,8 @@ window.stateStore = new StateStore();
 
   $('canteenStudentSearch')?.addEventListener('input', () => {
     selectedStudentId = null;
-    $('selectedStudentProfile').hidden = true;
+    if ($('selectedStudentProfile')) $('selectedStudentProfile').hidden = true;
+    if ($('noStudentPlaceholder')) $('noStudentPlaceholder').hidden = false;
     $('selectedStudentMessage').textContent = 'Select learner from the suggestions.';
     renderStudentMatches();
   });
@@ -3920,12 +4202,13 @@ window.stateStore = new StateStore();
     $('canteenDate').value = defaultDate;
     selectedStudentId = null;
     editingRecord = null;
-    $('selectedStudentProfile').hidden = true;
+    if ($('selectedStudentProfile')) $('selectedStudentProfile').hidden = true;
+    if ($('noStudentPlaceholder')) $('noStudentPlaceholder').hidden = false;
     $('expectedCharge').value = money(0);
     $('outstanding').value = money(0);
     $('actualPaid').disabled = false;
     $('canteenStudentSearch').disabled = false;
-    $('saveRecordButton').innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> <span>Save Daily Record (Enter)</span>';
+    $('saveRecordButton').innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> <span>Save Daily Record</span> <kbd class="kbd-badge">Enter</kbd>';
     $('cancelEditButton').hidden = true;
     $('selectedStudentMessage').textContent = 'Search and select an active student to begin.';
   }
@@ -3944,12 +4227,15 @@ window.stateStore = new StateStore();
     $('expectedCharge').value = money(record.expectedCharge);
     $('actualPaid').value = Number(record.actualPaid).toFixed(2);
     $('canteenRemarks').value = record.remarks || '';
+    if ($('selectedStudentProfile')) $('selectedStudentProfile').hidden = false;
+    if ($('noStudentPlaceholder')) $('noStudentPlaceholder').hidden = true;
     $('saveRecordButton').innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> <span>Update Daily Record</span>';
     $('cancelEditButton').hidden = false;
     $('selectedStudentMessage').textContent = `Editing ${record.studentName}'s record.`;
     updatePaymentCalculations();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
 
   function renderRecords() {
     const term = ($('recordSearch')?.value || '').toLowerCase();
