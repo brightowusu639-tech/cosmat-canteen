@@ -1465,148 +1465,355 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* ==========================================================================
-   AUTHENTIC THERMAL RECEIPT MODAL (SAWTOOTH JAGGED EDGES)
+   OFFICIAL COMPACT THERMAL RECEIPT MODAL (PROFESSIONAL & QR READY)
    ========================================================================== */
 
 .receipt-dialog {
   border: 0;
-  border-radius: var(--radius-xl);
+  border-radius: 18px;
   padding: 0;
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.4);
-  max-width: 440px;
-  width: 92%;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  max-width: 350px;
+  width: calc(100% - 32px);
+  margin: auto;
   overflow: hidden;
+  background: #f8fafc;
 }
 
 .receipt-dialog::backdrop {
-  background: rgba(6, 16, 30, 0.7);
-  backdrop-filter: blur(6px);
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(8px);
 }
 
 .receipt-modal-box {
-  padding: 26px;
-  background: var(--white);
+  padding: 16px 18px 18px;
+  background: #f8fafc;
 }
 
 .receipt-modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1.5px solid var(--slate-200);
-  padding-bottom: 14px;
-  margin-bottom: 18px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
 }
 
-.receipt-modal-header h3 {
-  font-size: 18px;
-  color: var(--brand-900);
+.modal-title-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .btn-close-modal {
-  background: var(--slate-100);
+  background: #e2e8f0;
   border: 0;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  font-size: 20px;
-  color: var(--slate-500);
+  font-size: 18px;
+  line-height: 1;
+  color: #475569;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.15s;
+  transition: all 0.15s ease;
 }
 
 .btn-close-modal:hover {
-  background: var(--slate-200);
-  color: var(--slate-900);
+  background: #cbd5e1;
+  color: #0f172a;
 }
 
-/* Sawtooth Serrated Thermal Slip */
+/* Compact Thermal Slip */
 .thermal-receipt {
-  background: #fffef7;
-  border: 1px solid #e5e7eb;
-  padding: 24px 20px;
-  font-family: var(--font-mono);
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.02);
-  position: relative;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 14px;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+  font-family: inherit;
+  color: #0f172a;
 }
 
-.receipt-school-header {
+.receipt-brand-header {
   text-align: center;
+  margin-bottom: 12px;
 }
 
-.receipt-school-header h2 {
-  font-family: var(--font-heading);
-  font-size: 20px;
+.receipt-emblem {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #0f2942;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 6px;
+  box-shadow: 0 4px 8px rgba(15, 41, 66, 0.2);
+}
+
+.receipt-brand-header h3 {
+  font-size: 14.5px;
   font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #0f172a;
   margin: 0;
-  color: #111827;
 }
 
-.receipt-school-header p {
-  margin: 3px 0 0;
-  font-size: 11px;
-  color: #6b7280;
+.receipt-subtitle {
+  margin: 2px 0 0;
+  font-size: 10px;
+  font-weight: 600;
+  color: #64748b;
   text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.receipt-tagline {
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 9.5px;
+  font-weight: 700;
   letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  background: #f1f5f9;
+  color: #475569;
+  border-radius: 9999px;
 }
 
-.receipt-divider {
-  color: #9ca3af;
-  margin: 10px 0;
+.receipt-meta-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #94a3b8;
+  letter-spacing: 0.04em;
+}
+
+.meta-val-code {
+  font-family: var(--font-mono, monospace);
   font-size: 11px;
-  overflow: hidden;
-  text-align: center;
-  user-select: none;
+  font-weight: 700;
+  color: #0284c7;
 }
 
-.receipt-meta-grid {
+.meta-val {
+  font-size: 11px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.receipt-student-box {
+  background: #f8fafc;
+  border-left: 3px solid #0284c7;
+  border-radius: 0 6px 6px 0;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+}
+
+.student-info-row {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  padding: 2px 0;
+}
+
+.info-label {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.info-val-strong {
+  color: #0f172a;
+  font-weight: 800;
   font-size: 12px;
-  margin: 6px 0;
 }
 
-.receipt-row {
+.info-val {
+  color: #334155;
+  font-weight: 600;
+}
+
+.receipt-fin-table {
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 6px 0;
+  margin-bottom: 10px;
+}
+
+.fin-row {
   display: flex;
   justify-content: space-between;
-  font-size: 13px;
+  align-items: center;
+  font-size: 11.5px;
+  color: #475569;
+  padding: 2.5px 0;
+}
+
+.fin-row-paid {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0f172a;
   padding: 4px 0;
 }
 
-.receipt-row-paid {
-  font-size: 14px;
+.fin-row-balance {
+  font-size: 12px;
+  padding: 3px 0;
 }
 
-.receipt-row-balance {
-  font-size: 14px;
+.fin-row-remarks {
+  font-size: 10px;
+  color: #64748b;
+  font-style: italic;
+  padding-top: 3px;
+  border-top: 1px dashed #f1f5f9;
 }
 
-.receipt-green { color: var(--success-700); }
-.receipt-red { color: var(--danger-600); }
-
-.receipt-barcode {
-  font-family: 'Courier New', monospace;
-  font-size: 18px;
+.receipt-stamp-wrap {
   text-align: center;
-  letter-spacing: 5px;
-  color: #1f2937;
-  margin: 14px 0 8px;
-  user-select: none;
+  margin: 6px 0 10px;
 }
 
-.receipt-footer-text {
+.stamp-badge {
+  display: inline-block;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3.5px 12px;
+  border-radius: 9999px;
+  border: 1.5px solid currentColor;
+}
+
+.stamp-paid {
+  color: #15803d;
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.stamp-owing {
+  color: #b91c1c;
+  background: #fef2f2;
+  border-color: #fca5a5;
+}
+
+.stamp-absent {
+  color: #b45309;
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+/* Unique QR Code Section */
+.receipt-qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  font-size: 11px;
-  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.qr-box {
+  width: 96px;
+  height: 96px;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.receipt-qr-img {
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  display: block;
+}
+
+.qr-hint {
+  font-size: 9px;
+  font-weight: 600;
+  color: #64748b;
+  margin-top: 4px;
+  letter-spacing: 0.02em;
+}
+
+/* Vector Barcode */
+.receipt-barcode-wrap {
+  text-align: center;
+  margin: 4px 0 6px;
+}
+
+.barcode-svg {
+  width: 140px;
+  height: 22px;
+  display: block;
+  margin: 0 auto;
+  opacity: 0.85;
+}
+
+.receipt-footer-details {
+  text-align: center;
+  font-size: 10px;
+  color: #64748b;
+  line-height: 1.35;
+}
+
+.receipt-footer-details p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.receipt-footer-details small {
+  display: block;
+  font-size: 9px;
+  color: #94a3b8;
+  margin-top: 3px;
 }
 
 .receipt-modal-actions {
   display: flex;
-  gap: 12px;
-  margin-top: 22px;
   flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.receipt-modal-actions .btn {
+  font-size: 11.5px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
 /* ==========================================================================
@@ -1638,7 +1845,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* ==========================================================================
-   PRINT ENGINE (A4 & THERMAL)
+   PRINT ENGINE (A4 & COMPACT THERMAL)
    ========================================================================== */
 
 @media print {
@@ -1648,38 +1855,86 @@ input:focus, select:focus, textarea:focus {
     color: #000000;
   }
 
-  .app-header, .app-nav, #students, #register, .tracking-toolbar, .reports-toolbar, #toast, .tool-btns, .form-footer, .pos-action-strip, .class-filter-bar {
+  /* Thermal Receipt Print Mode */
+  body.printing-receipt .app-header,
+  body.printing-receipt .app-nav,
+  body.printing-receipt .app-main,
+  body.printing-receipt #toast,
+  body.printing-receipt .receipt-modal-header,
+  body.printing-receipt .receipt-modal-actions {
     display: none !important;
   }
 
-  .app-main {
+  body.printing-receipt .receipt-dialog {
+    display: block !important;
+    position: static !important;
+    max-width: 80mm !important;
+    width: 80mm !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  body.printing-receipt .receipt-modal-box {
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  body.printing-receipt .thermal-receipt {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 2mm 3mm !important;
+    width: 100% !important;
+  }
+
+  /* Reports & Daily Tracking Print Mode */
+  body:not(.printing-receipt) .app-header,
+  body:not(.printing-receipt) .app-nav,
+  body:not(.printing-receipt) #students,
+  body:not(.printing-receipt) #register,
+  body:not(.printing-receipt) .tracking-toolbar,
+  body:not(.printing-receipt) .reports-toolbar,
+  body:not(.printing-receipt) #toast,
+  body:not(.printing-receipt) .tool-btns,
+  body:not(.printing-receipt) .form-footer,
+  body:not(.printing-receipt) .pos-action-strip,
+  body:not(.printing-receipt) .class-filter-bar,
+  body:not(.printing-receipt) .receipt-dialog {
+    display: none !important;
+  }
+
+  body:not(.printing-receipt) .app-main {
     max-width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
   }
 
-  .card {
+  body:not(.printing-receipt) .card {
     border: 0 !important;
     box-shadow: none !important;
     padding: 0 !important;
   }
 
-  #reports, #tracking {
+  body:not(.printing-receipt) #reports,
+  body:not(.printing-receipt) #tracking {
     display: block !important;
   }
 
-  .data-table {
+  body:not(.printing-receipt) .data-table {
     border-collapse: collapse;
     width: 100%;
   }
 
-  .data-table th, .data-table td {
+  body:not(.printing-receipt) .data-table th,
+  body:not(.printing-receipt) .data-table td {
     border: 1px solid #cbd5e1 !important;
     padding: 7px 10px !important;
     color: #000000 !important;
   }
 
-  .data-table th {
+  body:not(.printing-receipt) .data-table th {
     background: #f1f5f9 !important;
   }
 
@@ -2456,73 +2711,149 @@ input:focus, select:focus, textarea:focus {
   <dialog id="receiptModal" class="receipt-dialog">
     <div class="receipt-modal-box">
       <div class="receipt-modal-header">
-        <h3>Official Payment Voucher</h3>
+        <span class="modal-title-tag">Official Voucher</span>
         <button id="closeReceiptModal" type="button" class="btn-close-modal" aria-label="Close dialog">&times;</button>
       </div>
 
       <div id="receiptPrintArea" class="thermal-receipt">
-        <div class="receipt-school-header">
-          <h2>COSMAT CANTEEN</h2>
-          <p>Official Learner Payment Voucher</p>
-          <div class="receipt-divider">================================</div>
+        <!-- School Brand Header -->
+        <div class="receipt-brand-header">
+          <div class="receipt-emblem">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
+              <path d="M7 2v20"></path>
+              <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
+            </svg>
+          </div>
+          <h3>COSMAT BASIC SCHOOL</h3>
+          <p class="receipt-subtitle">Canteen &amp; Nutrition Services</p>
+          <div class="receipt-tagline">Payment Receipt Voucher</div>
         </div>
 
-        <div class="receipt-meta-grid">
-          <div><strong>Receipt #:</strong> <span id="recReceiptId">-</span></div>
-          <div class="text-right"><strong>Date:</strong> <span id="recDate">-</span></div>
+        <!-- Meta Grid -->
+        <div class="receipt-meta-panel">
+          <div class="meta-item">
+            <span class="meta-label">Receipt No.</span>
+            <strong id="recReceiptId" class="meta-val-code">REC-0000</strong>
+          </div>
+          <div class="meta-item text-right">
+            <span class="meta-label">Date</span>
+            <strong id="recDate" class="meta-val">--/--/----</strong>
+          </div>
         </div>
 
-        <div class="receipt-divider">--------------------------------</div>
-
-        <div class="receipt-row">
-          <span>Learner Name:</span>
-          <strong id="recStudentName">-</strong>
-        </div>
-        <div class="receipt-row">
-          <span>Class:</span>
-          <span id="recClass">-</span>
-        </div>
-        <div class="receipt-row">
-          <span>Attendance:</span>
-          <span id="recAttendance">-</span>
-        </div>
-
-        <div class="receipt-divider">--------------------------------</div>
-
-        <div class="receipt-row">
-          <span>Expected Charge:</span>
-          <span id="recExpected">GH₵ 0.00</span>
-        </div>
-        <div class="receipt-row receipt-row-paid">
-          <span>Amount Paid:</span>
-          <strong id="recPaid" class="receipt-green">GH₵ 0.00</strong>
-        </div>
-        <div class="receipt-row receipt-row-balance">
-          <span>Remaining Debt:</span>
-          <strong id="recBalance" class="receipt-red">GH₵ 0.00</strong>
-        </div>
-        <div class="receipt-row">
-          <span>Remarks:</span>
-          <span id="recRemarks">-</span>
+        <!-- Learner Info Box -->
+        <div class="receipt-student-box">
+          <div class="student-info-row">
+            <span class="info-label">Learner:</span>
+            <strong id="recStudentName" class="info-val-strong">-</strong>
+          </div>
+          <div class="student-info-row">
+            <span class="info-label">Class:</span>
+            <span id="recClass" class="info-val">-</span>
+          </div>
+          <div class="student-info-row">
+            <span class="info-label">Attendance:</span>
+            <span id="recAttendance" class="info-val">-</span>
+          </div>
         </div>
 
-        <div class="receipt-divider">================================</div>
-
-        <!-- Simulated Barcode for authentic POS voucher feel -->
-        <div class="receipt-barcode">
-          ||| | |||| | ||| |||| | || ||||| ||| |
+        <!-- Financial Breakdown -->
+        <div class="receipt-fin-table">
+          <div class="fin-row">
+            <span>Expected Charge:</span>
+            <span id="recExpected">GH₵ 0.00</span>
+          </div>
+          <div class="fin-row fin-row-paid">
+            <span>Amount Paid:</span>
+            <strong id="recPaid" class="text-green">GH₵ 0.00</strong>
+          </div>
+          <div class="fin-row fin-row-balance">
+            <span>Outstanding Debt:</span>
+            <strong id="recBalance" class="text-red">GH₵ 0.00</strong>
+          </div>
+          <div class="fin-row fin-row-remarks">
+            <span>Remarks:</span>
+            <span id="recRemarks">-</span>
+          </div>
         </div>
 
-        <div class="receipt-footer-text">
+        <!-- Payment Status Stamp Badge -->
+        <div class="receipt-stamp-wrap">
+          <div id="recStatusStamp" class="stamp-badge stamp-paid">✓ PAID IN FULL</div>
+        </div>
+
+        <!-- Unique Verification QR Code -->
+        <div class="receipt-qr-section">
+          <div class="qr-box">
+            <img id="receiptQrImage" class="receipt-qr-img" src="" alt="Verification QR Code">
+          </div>
+          <span class="qr-hint">Scan with camera to verify voucher</span>
+        </div>
+
+        <!-- Realistic SVG Barcode -->
+        <div class="receipt-barcode-wrap">
+          <svg class="barcode-svg" viewBox="0 0 200 35" preserveAspectRatio="none">
+            <rect x="0" y="0" width="2" height="35" fill="#1e293b"/>
+            <rect x="4" y="0" width="1" height="35" fill="#1e293b"/>
+            <rect x="7" y="0" width="3" height="35" fill="#1e293b"/>
+            <rect x="12" y="0" width="1" height="35" fill="#1e293b"/>
+            <rect x="15" y="0" width="4" height="35" fill="#1e293b"/>
+            <rect x="21" y="0" width="2" height="35" fill="#1e293b"/>
+            <rect x="25" y="0" width="1" height="35" fill="#1e293b"/>
+            <rect x="28" y="0" width="3" height="35" fill="#1e293b"/>
+            <rect x="33" y="0" width="2" height="35" fill="#1e293b"/>
+            <rect x="37" y="0" width="4" height="35" fill="#1e293b"/>
+            <rect x="43" y="0" width="1" height="35" fill="#1e293b"/>
+            <rect x="46" y="0" width="3" height="35" fill="#1e293b"/>
+            <rect x="51" y="0" width="2" height="35" fill="#1e293b"/>
+            <rect x="55" y="0" width="1" height="35" fill="#1e293b"/>
+            <rect x="58" y="0" width="4" height="35" fill="#1e293b"/>
+            <rect x="64" y="0" width="2" height="35" fill="#1e293b"/>
+            <rect x="68" y="0" width="1" height="35" fill="#1e293b"/>
+            <rect x="71" y="0" width="3" height="35" fill="#1e293b"/>
+            <rect x="76" y="0" width="2" height="35" fill="#1e293b"/>
+            <rect x="80" y="0" width="4" height="35" fill="#1e293b"/>
+            <rect x="86" y="0" width="1" height="35" fill="#1e293b"/>
+            <rect x="89" y="0" width="3" height="35" fill="#1e293b"/>
+            <rect x="94" y="0" width="2" height="35" fill="#1e293b"/>
+            <rect x="98" y="0" width="1" height="35" fill="#1e293b"/>
+            <rect x="101" y="0" width="4" height="35" fill="#1e293b"/>
+            <rect x="107" y="0" width="2" height="35" fill="#1e293b"/>
+            <rect x="111" y="0" width="1" height="35" fill="#1e293b"/>
+            <rect x="114" y="0" width="3" height="35" fill="#1e293b"/>
+            <rect x="119" y="0" width="2" height="35" fill="#1e293b"/>
+            <rect x="123" y="0" width="4" height="35" fill="#1e293b"/>
+            <rect x="129" y="0" width="1" height="35" fill="#1e293b"/>
+            <rect x="132" y="0" width="3" height="35" fill="#1e293b"/>
+            <rect x="137" y="0" width="2" height="35" fill="#1e293b"/>
+            <rect x="141" y="0" width="1" height="35" fill="#1e293b"/>
+            <rect x="144" y="0" width="4" height="35" fill="#1e293b"/>
+            <rect x="150" y="0" width="2" height="35" fill="#1e293b"/>
+            <rect x="154" y="0" width="1" height="35" fill="#1e293b"/>
+            <rect x="157" y="0" width="3" height="35" fill="#1e293b"/>
+            <rect x="162" y="0" width="2" height="35" fill="#1e293b"/>
+            <rect x="166" y="0" width="4" height="35" fill="#1e293b"/>
+            <rect x="172" y="0" width="1" height="35" fill="#1e293b"/>
+            <rect x="175" y="0" width="3" height="35" fill="#1e293b"/>
+            <rect x="180" y="0" width="2" height="35" fill="#1e293b"/>
+            <rect x="184" y="0" width="1" height="35" fill="#1e293b"/>
+            <rect x="187" y="0" width="4" height="35" fill="#1e293b"/>
+            <rect x="193" y="0" width="2" height="35" fill="#1e293b"/>
+            <rect x="197" y="0" width="3" height="35" fill="#1e293b"/>
+          </svg>
+        </div>
+
+        <div class="receipt-footer-details">
           <p>Thank you for supporting our learners!</p>
-          <small id="recTimestamp">-</small>
+          <small id="recTimestamp">Issued: --:--</small>
         </div>
       </div>
 
       <div class="receipt-modal-actions">
         <button id="printThermalReceiptBtn" class="btn btn-primary" type="button">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-          <span>Print Receipt</span>
+          <span>Print Receipt (Thermal / A4)</span>
         </button>
         <button id="saveDrivePdfReceiptBtn" class="btn btn-secondary" type="button">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
@@ -3681,7 +4012,35 @@ window.stateStore = new StateStore();
     $('recPaid').textContent = money(record.actualPaid);
     $('recBalance').textContent = money(record.outstanding);
     $('recRemarks').textContent = record.remarks || 'None';
-    $('recTimestamp').textContent = `Generated: ${new Date().toLocaleString()}`;
+
+    // Status Stamp Badge
+    const stampEl = $('recStatusStamp');
+    if (stampEl) {
+      if (record.attendance === 'Absent') {
+        stampEl.className = 'stamp-badge stamp-absent';
+        stampEl.textContent = 'ABSENT · NO CHARGE';
+      } else if (record.outstanding <= 0) {
+        stampEl.className = 'stamp-badge stamp-paid';
+        stampEl.textContent = '✓ PAID IN FULL';
+      } else {
+        stampEl.className = 'stamp-badge stamp-owing';
+        stampEl.textContent = `⚠ BALANCE DUE: ${money(record.outstanding)}`;
+      }
+    }
+
+    // Dynamic QR Code Data (unique scannable voucher info)
+    const qrData = `COSMAT BASIC SCHOOL\nRECEIPT: ${record.id}\nDATE: ${record.date}\nLEARNER: ${record.studentName}\nCLASS: ${record.class}\nPAID: ${money(record.actualPaid)}\nBALANCE: ${money(record.outstanding)}\nSTATUS: ${record.outstanding <= 0 ? 'CLEARED' : 'OWING'}`;
+    const qrImg = $('receiptQrImage');
+    if (qrImg) {
+      qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&margin=1&data=${encodeURIComponent(qrData)}`;
+      qrImg.alt = `Verification QR Code for ${record.id}`;
+    }
+
+    // Clean timestamp format
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const dateStr = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    $('recTimestamp').textContent = `Issued: ${dateStr}, ${timeStr} · POS Terminal #1`;
 
     $('receiptModal')?.showModal();
   }
@@ -3695,7 +4054,11 @@ window.stateStore = new StateStore();
   });
 
   $('printThermalReceiptBtn')?.addEventListener('click', () => {
+    document.body.classList.add('printing-receipt');
     window.print();
+    setTimeout(() => {
+      document.body.classList.remove('printing-receipt');
+    }, 1200);
   });
 
   $('saveDrivePdfReceiptBtn')?.addEventListener('click', async () => {
