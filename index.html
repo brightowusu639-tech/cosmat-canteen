@@ -6,7 +6,7 @@
   <title>COSMAT Canteen Management System</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
 /* ==========================================================================
    COSMAT CANTEEN MANAGEMENT — World-Class Executive POS Design System
@@ -94,6 +94,12 @@
   --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
+
+/* Metric Icon Color Accents */
+.bg-blue   { background: #eff6ff !important; color: #2563eb !important; border: 1px solid #bfdbfe !important; }
+.bg-green  { background: #ecfdf5 !important; color: #059669 !important; border: 1px solid #a7f3d0 !important; }
+.bg-purple { background: #f5f3ff !important; color: #7c3aed !important; border: 1px solid #ddd6fe !important; }
+.bg-amber  { background: #fffbeb !important; color: #d97706 !important; border: 1px solid #fde68a !important; }
 
 /* ==========================================================================
    RESET & FOUNDATIONS
@@ -1721,17 +1727,15 @@ input:focus, select:focus, textarea:focus {
 </style>
 </head>
 <body>
-  <!-- Executive Top Bar -->
+  <!-- ==================== EXECUTIVE HEADER ==================== -->
   <header class="app-header">
     <div class="header-inner">
       <div class="brand-group">
         <div class="brand-logo" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
-            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
-            <line x1="6" y1="1" x2="6" y2="4"></line>
-            <line x1="10" y1="1" x2="10" y2="4"></line>
-            <line x1="14" y1="1" x2="14" y2="4"></line>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
+            <path d="M7 2v20"></path>
+            <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
           </svg>
         </div>
         <div class="brand-text">
@@ -1741,102 +1745,113 @@ input:focus, select:focus, textarea:focus {
       </div>
 
       <div class="header-actions">
-        <div id="liveClock" class="header-clock" title="Local School Date &amp; Time">--:--:--</div>
+        <div id="liveClock" class="header-clock" title="Local School Time">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span id="clockText">--:--:--</span>
+        </div>
         <div id="syncBadge" class="cloud-pill demo" title="Cloud Sync Status">
           <span class="pulse-dot"></span>
           <span id="syncStatusText">Connecting...</span>
         </div>
         <button id="quickSyncBtn" class="btn-sync" type="button" title="Sync live with Google Sheets">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="23 4 23 10 17 10"></polyline>
-            <polyline points="1 20 1 14 7 14"></polyline>
-            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-          </svg>
-          <span>Sync Now</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+          <span>Sync</span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Modern Navigation Bar -->
+  <!-- ==================== NAVIGATION TABS ==================== -->
   <nav class="app-nav" aria-label="Main navigation">
     <div class="nav-container">
       <button class="nav-tab" data-page="students">
-        <span class="tab-icon">👨‍🎓</span>
+        <svg class="tab-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
         <span>Learners Directory</span>
       </button>
       <button class="nav-tab active" data-page="register">
-        <span class="tab-icon">💳</span>
+        <svg class="tab-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line><line x1="6" y1="15" x2="8" y2="15"></line><line x1="12" y1="15" x2="18" y2="15"></line></svg>
         <span>Cashier Register</span>
       </button>
       <button class="nav-tab" data-page="tracking">
-        <span class="tab-icon">📊</span>
+        <svg class="tab-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
         <span>Daily Audit</span>
       </button>
       <button class="nav-tab" data-page="reports">
-        <span class="tab-icon">🧾</span>
+        <svg class="tab-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
         <span>Executive Reports</span>
       </button>
       <button class="nav-tab" data-page="settings">
-        <span class="tab-icon">⚙️</span>
+        <svg class="tab-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
         <span>Cloud &amp; Settings</span>
       </button>
     </div>
   </nav>
 
-  <!-- Main View Area -->
+  <!-- ==================== MAIN CONTENT CONTAINER ==================== -->
   <main class="app-main">
 
-    <!-- ==================== VIEW 1: STUDENTS DIRECTORY ==================== -->
+    <!-- ==================== VIEW 1: LEARNERS DIRECTORY ==================== -->
     <section id="students" class="page-view">
       <div class="view-header">
         <div>
-          <h2>Learner Registration &amp; Profiles</h2>
+          <h2>Learners Directory &amp; Profiles</h2>
           <p>Register learners for canteen and bus transportation services with student ID photos.</p>
         </div>
       </div>
 
-      <!-- Quick Metrics Strip -->
+      <!-- Stat Summary Cards -->
       <div class="metrics-strip">
         <div class="metric-card">
-          <div class="metric-icon-box">👨‍🎓</div>
+          <div class="metric-icon-box bg-blue">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
           <div>
-            <h5>Registered Learners</h5>
+            <h5>Total Learners</h5>
             <strong id="metricTotalStudents">0</strong>
           </div>
         </div>
         <div class="metric-card">
-          <div class="metric-icon-box" style="background:#ecfdf5;color:#059669;">🍲</div>
+          <div class="metric-icon-box bg-green">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
+          </div>
           <div>
             <h5>Canteen Only</h5>
             <strong id="metricCanteenOnly">0</strong>
           </div>
         </div>
         <div class="metric-card">
-          <div class="metric-icon-box" style="background:#ede9fe;color:#7c3aed;">🚌</div>
+          <div class="metric-icon-box bg-purple">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="13" rx="2"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+          </div>
           <div>
             <h5>Bus &amp; Canteen</h5>
             <strong id="metricBusCanteen">0</strong>
           </div>
         </div>
         <div class="metric-card">
-          <div class="metric-icon-box" style="background:#fef3c7;color:#d97706;">👨‍👩‍👧‍👦</div>
+          <div class="metric-icon-box bg-amber">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </div>
           <div>
-            <h5>Sibling Discount Plans</h5>
+            <h5>Sibling Plans</h5>
             <strong id="metricFamilyDiscount">0</strong>
           </div>
         </div>
       </div>
 
+      <!-- Registration Form -->
       <form id="studentForm" class="card form-card" autocomplete="off">
         <div class="student-form-layout">
           <div class="photo-section">
-            <div class="photo-circle" id="studentPhotoPreview" title="Click to upload student photo">
-              <span id="photoPlaceholderText">📷<br><small>Upload Photo</small></span>
+            <div class="photo-circle" id="studentPhotoPreview" title="Upload Student Photo">
+              <span id="photoPlaceholderText">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                <small>Upload Photo</small>
+              </span>
               <img id="studentPhotoImg" src="" alt="Student" hidden>
             </div>
             <label class="btn-photo-pick">
-              Choose Image
+              <span>Choose Image</span>
               <input id="studentPhotoInput" type="file" accept="image/*" hidden>
             </label>
           </div>
@@ -1886,7 +1901,10 @@ input:focus, select:focus, textarea:focus {
         </div>
 
         <div class="form-footer">
-          <button id="saveStudentButton" class="btn btn-primary" type="submit">💾 Save Learner Profile</button>
+          <button id="saveStudentButton" class="btn btn-primary" type="submit">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+            <span>Save Learner Profile</span>
+          </button>
           <button id="cancelStudentEditButton" class="btn btn-secondary" type="button" hidden>Cancel Edit</button>
           <span id="studentFormMessage" class="form-feedback"></span>
         </div>
@@ -1900,8 +1918,8 @@ input:focus, select:focus, textarea:focus {
             <span id="activeStudentCount" class="badge-count">0 learners</span>
           </div>
           <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input id="studentListSearch" placeholder="Filter by learner name or class...">
+            <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input id="studentListSearch" placeholder="Search learner name or class...">
           </div>
         </div>
 
@@ -1954,9 +1972,13 @@ input:focus, select:focus, textarea:focus {
           <p class="card-subtext">Download an offline JSON copy or migrate data between cashier devices.</p>
         </div>
         <div class="tool-btns">
-          <button id="downloadBackup" class="btn btn-secondary" type="button">📥 Export JSON Backup</button>
+          <button id="downloadBackup" class="btn btn-secondary" type="button">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Export JSON Backup</span>
+          </button>
           <label class="btn btn-secondary btn-upload">
-            📤 Restore Backup
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            <span>Restore Backup</span>
             <input id="restoreBackup" type="file" accept="application/json" hidden>
           </label>
         </div>
@@ -1973,9 +1995,11 @@ input:focus, select:focus, textarea:focus {
       </div>
 
       <div class="alert-banner">
-        <div class="alert-icon">💡</div>
+        <div class="alert-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        </div>
         <div>
-          <strong>School Attendance Policy:</strong> Mark a learner <em>Absent</em> if they did not attend school today (they will not be billed). Present learners who pay less than the expected charge accumulate an outstanding debt.
+          <strong>Attendance Policy:</strong> Mark a learner <em>Absent</em> if they did not attend school today (they will not be billed). Present learners who pay less than the expected charge accumulate an outstanding debt.
         </div>
       </div>
 
@@ -2011,8 +2035,10 @@ input:focus, select:focus, textarea:focus {
                 <label for="canteenStudentSearch">Find Learner *</label>
                 <div class="lookup-input-box">
                   <input id="canteenStudentSearch" placeholder="Type learner name or class..." autocomplete="off">
-                  <span class="shortcut-badge" title="Press '/' anywhere to search learner">/</span>
-                  <span class="lookup-status-icon">🔎</span>
+                  <span class="shortcut-badge" title="Press '/' anywhere to search">/</span>
+                  <span class="lookup-status-icon">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  </span>
                 </div>
                 <div id="studentMatches" class="matches-dropdown" hidden></div>
               </div>
@@ -2044,8 +2070,8 @@ input:focus, select:focus, textarea:focus {
               <div class="field-wrap">
                 <label for="attendance">Attendance Status *</label>
                 <select id="attendance" class="attendance-select">
-                  <option value="Present">🟢 Present in School (Bill Daily Fee)</option>
-                  <option value="Absent">🔴 Absent (No Charge / Zero Bill)</option>
+                  <option value="Present">Present in School (Bill Daily Fee)</option>
+                  <option value="Absent">Absent (No Charge / Zero Bill)</option>
                 </select>
               </div>
             </div>
@@ -2060,19 +2086,19 @@ input:focus, select:focus, textarea:focus {
             <div class="pos-totals-panel">
               <!-- Expected -->
               <div class="total-block total-expected">
-                <span class="total-label">EXPECTED DAILY CHARGE</span>
+                <span class="total-label">EXPECTED CHARGE</span>
                 <input id="expectedCharge" readonly value="GH₵ 0.00" class="total-value">
               </div>
 
               <!-- Paid -->
               <div class="total-block total-paid">
-                <span class="total-label">ACTUAL AMOUNT COLLECTED *</span>
+                <span class="total-label">AMOUNT COLLECTED *</span>
                 <input id="actualPaid" type="number" min="0" step="0.01" value="0.00" inputmode="decimal" class="total-value-input">
               </div>
 
               <!-- Balance -->
               <div class="total-block total-balance">
-                <span class="total-label">OUTSTANDING BALANCE</span>
+                <span class="total-label">OUTSTANDING DEBT</span>
                 <input id="outstanding" readonly value="GH₵ 0.00" class="total-value total-balance-val">
               </div>
             </div>
@@ -2099,9 +2125,15 @@ input:focus, select:focus, textarea:focus {
         </div>
 
         <div class="pos-action-strip">
-          <button id="saveRecordButton" class="btn btn-primary btn-pos-save" type="submit">💾 Save Daily Record (Enter)</button>
+          <button id="saveRecordButton" class="btn btn-primary btn-pos-save" type="submit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+            <span>Save Daily Record (Enter)</span>
+          </button>
           <button id="cancelEditButton" class="btn btn-secondary" type="button" hidden>Cancel Edit</button>
-          <button id="printCurrentReceiptBtn" class="btn btn-receipt" type="button" hidden>🧾 Print Receipt</button>
+          <button id="printCurrentReceiptBtn" class="btn btn-receipt" type="button" hidden>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            <span>Print Receipt</span>
+          </button>
           <span id="selectedStudentMessage" class="pos-feedback">Search and select an active student to begin.</span>
         </div>
       </form>
@@ -2114,7 +2146,7 @@ input:focus, select:focus, textarea:focus {
             <span id="recordsCountBadge" class="badge-count">0 records</span>
           </div>
           <div class="search-box">
-            <span class="search-icon">🔍</span>
+            <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             <input id="recordSearch" placeholder="Search records by learner or date...">
           </div>
         </div>
@@ -2156,8 +2188,14 @@ input:focus, select:focus, textarea:focus {
             <label for="trackingDate">Audit Date</label>
             <input id="trackingDate" type="date">
           </div>
-          <button id="refreshTracking" class="btn btn-primary" type="button">🔄 Refresh Audit</button>
-          <button id="printTracking" class="btn btn-secondary" type="button">🖨️ Print Tracking Sheet</button>
+          <button id="refreshTracking" class="btn btn-primary" type="button">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            <span>Refresh Audit</span>
+          </button>
+          <button id="printTracking" class="btn btn-secondary" type="button">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            <span>Print Tracking Sheet</span>
+          </button>
         </div>
       </div>
 
@@ -2208,8 +2246,14 @@ input:focus, select:focus, textarea:focus {
             <label for="reportDate">Reference Date</label>
             <input id="reportDate" type="date">
           </div>
-          <button id="generateReports" class="btn btn-primary" type="button">✨ Generate Report</button>
-          <button id="printReports" class="btn btn-secondary" type="button">🖨️ Print Official Report</button>
+          <button id="generateReports" class="btn btn-primary" type="button">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <span>Generate Report</span>
+          </button>
+          <button id="printReports" class="btn btn-secondary" type="button">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            <span>Print Official Report</span>
+          </button>
         </div>
       </div>
 
@@ -2288,7 +2332,9 @@ input:focus, select:focus, textarea:focus {
       <!-- Google Cloud Status Card -->
       <div class="card cloud-config-card">
         <div class="cloud-card-header">
-          <div class="cloud-icon-box">☁️</div>
+          <div class="cloud-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+          </div>
           <div>
             <h3>Google Workspace Cloud Integration</h3>
             <p class="card-subtext">Google Sheets live database, Google Drive PDF receipts, and learner photo storage.</p>
@@ -2301,13 +2347,18 @@ input:focus, select:focus, textarea:focus {
             <input id="cloudApiUrlInput" placeholder="https://script.google.com/macros/s/.../exec">
           </div>
           <div class="cloud-actions">
-            <button id="testConnectCloudBtn" class="btn btn-primary" type="button">🔗 Connect</button>
+            <button id="testConnectCloudBtn" class="btn btn-primary" type="button">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+              <span>Connect</span>
+            </button>
             <button id="disconnectCloudBtn" class="btn btn-secondary" type="button">Disconnect</button>
           </div>
         </div>
 
         <div id="cloudConnectionStatus" class="cloud-live-indicator">
-          <span id="cloudStatusIcon">🟢</span>
+          <span id="cloudStatusIcon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </span>
           <span id="cloudStatusMsg">Connected to Google Cloud. Changes automatically sync to Google Sheets &amp; Drive.</span>
         </div>
       </div>
@@ -2352,7 +2403,10 @@ input:focus, select:focus, textarea:focus {
         </fieldset>
 
         <div class="form-footer">
-          <button class="btn btn-primary" type="submit">💾 Save Academic Calendar</button>
+          <button class="btn btn-primary" type="submit">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+            <span>Save Academic Calendar</span>
+          </button>
           <span id="settingsSummary" class="form-feedback"></span>
         </div>
       </form>
@@ -2375,7 +2429,10 @@ input:focus, select:focus, textarea:focus {
             <label for="holidayReason">Closure Reason / Holiday Name *</label>
             <input id="holidayReason" required placeholder="e.g. Independence Day Holiday">
           </div>
-          <button class="btn btn-secondary btn-add-holiday" type="submit">➕ Add Closure</button>
+          <button class="btn btn-secondary btn-add-holiday" type="submit">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Add Closure</span>
+          </button>
         </form>
 
         <div class="table-container">
@@ -2463,8 +2520,14 @@ input:focus, select:focus, textarea:focus {
       </div>
 
       <div class="receipt-modal-actions">
-        <button id="printThermalReceiptBtn" class="btn btn-primary" type="button">🖨️ Print Receipt</button>
-        <button id="saveDrivePdfReceiptBtn" class="btn btn-secondary" type="button">☁️ Save PDF to Google Drive</button>
+        <button id="printThermalReceiptBtn" class="btn btn-primary" type="button">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          <span>Print Receipt</span>
+        </button>
+        <button id="saveDrivePdfReceiptBtn" class="btn btn-secondary" type="button">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+          <span>Save PDF to Google Drive</span>
+        </button>
       </div>
     </div>
   </dialog>
@@ -3128,7 +3191,7 @@ window.stateStore = new StateStore();
     $('photoPlaceholderText').hidden = false;
     studentPhotoBase64 = null;
     editingStudentId = null;
-    $('saveStudentButton').textContent = '💾 Save Student Profile';
+    $('saveStudentButton').innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> <span>Save Learner Profile</span>';
     $('cancelStudentEditButton').hidden = true;
     $('studentFormMessage').textContent = '';
     updateDistanceVisibility();
@@ -3202,7 +3265,7 @@ window.stateStore = new StateStore();
       $('photoPlaceholderText').hidden = false;
     }
 
-    $('saveStudentButton').textContent = '💾 Update Student Profile';
+    $('saveStudentButton').innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> <span>Update Learner Profile</span>';
     $('cancelStudentEditButton').hidden = false;
     $('studentFormMessage').textContent = `Editing ${student.name}. Existing payments will remain intact.`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -3257,9 +3320,15 @@ window.stateStore = new StateStore();
         <td><span class="badge ${s.paymentType === 'Canteen' ? 'badge-blue' : 'badge-purple'}">${s.paymentType}</span></td>
         <td>${s.distance || '—'}</td>
         <td><span class="status ${s.status === 'Active' ? 'paid' : 'owing'}">${s.status}</span></td>
-        <td>
-          <button type="button" class="edit-button" data-student-edit="${escapeHtml(s.id)}">Edit</button>
-          <button type="button" class="archive-button" data-student-archive="${escapeHtml(s.id)}">Archive</button>
+        <td class="text-right">
+          <button type="button" class="edit-button" data-student-edit="${escapeHtml(s.id)}" title="Edit Learner">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+            <span>Edit</span>
+          </button>
+          <button type="button" class="archive-button" data-student-archive="${escapeHtml(s.id)}" title="Archive Learner">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            <span>Archive</span>
+          </button>
         </td>
       </tr>`;
     }).join('') : '<tr><td class="empty" colspan="8">No active students found.</td></tr>';
@@ -3269,8 +3338,11 @@ window.stateStore = new StateStore();
         <td><strong>${escapeHtml(s.name)}</strong></td>
         <td>${escapeHtml(s.class)}</td>
         <td>${s.status}</td>
-        <td>
-          <button type="button" class="restore-button" data-student-restore="${escapeHtml(s.id)}">Restore</button>
+        <td class="text-right">
+          <button type="button" class="restore-button" data-student-restore="${escapeHtml(s.id)}" title="Restore Learner">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+            <span>Restore</span>
+          </button>
         </td>
       </tr>
     `).join('') : '<tr><td class="empty" colspan="4">Recycle bin is empty.</td></tr>';
@@ -3522,7 +3594,7 @@ window.stateStore = new StateStore();
     $('outstanding').value = money(0);
     $('actualPaid').disabled = false;
     $('canteenStudentSearch').disabled = false;
-    $('saveRecordButton').textContent = '💾 Save Daily Record';
+    $('saveRecordButton').innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> <span>Save Daily Record (Enter)</span>';
     $('cancelEditButton').hidden = true;
     $('selectedStudentMessage').textContent = 'Search and select an active student to begin.';
   }
@@ -3541,7 +3613,7 @@ window.stateStore = new StateStore();
     $('expectedCharge').value = money(record.expectedCharge);
     $('actualPaid').value = Number(record.actualPaid).toFixed(2);
     $('canteenRemarks').value = record.remarks || '';
-    $('saveRecordButton').textContent = '💾 Update Daily Record';
+    $('saveRecordButton').innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> <span>Update Daily Record</span>';
     $('cancelEditButton').hidden = false;
     $('selectedStudentMessage').textContent = `Editing ${record.studentName}'s record.`;
     updatePaymentCalculations();
@@ -3567,10 +3639,16 @@ window.stateStore = new StateStore();
         <td><strong class="${r.outstanding > 0 ? 'text-red' : ''}">${money(r.outstanding)}</strong></td>
         <td>${escapeHtml(r.remarks) || '—'}</td>
         <td>
-          <button type="button" class="receipt-row-btn" data-record-receipt="${escapeHtml(r.id)}">🧾 Receipt</button>
+          <button type="button" class="receipt-row-btn" data-record-receipt="${escapeHtml(r.id)}" title="Print Receipt">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            <span>Receipt</span>
+          </button>
         </td>
-        <td>
-          <button type="button" class="edit-button" data-record-id="${escapeHtml(r.id)}">Edit</button>
+        <td class="text-right">
+          <button type="button" class="edit-button" data-record-id="${escapeHtml(r.id)}" title="Edit Transaction">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+            <span>Edit</span>
+          </button>
         </td>
       </tr>
     `).join('') : '<tr><td class="empty" colspan="10">No daily records saved yet.</td></tr>';
