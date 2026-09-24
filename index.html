@@ -1,0 +1,3620 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>COSMAT Canteen Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+/* ==========================================================================
+   COSMAT CANTEEN MANAGEMENT — Executive Fintech & School POS Design System
+   ========================================================================== */
+
+:root {
+  --primary-900: #0a1931;
+  --primary-800: #0f2d59;
+  --primary-700: #173b70;
+  --primary-600: #1e4ea0;
+  --accent-600: #2563eb;
+  --accent-500: #3b82f6;
+  --accent-100: #dbeafe;
+  --accent-50: #eff6ff;
+
+  --success-700: #047857;
+  --success-600: #059669;
+  --success-500: #10b981;
+  --success-100: #d1fae5;
+  --success-50: #ecfdf5;
+
+  --warning-700: #b45309;
+  --warning-600: #d97706;
+  --warning-500: #f59e0b;
+  --warning-100: #fef3c7;
+  --warning-50: #fffbeb;
+
+  --danger-700: #b91c1c;
+  --danger-600: #dc2626;
+  --danger-500: #ef4444;
+  --danger-100: #fee2e2;
+  --danger-50: #fef2f2;
+
+  --purple-700: #6d28d9;
+  --purple-600: #7c3aed;
+  --purple-100: #ede9fe;
+  --purple-50: #f5f3ff;
+
+  --neutral-900: #0f172a;
+  --neutral-800: #1e293b;
+  --neutral-700: #334155;
+  --neutral-600: #475569;
+  --neutral-500: #64748b;
+  --neutral-400: #94a3b8;
+  --neutral-300: #cbd5e1;
+  --neutral-200: #e2e8f0;
+  --neutral-100: #f1f5f9;
+  --neutral-50: #f8fafc;
+  --white: #ffffff;
+
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-sm: 0 2px 4px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 12px 28px -4px rgba(15, 23, 42, 0.12);
+  --shadow-xl: 0 20px 35px -5px rgba(15, 23, 42, 0.16);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* ==========================================================================
+   RESET & CORE BASE
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--neutral-800);
+  background-color: #f4f7fb;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
+  color: var(--neutral-900);
+  letter-spacing: -0.02em;
+  margin: 0;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   EXECUTIVE TOP BAR
+   ========================================================================== */
+
+.app-header {
+  background: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-800) 60%, var(--primary-700) 100%);
+  color: var(--white);
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-100);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.brand-text h1 {
+  font-size: 20px;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+
+.brand-text p {
+  margin: 1px 0 0;
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cloud-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  transition: all 0.2s;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #94a3b8;
+}
+
+.cloud-pill.online .pulse-dot {
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+}
+
+.cloud-pill.offline .pulse-dot {
+  background: #f59e0b;
+}
+
+.cloud-pill.syncing .pulse-dot {
+  background: #38bdf8;
+  animation: pulse-ring 1s infinite alternate;
+}
+
+@keyframes pulse-ring {
+  0% { opacity: 0.3; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+.btn-sync {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-sync:hover {
+  background: var(--white);
+  color: var(--primary-900);
+}
+
+/* ==========================================================================
+   NAVIGATION BAR
+   ========================================================================== */
+
+.app-nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--neutral-200);
+  box-shadow: var(--shadow-xs);
+  padding: 6px 20px;
+}
+
+.nav-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0;
+}
+
+.nav-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--neutral-600);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+
+.nav-tab:hover {
+  background: var(--neutral-100);
+  color: var(--neutral-900);
+}
+
+.nav-tab.active {
+  background: var(--primary-800);
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(15, 45, 89, 0.25);
+}
+
+.tab-icon {
+  font-size: 15px;
+}
+
+/* ==========================================================================
+   MAIN VIEW CONTAINER
+   ========================================================================== */
+
+.app-main {
+  max-width: 1280px;
+  margin: 28px auto 60px;
+  padding: 0 20px;
+}
+
+.page-view {
+  display: none;
+  animation: fadeInView 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.page-view.active {
+  display: block;
+}
+
+@keyframes fadeInView {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.view-header {
+  margin-bottom: 22px;
+}
+
+.view-header h2 {
+  font-size: 26px;
+  color: var(--primary-800);
+}
+
+.view-header p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--neutral-500);
+}
+
+/* Base Card */
+.card {
+  background: var(--white);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.alert-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #fffdf5;
+  border: 1px solid #fef08a;
+  border-left: 4px solid var(--warning-500);
+  color: #854d0e;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.alert-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   INPUTS & FORM CONTROLS
+   ========================================================================== */
+
+.field-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-wrap label {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--neutral-700);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+input, select, textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px 14px;
+  color: var(--neutral-900);
+  background: var(--white);
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-md);
+  transition: all 0.16s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 0;
+  border-color: var(--accent-600);
+  box-shadow: 0 0 0 3.5px rgba(37, 99, 235, 0.14);
+}
+
+.readonly-field, input[readonly] {
+  background: #f8fafc;
+  color: var(--neutral-600);
+  border-color: var(--neutral-200);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.grid-2-custom {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 16px;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+/* Buttons */
+.btn {
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.18s ease;
+}
+
+.btn-primary {
+  background: var(--accent-600);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28);
+}
+
+.btn-secondary {
+  background: var(--neutral-100);
+  color: var(--neutral-700);
+  border: 1px solid var(--neutral-200);
+}
+
+.btn-secondary:hover {
+  background: var(--neutral-200);
+}
+
+.btn-receipt {
+  background: #334155;
+  color: var(--white);
+}
+
+.btn-receipt:hover {
+  background: #1e293b;
+}
+
+/* ==========================================================================
+   CASHIER POS REGISTER (VIEW 2)
+   ========================================================================== */
+
+.pos-card {
+  padding: 26px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.pos-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 32px;
+}
+
+.pos-col-learner, .pos-col-financials {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Student Lookup Box */
+.student-lookup-wrap {
+  position: relative;
+}
+
+.lookup-input-box {
+  position: relative;
+}
+
+.lookup-input-box input {
+  padding-right: 36px;
+  font-weight: 500;
+}
+
+.lookup-status-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 14px;
+  color: var(--neutral-400);
+}
+
+.matches-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 60;
+  background: var(--white);
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.match {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--neutral-100);
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.match:hover {
+  background: var(--accent-50);
+}
+
+.match-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent-100);
+  color: var(--accent-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.match-info strong {
+  display: block;
+  font-size: 14px;
+  color: var(--neutral-900);
+}
+
+.match-info small {
+  color: var(--neutral-500);
+  font-size: 12px;
+}
+
+/* Selected Learner POS Badge */
+.learner-pos-badge {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+}
+
+.learner-avatar-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--primary-700);
+  color: var(--white);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.learner-avatar-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.learner-initials {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.learner-meta-details h4 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.pill-group {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+}
+
+.pill-class { background: #e2e8f0; color: #334155; }
+.pill-plan { background: #dbeafe; color: #1e40af; }
+.pill-family { background: #fef3c7; color: #92400e; }
+.pill-bus { background: #ede9fe; color: #6b21a8; }
+
+.attendance-select {
+  font-weight: 600;
+  border-width: 1.5px;
+}
+
+/* POS Totalizer Panels */
+.pos-totals-panel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.total-block {
+  background: #f8fafc;
+  border: 1.5px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.16s ease;
+}
+
+.total-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--neutral-500);
+  letter-spacing: 0.04em;
+}
+
+.total-value {
+  border: 0;
+  padding: 0;
+  margin-top: 6px;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--neutral-900);
+  background: transparent !important;
+}
+
+.total-paid {
+  background: var(--success-50);
+  border-color: #a7f3d0;
+}
+
+.total-value-input {
+  margin-top: 6px;
+  font-family: var(--font-heading);
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--success-700);
+  background: var(--white);
+  border: 1.5px solid var(--success-500);
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+}
+
+.total-value-input:focus {
+  border-color: var(--success-600);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+.total-balance {
+  background: var(--danger-50);
+  border-color: #fecdd3;
+}
+
+.total-balance-val {
+  color: var(--danger-600);
+}
+
+/* Fast-Click Cash Chips */
+.fast-cash-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  flex-wrap: wrap;
+}
+
+.fast-cash-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--neutral-600);
+  text-transform: uppercase;
+}
+
+.fast-cash-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cash-chip {
+  background: var(--white);
+  border: 1px solid var(--neutral-300);
+  color: var(--primary-800);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cash-chip:hover {
+  background: var(--accent-50);
+  border-color: var(--accent-500);
+  color: var(--accent-600);
+}
+
+.cash-chip:active {
+  transform: scale(0.95);
+}
+
+.chip-exact {
+  background: var(--accent-600);
+  color: var(--white);
+  border-color: var(--accent-600);
+}
+
+.chip-exact:hover {
+  background: #1d4ed8;
+  color: var(--white);
+}
+
+.chip-clear {
+  color: var(--neutral-500);
+}
+
+.pos-action-strip {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--neutral-200);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-pos-save {
+  font-size: 15px;
+  padding: 12px 26px;
+  background: var(--accent-600);
+}
+
+.pos-feedback {
+  font-size: 13px;
+  color: var(--neutral-500);
+}
+
+/* ==========================================================================
+   STUDENT FORM & PHOTO
+   ========================================================================== */
+
+.student-form-layout {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.photo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 120px;
+}
+
+.photo-circle {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  background: var(--neutral-100);
+  border: 2px dashed var(--neutral-300);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  color: var(--neutral-500);
+  transition: border-color 0.18s;
+}
+
+.photo-circle:hover {
+  border-color: var(--accent-500);
+  background: var(--accent-50);
+}
+
+.photo-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btn-photo-pick {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  background: var(--neutral-100);
+  color: var(--neutral-700);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: 1px solid var(--neutral-200);
+}
+
+.btn-photo-pick:hover {
+  background: var(--neutral-200);
+}
+
+.inputs-section {
+  flex: 1;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--neutral-200);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.form-feedback {
+  font-size: 13px;
+  color: var(--neutral-500);
+}
+
+/* ==========================================================================
+   DATA TABLES & LISTS
+   ========================================================================== */
+
+.table-card {
+  margin-top: 26px;
+}
+
+.card-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.badge-count {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  background: var(--neutral-100);
+  color: var(--neutral-600);
+  margin-left: 8px;
+}
+
+.badge-debt {
+  background: var(--danger-100);
+  color: var(--danger-700);
+}
+
+.search-box {
+  position: relative;
+  width: 300px;
+}
+
+.search-box input {
+  padding-left: 36px;
+  margin: 0;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 13px;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.data-table th {
+  background: #f8fafc;
+  color: var(--neutral-600);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 12px 14px;
+  border-bottom: 2px solid var(--neutral-200);
+  white-space: nowrap;
+}
+
+.data-table td {
+  padding: 12px 14px;
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--neutral-200);
+  color: var(--neutral-800);
+}
+
+.data-table tbody tr:hover {
+  background: #f9fbfd;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.table-avatar-thumb {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent-100);
+  color: var(--accent-600);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+  object-fit: cover;
+  vertical-align: middle;
+}
+
+/* Row Action Buttons */
+.edit-button, .restore-button, .receipt-row-btn {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--white);
+  border: 0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.edit-button {
+  background: var(--warning-600);
+}
+.edit-button:hover { background: var(--warning-700); }
+
+.restore-button {
+  background: var(--success-600);
+}
+.restore-button:hover { background: var(--success-700); }
+
+.receipt-row-btn {
+  background: var(--neutral-700);
+}
+.receipt-row-btn:hover { background: var(--neutral-900); }
+
+.archive-button {
+  background: var(--danger-600);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  border: 0;
+  cursor: pointer;
+  margin-left: 6px;
+  transition: all 0.15s ease;
+}
+.archive-button:hover { background: var(--danger-700); }
+
+.empty {
+  text-align: center;
+  padding: 32px;
+  color: var(--neutral-400);
+  font-style: italic;
+}
+
+.text-green { color: var(--success-600); }
+.text-red { color: var(--danger-600); }
+
+/* ==========================================================================
+   KPI SUMMARY TILES (AUDIT & REPORTS)
+   ========================================================================== */
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.summary-card {
+  background: var(--white);
+  border: 1px solid var(--neutral-200);
+  border-left: 4.5px solid var(--primary-700);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-xs);
+}
+
+.summary-card strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 26px;
+  color: var(--neutral-900);
+  line-height: 1.2;
+}
+
+.summary-card span {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--neutral-500);
+  margin-top: 4px;
+  display: block;
+}
+
+.summary-card.paid { border-left-color: var(--success-500); }
+.summary-card.paid strong { color: var(--success-700); }
+
+.summary-card.owing { border-left-color: var(--danger-500); }
+.summary-card.owing strong { color: var(--danger-700); }
+
+.summary-card.absent { border-left-color: var(--warning-500); }
+.summary-card.absent strong { color: var(--warning-700); }
+
+.toolbar-card {
+  margin-bottom: 20px;
+}
+
+.tracking-toolbar, .reports-toolbar {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.tracking-toolbar .field-wrap, .reports-toolbar .field-wrap {
+  min-width: 220px;
+}
+
+/* ==========================================================================
+   SETTINGS & CLOUD CONFIG
+   ========================================================================== */
+
+.cloud-config-card {
+  border-left: 5px solid var(--accent-600);
+  margin-bottom: 24px;
+}
+
+.cloud-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.cloud-icon-box {
+  font-size: 28px;
+  background: var(--accent-50);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+}
+
+.card-subtext {
+  font-size: 13px;
+  color: var(--neutral-500);
+  margin: 3px 0 0;
+}
+
+.cloud-input-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.cloud-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.cloud-live-indicator {
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: var(--neutral-100);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.school-days-group {
+  grid-column: span 2;
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.school-days-group legend {
+  font-weight: 700;
+  color: var(--neutral-700);
+  padding: 0 6px;
+  font-size: 12.5px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  font-size: 13.5px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.checkbox-label input {
+  width: auto;
+  margin: 0;
+}
+
+.holiday-add-form {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.btn-add-holiday {
+  white-space: nowrap;
+}
+
+.data-tools-card {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.tool-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-upload {
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   OFFICIAL RECEIPT MODAL DIALOG
+   ========================================================================== */
+
+.receipt-dialog {
+  border: 0;
+  border-radius: var(--radius-lg);
+  padding: 0;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  max-width: 420px;
+  width: 90%;
+}
+
+.receipt-dialog::backdrop {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+}
+
+.receipt-modal-box {
+  padding: 24px;
+  background: var(--white);
+}
+
+.receipt-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--neutral-200);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.btn-close-modal {
+  background: transparent;
+  font-size: 24px;
+  border: 0;
+  color: var(--neutral-400);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.btn-close-modal:hover {
+  color: var(--neutral-900);
+}
+
+.thermal-receipt {
+  background: #fffdf5;
+  border: 1px dashed #d1d5db;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.receipt-school-header {
+  text-align: center;
+}
+
+.receipt-school-header h2 {
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.receipt-school-header p {
+  margin: 3px 0 0;
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.receipt-divider {
+  color: #9ca3af;
+  margin: 8px 0;
+  font-size: 11px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.receipt-meta-grid {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+  padding: 3px 0;
+}
+
+.receipt-green { color: var(--success-700); }
+.receipt-red { color: var(--danger-600); }
+
+.receipt-barcode {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 4px;
+  color: #374151;
+  margin: 10px 0;
+}
+
+.receipt-footer-text {
+  text-align: center;
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.receipt-modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION
+   ========================================================================== */
+
+#toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  padding: 12px 20px;
+  color: var(--white);
+  background: var(--neutral-900);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 13.5px;
+  box-shadow: var(--shadow-xl);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 1000;
+}
+
+#toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   PRINT ENGINE
+   ========================================================================== */
+
+@media print {
+  body {
+    background: #ffffff !important;
+    font-size: 11pt;
+    color: #000000;
+  }
+
+  .app-header, .app-nav, #students, #register, .tracking-toolbar, .reports-toolbar, #toast, .tool-btns, .form-footer, .pos-action-strip {
+    display: none !important;
+  }
+
+  .app-main {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .card {
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  #reports, #tracking {
+    display: block !important;
+  }
+
+  .data-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  .data-table th, .data-table td {
+    border: 1px solid #94a3b8 !important;
+    padding: 6px 8px !important;
+    color: #000000 !important;
+  }
+
+  .data-table th {
+    background: #e2e8f0 !important;
+  }
+
+  body.printing-tracking #reports {
+    display: none !important;
+  }
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 950px) {
+  .pos-layout {
+    grid-template-columns: 1fr;
+  }
+  .pos-totals-panel {
+    grid-template-columns: 1fr;
+  }
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .grid-2, .grid-2-custom {
+    grid-template-columns: 1fr;
+  }
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+</head>
+<body>
+  <!-- Executive Top Bar -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-group">
+        <div class="brand-logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+            <line x1="6" y1="1" x2="6" y2="4"></line>
+            <line x1="10" y1="1" x2="10" y2="4"></line>
+            <line x1="14" y1="1" x2="14" y2="4"></line>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>COSMAT CANTEEN MANAGEMENT</h1>
+          <p>School Canteen &amp; Attendance Cloud POS</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div id="syncBadge" class="cloud-pill demo" title="Cloud Sync Status">
+          <span class="pulse-dot"></span>
+          <span id="syncStatusText">Connecting...</span>
+        </div>
+        <button id="quickSyncBtn" class="btn-sync" type="button" title="Sync live with Google Sheets">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <polyline points="1 20 1 14 7 14"></polyline>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+          </svg>
+          <span>Sync Now</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Modern Navigation Bar -->
+  <nav class="app-nav" aria-label="Main navigation">
+    <div class="nav-container">
+      <button class="nav-tab" data-page="students">
+        <span class="tab-icon">👨‍🎓</span>
+        <span>Students</span>
+      </button>
+      <button class="nav-tab active" data-page="register">
+        <span class="tab-icon">💳</span>
+        <span>Cashier Register</span>
+      </button>
+      <button class="nav-tab" data-page="tracking">
+        <span class="tab-icon">📊</span>
+        <span>Daily Audit</span>
+      </button>
+      <button class="nav-tab" data-page="reports">
+        <span class="tab-icon">🧾</span>
+        <span>Debtors &amp; Reports</span>
+      </button>
+      <button class="nav-tab" data-page="settings">
+        <span class="tab-icon">⚙️</span>
+        <span>Cloud &amp; Settings</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main View Area -->
+  <main class="app-main">
+
+    <!-- ==================== VIEW 1: STUDENTS DIRECTORY ==================== -->
+    <section id="students" class="page-view">
+      <div class="view-header">
+        <div>
+          <h2>Learner Registration &amp; Profiles</h2>
+          <p>Register learners for canteen and bus transportation services.</p>
+        </div>
+      </div>
+
+      <form id="studentForm" class="card form-card" autocomplete="off">
+        <div class="student-form-layout">
+          <div class="photo-section">
+            <div class="photo-circle" id="studentPhotoPreview" title="Click to upload student photo">
+              <span id="photoPlaceholderText">📷<br><small>Upload Photo</small></span>
+              <img id="studentPhotoImg" src="" alt="Student" hidden>
+            </div>
+            <label class="btn-photo-pick">
+              Choose Image
+              <input id="studentPhotoInput" type="file" accept="image/*" hidden>
+            </label>
+          </div>
+
+          <div class="inputs-section">
+            <div class="grid-3">
+              <div class="field-wrap">
+                <label for="studentName">Learner Full Name *</label>
+                <input id="studentName" required placeholder="e.g. Kwame Mensah">
+              </div>
+              <div class="field-wrap">
+                <label for="studentClass">Class / Grade *</label>
+                <input id="studentClass" required placeholder="e.g. Basic 4">
+              </div>
+              <div class="field-wrap">
+                <label for="familyMembers">Siblings in School *</label>
+                <input id="familyMembers" type="number" min="1" max="6" required value="1" placeholder="1–6">
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <div class="field-wrap">
+                <label for="studentPaymentType">Meal &amp; Bus Plan *</label>
+                <select id="studentPaymentType">
+                  <option value="Canteen">Canteen Only</option>
+                  <option value="Bus &amp; Canteen">Bus &amp; Canteen</option>
+                </select>
+              </div>
+              <div class="field-wrap">
+                <label for="studentDistance">Bus Route Distance</label>
+                <select id="studentDistance" disabled>
+                  <option value="">Not Applicable</option>
+                  <option value="Short">Short Distance</option>
+                  <option value="Medium">Medium Distance</option>
+                  <option value="Long">Long Distance</option>
+                </select>
+              </div>
+              <div class="field-wrap">
+                <label for="studentStatus">Enrollment Status</label>
+                <select id="studentStatus">
+                  <option value="Active">Active Student</option>
+                  <option value="Left">Left School</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-footer">
+          <button id="saveStudentButton" class="btn btn-primary" type="submit">💾 Save Learner Profile</button>
+          <button id="cancelStudentEditButton" class="btn btn-secondary" type="button" hidden>Cancel Edit</button>
+          <span id="studentFormMessage" class="form-feedback"></span>
+        </div>
+      </form>
+
+      <!-- Student Directory Table -->
+      <div class="card table-card">
+        <div class="card-toolbar">
+          <div>
+            <h3>Active Learners Roster</h3>
+            <span id="activeStudentCount" class="badge-count">0 learners</span>
+          </div>
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input id="studentListSearch" placeholder="Filter by learner name or class...">
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Photo</th>
+                <th>Learner Name</th>
+                <th>Class</th>
+                <th>Family Tier</th>
+                <th>Plan</th>
+                <th>Bus Route</th>
+                <th>Status</th>
+                <th class="text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="studentList"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Recycle Bin -->
+      <div class="card recycle-card">
+        <div class="card-toolbar">
+          <div>
+            <h3>Recycle Bin (Archived Learners)</h3>
+            <p class="card-subtext">Archived students can be restored here at any time without losing payment records.</p>
+          </div>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Learner Name</th>
+                <th>Class</th>
+                <th>Last Status</th>
+                <th class="text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="recycleList"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Backup Tools -->
+      <div class="card data-tools-card">
+        <div>
+          <h3>Local Data Safety &amp; Backup</h3>
+          <p class="card-subtext">Download an offline JSON copy or migrate data between cashier devices.</p>
+        </div>
+        <div class="tool-btns">
+          <button id="downloadBackup" class="btn btn-secondary" type="button">📥 Export JSON Backup</button>
+          <label class="btn btn-secondary btn-upload">
+            📤 Restore Backup
+            <input id="restoreBackup" type="file" accept="application/json" hidden>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 2: CASHIER REGISTER (POS) ==================== -->
+    <section id="register" class="page-view active">
+      <div class="view-header">
+        <div>
+          <h2>Daily Canteen Cashier Register</h2>
+          <p>Instant checkout: rates and sibling discounts are calculated automatically.</p>
+        </div>
+      </div>
+
+      <div class="alert-banner">
+        <div class="alert-icon">💡</div>
+        <div>
+          <strong>School Attendance Policy:</strong> Mark a learner <em>Absent</em> if they did not attend school today (they will not be billed). Present learners who pay less than the expected charge accumulate an outstanding debt.
+        </div>
+      </div>
+
+      <form id="registerForm" class="card pos-card" autocomplete="off">
+        <div class="pos-layout">
+
+          <!-- Left Column: Search & Learner Profile -->
+          <div class="pos-col-learner">
+            <div class="grid-2-custom">
+              <div class="field-wrap">
+                <label for="canteenDate">Attendance Date *</label>
+                <input id="canteenDate" type="date" required class="date-input">
+              </div>
+
+              <div class="field-wrap student-lookup-wrap">
+                <label for="canteenStudentSearch">Find Learner (Type name or class) *</label>
+                <div class="lookup-input-box">
+                  <input id="canteenStudentSearch" placeholder="Start typing name..." autocomplete="off">
+                  <span class="lookup-status-icon">🔎</span>
+                </div>
+                <div id="studentMatches" class="matches-dropdown" hidden></div>
+              </div>
+            </div>
+
+            <!-- Interactive Selected Student Card -->
+            <div id="selectedStudentProfile" class="learner-pos-badge" hidden>
+              <div class="learner-avatar-box">
+                <img id="canteenStudentPhoto" src="" alt="Student Avatar" hidden>
+                <div id="canteenStudentInitials" class="learner-initials">ST</div>
+              </div>
+              <div class="learner-meta-details">
+                <h4 id="selectedStudentName">Select a student</h4>
+                <div class="pill-group">
+                  <span id="badgeClass" class="pill pill-class">Class</span>
+                  <span id="badgePlan" class="pill pill-plan">Plan</span>
+                  <span id="badgeFamily" class="pill pill-family">Family</span>
+                  <span id="badgeDistance" class="pill pill-bus" hidden>Route</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Attendance & Class Confirmation -->
+            <div class="grid-2">
+              <div class="field-wrap">
+                <label for="canteenClass">Enrolled Class</label>
+                <input id="canteenClass" readonly placeholder="Auto-filled" class="readonly-field">
+              </div>
+              <div class="field-wrap">
+                <label for="attendance">Attendance Status *</label>
+                <select id="attendance" class="attendance-select">
+                  <option value="Present">🟢 Present in School</option>
+                  <option value="Absent">🔴 Absent (No Charge)</option>
+                </select>
+              </div>
+            </div>
+
+            <input type="hidden" id="canteenFamilyMembers">
+            <input type="hidden" id="canteenPaymentType">
+            <input type="hidden" id="canteenDistance">
+          </div>
+
+          <!-- Right Column: Financial POS Totalizer -->
+          <div class="pos-col-financials">
+            <div class="pos-totals-panel">
+              <!-- Expected -->
+              <div class="total-block total-expected">
+                <span class="total-label">EXPECTED DAILY CHARGE</span>
+                <input id="expectedCharge" readonly value="GH₵ 0.00" class="total-value">
+              </div>
+
+              <!-- Paid -->
+              <div class="total-block total-paid">
+                <span class="total-label">ACTUAL AMOUNT COLLECTED *</span>
+                <input id="actualPaid" type="number" min="0" step="0.01" value="0.00" inputmode="decimal" class="total-value-input">
+              </div>
+
+              <!-- Balance -->
+              <div class="total-block total-balance">
+                <span class="total-label">OUTSTANDING BALANCE</span>
+                <input id="outstanding" readonly value="GH₵ 0.00" class="total-value total-balance-val">
+              </div>
+            </div>
+
+            <!-- Fast-Click Cash Presets -->
+            <div class="fast-cash-bar">
+              <span class="fast-cash-title">Quick Cash:</span>
+              <div class="fast-cash-chips">
+                <button type="button" class="cash-chip chip-exact" data-quick="exact">⚡ Exact</button>
+                <button type="button" class="cash-chip" data-quick="10">GH₵ 10</button>
+                <button type="button" class="cash-chip" data-quick="20">GH₵ 20</button>
+                <button type="button" class="cash-chip" data-quick="50">GH₵ 50</button>
+                <button type="button" class="cash-chip chip-clear" data-quick="0">Clear</button>
+              </div>
+            </div>
+
+            <div class="field-wrap remarks-wrap">
+              <label for="canteenRemarks">Cashier Notes / Remarks</label>
+              <textarea id="canteenRemarks" rows="2" placeholder="e.g. Sibling payment combined, promised Friday..."></textarea>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="pos-action-strip">
+          <button id="saveRecordButton" class="btn btn-primary btn-pos-save" type="submit">💾 Save Daily Record</button>
+          <button id="cancelEditButton" class="btn btn-secondary" type="button" hidden>Cancel Edit</button>
+          <button id="printCurrentReceiptBtn" class="btn btn-receipt" type="button" hidden>🧾 Print Receipt</button>
+          <span id="selectedStudentMessage" class="pos-feedback">Search and select an active student to begin.</span>
+        </div>
+      </form>
+
+      <!-- Transactions Log Table -->
+      <div class="card table-card">
+        <div class="card-toolbar">
+          <div>
+            <h3>Daily Cashier Transactions</h3>
+            <span id="recordsCountBadge" class="badge-count">0 records</span>
+          </div>
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input id="recordSearch" placeholder="Search records by learner or date...">
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Learner</th>
+                <th>Class</th>
+                <th>Attendance</th>
+                <th>Expected</th>
+                <th>Paid</th>
+                <th>Balance</th>
+                <th>Remarks</th>
+                <th>Receipt</th>
+                <th class="text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="recordList"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 3: DAILY AUDIT / TRACKING ==================== -->
+    <section id="tracking" class="page-view">
+      <div class="view-header">
+        <div>
+          <h2>Daily Canteen Audit &amp; Reconciliation</h2>
+          <p>Complete reconciliation of daily attendance, revenue collected, and learner debt.</p>
+        </div>
+      </div>
+
+      <div class="card toolbar-card">
+        <div class="tracking-toolbar">
+          <div class="field-wrap">
+            <label for="trackingDate">Audit Date</label>
+            <input id="trackingDate" type="date">
+          </div>
+          <button id="refreshTracking" class="btn btn-primary" type="button">🔄 Refresh Audit</button>
+          <button id="printTracking" class="btn btn-secondary" type="button">🖨️ Print Tracking Sheet</button>
+        </div>
+      </div>
+
+      <div id="summaryCards" class="kpi-grid"></div>
+
+      <div class="card table-card">
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Learner Name</th>
+                <th>Class</th>
+                <th>Attendance</th>
+                <th>Expected</th>
+                <th>Paid</th>
+                <th>Balance</th>
+                <th>Status</th>
+                <th>Remarks</th>
+              </tr>
+            </thead>
+            <tbody id="trackingList"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 4: REPORTS & DEBTORS ==================== -->
+    <section id="reports" class="page-view">
+      <div class="view-header">
+        <div>
+          <h2>Executive Reports &amp; Debtors Register</h2>
+          <p>Generate period collection summaries and official debt statements for parents and administration.</p>
+        </div>
+      </div>
+
+      <div class="card toolbar-card">
+        <div class="reports-toolbar">
+          <div class="field-wrap">
+            <label for="reportType">Report Frequency</label>
+            <select id="reportType">
+              <option value="daily">Daily Register Report</option>
+              <option value="weekly" selected>Weekly Debtors Report</option>
+              <option value="monthly">Monthly Collection Report</option>
+              <option value="termly">Termly Collection Report</option>
+            </select>
+          </div>
+          <div class="field-wrap">
+            <label for="reportDate">Reference Date</label>
+            <input id="reportDate" type="date">
+          </div>
+          <button id="generateReports" class="btn btn-primary" type="button">✨ Generate Report</button>
+          <button id="printReports" class="btn btn-secondary" type="button">🖨️ Print Official Report</button>
+        </div>
+      </div>
+
+      <div id="reportCalendarNotice" class="alert-banner" hidden></div>
+
+      <div id="reportPrintArea">
+        <!-- Daily Report View -->
+        <div id="dailyReportBlock" hidden>
+          <div class="report-header-banner">
+            <h3 id="dailyReportTitle">Daily Report</h3>
+            <p id="dailyReportSubtitle"></p>
+          </div>
+          <div id="dailyReportCards" class="kpi-grid"></div>
+          <div class="card table-card">
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Learner</th>
+                    <th>Class</th>
+                    <th>Attendance</th>
+                    <th>Expected</th>
+                    <th>Paid</th>
+                    <th>Balance</th>
+                    <th>Status</th>
+                    <th>Remarks</th>
+                  </tr>
+                </thead>
+                <tbody id="dailyReportList"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Period (Weekly/Monthly/Termly) Report View -->
+        <div id="periodReportBlock">
+          <div class="report-header-banner">
+            <h3 id="periodReportTitle">Weekly Collection &amp; Debtors Report</h3>
+            <p id="periodReportSubtitle"></p>
+          </div>
+          <div id="periodReportCards" class="kpi-grid"></div>
+          <div class="card table-card">
+            <div class="card-toolbar">
+              <h3 id="periodDebtorsTitle">Outstanding Debtors List</h3>
+              <span id="debtorCount" class="badge-count badge-debt">0 owing</span>
+            </div>
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Learner Name</th>
+                    <th>Class</th>
+                    <th>Total Expected</th>
+                    <th>Total Paid</th>
+                    <th>Outstanding Debt</th>
+                    <th>Days Owing</th>
+                  </tr>
+                </thead>
+                <tbody id="weeklyDebtorsList"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 5: SETTINGS & CLOUD ==================== -->
+    <section id="settings" class="page-view">
+      <div class="view-header">
+        <div>
+          <h2>School Settings &amp; Google Cloud Sync</h2>
+          <p>Configure term dates, school days, and manage live database synchronization.</p>
+        </div>
+      </div>
+
+      <!-- Google Cloud Status Card -->
+      <div class="card cloud-config-card">
+        <div class="cloud-card-header">
+          <div class="cloud-icon-box">☁️</div>
+          <div>
+            <h3>Google Workspace Cloud Integration</h3>
+            <p class="card-subtext">Google Sheets live database, Google Drive PDF receipts, and learner photo storage.</p>
+          </div>
+        </div>
+
+        <div class="cloud-input-row">
+          <div class="field-wrap flex-1">
+            <label for="cloudApiUrlInput">Google Apps Script Web App URL</label>
+            <input id="cloudApiUrlInput" placeholder="https://script.google.com/macros/s/.../exec">
+          </div>
+          <div class="cloud-actions">
+            <button id="testConnectCloudBtn" class="btn btn-primary" type="button">🔗 Connect</button>
+            <button id="disconnectCloudBtn" class="btn btn-secondary" type="button">Disconnect</button>
+          </div>
+        </div>
+
+        <div id="cloudConnectionStatus" class="cloud-live-indicator">
+          <span id="cloudStatusIcon">🟢</span>
+          <span id="cloudStatusMsg">Connected to Google Cloud. Changes automatically sync to Google Sheets &amp; Drive.</span>
+        </div>
+      </div>
+
+      <!-- Academic Term Configuration -->
+      <form id="settingsForm" class="card form-card">
+        <div class="grid-2">
+          <div class="field-wrap">
+            <label for="academicYear">Academic Year *</label>
+            <input id="academicYear" placeholder="e.g. 2026/2027" required>
+          </div>
+          <div class="field-wrap">
+            <label for="schoolTerm">Current Term *</label>
+            <select id="schoolTerm">
+              <option value="Term 1">Term 1</option>
+              <option value="Term 2">Term 2</option>
+              <option value="Term 3">Term 3</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field-wrap">
+            <label for="termStart">Term Start Date *</label>
+            <input id="termStart" type="date" required>
+          </div>
+          <div class="field-wrap">
+            <label for="termEnd">Term End Date *</label>
+            <input id="termEnd" type="date" required>
+          </div>
+        </div>
+
+        <fieldset class="school-days-group">
+          <legend>Active School Days</legend>
+          <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="1" checked> Monday</label>
+          <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="2" checked> Tuesday</label>
+          <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="3" checked> Wednesday</label>
+          <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="4" checked> Thursday</label>
+          <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="5" checked> Friday</label>
+          <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="6"> Saturday</label>
+          <label class="checkbox-label"><input type="checkbox" name="schoolDay" value="0"> Sunday</label>
+        </fieldset>
+
+        <div class="form-footer">
+          <button class="btn btn-primary" type="submit">💾 Save Academic Calendar</button>
+          <span id="settingsSummary" class="form-feedback"></span>
+        </div>
+      </form>
+
+      <!-- Holiday Management -->
+      <div class="card holiday-card">
+        <div class="card-toolbar">
+          <div>
+            <h3>Holidays &amp; School Closures</h3>
+            <p class="card-subtext">Dates listed here are protected and excluded from billing and debtor accumulations.</p>
+          </div>
+        </div>
+
+        <form id="holidayForm" class="holiday-add-form">
+          <div class="field-wrap">
+            <label for="holidayDate">Closure Date *</label>
+            <input id="holidayDate" type="date" required>
+          </div>
+          <div class="field-wrap flex-1">
+            <label for="holidayReason">Closure Reason / Holiday Name *</label>
+            <input id="holidayReason" required placeholder="e.g. Independence Day Holiday">
+          </div>
+          <button class="btn btn-secondary btn-add-holiday" type="submit">➕ Add Closure</button>
+        </form>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Reason</th>
+                <th class="text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="holidayList"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== OFFICIAL RECEIPT MODAL ==================== -->
+  <dialog id="receiptModal" class="receipt-dialog">
+    <div class="receipt-modal-box">
+      <div class="receipt-modal-header">
+        <h3>Official Payment Voucher</h3>
+        <button id="closeReceiptModal" type="button" class="btn-close-modal" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div id="receiptPrintArea" class="thermal-receipt">
+        <div class="receipt-school-header">
+          <h2>COSMAT CANTEEN</h2>
+          <p>Official Learner Payment Voucher</p>
+          <div class="receipt-divider">================================</div>
+        </div>
+
+        <div class="receipt-meta-grid">
+          <div><strong>Receipt #:</strong> <span id="recReceiptId">-</span></div>
+          <div class="text-right"><strong>Date:</strong> <span id="recDate">-</span></div>
+        </div>
+
+        <div class="receipt-divider">--------------------------------</div>
+
+        <div class="receipt-row">
+          <span>Learner Name:</span>
+          <strong id="recStudentName">-</strong>
+        </div>
+        <div class="receipt-row">
+          <span>Class:</span>
+          <span id="recClass">-</span>
+        </div>
+        <div class="receipt-row">
+          <span>Attendance:</span>
+          <span id="recAttendance">-</span>
+        </div>
+
+        <div class="receipt-divider">--------------------------------</div>
+
+        <div class="receipt-row">
+          <span>Expected Charge:</span>
+          <span id="recExpected">GH₵ 0.00</span>
+        </div>
+        <div class="receipt-row receipt-row-paid">
+          <span>Amount Paid:</span>
+          <strong id="recPaid" class="receipt-green">GH₵ 0.00</strong>
+        </div>
+        <div class="receipt-row receipt-row-balance">
+          <span>Remaining Debt:</span>
+          <strong id="recBalance" class="receipt-red">GH₵ 0.00</strong>
+        </div>
+        <div class="receipt-row">
+          <span>Remarks:</span>
+          <span id="recRemarks">-</span>
+        </div>
+
+        <div class="receipt-divider">================================</div>
+
+        <!-- Simulated Barcode for authentic POS voucher feel -->
+        <div class="receipt-barcode">
+          ||| | |||| | ||| |||| | || ||||| ||| |
+        </div>
+
+        <div class="receipt-footer-text">
+          <p>Thank you for supporting our learners!</p>
+          <small id="recTimestamp">-</small>
+        </div>
+      </div>
+
+      <div class="receipt-modal-actions">
+        <button id="printThermalReceiptBtn" class="btn btn-primary" type="button">🖨️ Print Receipt</button>
+        <button id="saveDrivePdfReceiptBtn" class="btn btn-secondary" type="button">☁️ Save PDF to Google Drive</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Toast Notification Notification Banner -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <!-- JavaScript Modules -->
+  <script>
+/**
+ * COSMAT Canteen Management System - Configuration Module
+ */
+
+const CONFIG = {
+  APP_NAME: "COSMAT Canteen Management",
+  CURRENCY: "GH₵",
+  DEFAULT_API_URL: localStorage.getItem('cosmat_gas_api_url') || 'https://script.google.com/macros/s/AKfycbwrZFiHaYHN06kRAMyZUR2LDDxRYQ5MgF-PRB2WDpSIAMbI5sbM1pjtu7Ms79fx4PgSYA/exec',
+  STORAGE_KEYS: {
+    API_URL: 'cosmat_gas_api_url',
+    STUDENTS: 'students',
+    RECORDS: 'canteenRecords',
+    SETTINGS: 'schoolSettings',
+    RATES: 'cosmat_rates',
+    HOLIDAYS: 'cosmat_holidays',
+    OFFLINE_QUEUE: 'cosmat_offline_queue',
+    LAST_SYNC: 'cosmat_last_sync_time'
+  },
+  DEFAULT_RATES: {
+    Canteen: { 1: 10, 2: 20, 3: 25, 4: 30, 5: 35, 6: 40 },
+    'Bus & Canteen': {
+      Short: { 1: 16, 2: 32, 3: 40, 4: 50, 5: 55 },
+      Medium: { 1: 17, 2: 34, 3: 43, 4: 50, 5: 55 },
+      Long: { 1: 18, 2: 36, 3: 45, 4: 55, 5: 60 }
+    }
+  },
+  DEFAULT_SETTINGS: {
+    academicYear: '2026/2027',
+    term: 'Term 1',
+    termStart: '2026-09-01',
+    termEnd: '2026-12-18',
+    schoolDays: [1, 2, 3, 4, 5],
+    holidays: [
+      { date: '2026-09-21', reason: 'Kwame Nkrumah Memorial Day' },
+      { date: '2026-12-04', reason: 'Farmers Day' }
+    ]
+  }
+};
+
+window.CONFIG = CONFIG;
+
+
+/**
+ * COSMAT Canteen Management System - Cloud & Offline API Client
+ * 
+ * Interacts with Google Apps Script Web App backend.
+ * Features:
+ * - Simple POST without CORS preflight issues (text/plain)
+ * - Transparent offline queue & auto-synchronization
+ * - LocalStorage fallback cache
+ */
+
+class CanteenAPI {
+  constructor() {
+    this.apiUrl = localStorage.getItem(CONFIG.STORAGE_KEYS.API_URL) || CONFIG.DEFAULT_API_URL || '';
+    this.isOnline = navigator.onLine;
+    this.listeners = [];
+    this.syncing = false;
+
+    window.addEventListener('online', () => {
+      this.isOnline = true;
+      this.notifyStatus('online');
+      this.flushOfflineQueue();
+    });
+
+    window.addEventListener('offline', () => {
+      this.isOnline = false;
+      this.notifyStatus('offline');
+    });
+  }
+
+  setApiUrl(url) {
+    this.apiUrl = (url || '').trim();
+    if (this.apiUrl) {
+      localStorage.setItem(CONFIG.STORAGE_KEYS.API_URL, this.apiUrl);
+    } else {
+      localStorage.removeItem(CONFIG.STORAGE_KEYS.API_URL);
+    }
+  }
+
+  getApiUrl() {
+    return this.apiUrl;
+  }
+
+  hasCloudBackend() {
+    return Boolean(this.apiUrl && this.apiUrl.startsWith('https://script.google.com/'));
+  }
+
+  onStatusChange(callback) {
+    this.listeners.push(callback);
+  }
+
+  notifyStatus(status, details) {
+    this.listeners.forEach(cb => {
+      try { cb(status, details); } catch (e) { console.error(e); }
+    });
+  }
+
+  // Generic POST request to Google Apps Script
+  async postAction(action, data = {}) {
+    if (!this.hasCloudBackend()) {
+      return { success: false, offline: true, error: 'No Google Cloud API connected.' };
+    }
+
+    const payload = JSON.stringify({ action, ...data });
+
+    try {
+      // text/plain avoids CORS OPTIONS preflight issues with Google Apps Script
+      const response = await fetch(this.apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: payload,
+        redirect: 'follow'
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+      return result;
+    } catch (err) {
+      console.warn(`Cloud API POST [${action}] failed:`, err.message);
+      return { success: false, networkError: true, error: err.message };
+    }
+  }
+
+  // Generic GET request to Google Apps Script
+  async getAction(action, params = {}) {
+    if (!this.hasCloudBackend()) {
+      return { success: false, offline: true, error: 'No Google Cloud API connected.' };
+    }
+
+    const query = new URLSearchParams({ action, ...params }).toString();
+    const targetUrl = `${this.apiUrl}${this.apiUrl.includes('?') ? '&' : '?'}${query}`;
+
+    try {
+      const response = await fetch(targetUrl, {
+        method: 'GET',
+        redirect: 'follow'
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+      return result;
+    } catch (err) {
+      console.warn(`Cloud API GET [${action}] failed:`, err.message);
+      return { success: false, networkError: true, error: err.message };
+    }
+  }
+
+  // Test connection to Google Apps Script
+  async testConnection(testUrl) {
+    const url = (testUrl || this.apiUrl).trim();
+    if (!url) return { success: false, error: 'Empty URL provided.' };
+
+    try {
+      const pingUrl = `${url}${url.includes('?') ? '&' : '?'}action=ping`;
+      const response = await fetch(pingUrl, { method: 'GET', redirect: 'follow' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      return { success: false, error: err.message };
+    }
+  }
+
+  // Load all initial cloud data (Students, Rates, Settings, Holidays, Records)
+  async fetchBootstrapData(date = '') {
+    if (!this.hasCloudBackend()) {
+      return null;
+    }
+    this.notifyStatus('syncing');
+    const result = await this.getAction('bootstrap', { date });
+    if (result && result.success) {
+      this.notifyStatus('synced');
+      localStorage.setItem(CONFIG.STORAGE_KEYS.LAST_SYNC, new Date().toISOString());
+      return result;
+    } else {
+      this.notifyStatus('error', result?.error || 'Failed to fetch cloud data');
+      return null;
+    }
+  }
+
+  // Save student (Cloud + local cache update)
+  async saveStudent(studentData) {
+    if (this.hasCloudBackend()) {
+      this.notifyStatus('syncing');
+      const res = await this.postAction('saveStudent', { student: studentData });
+      if (res && res.success) {
+        this.notifyStatus('synced');
+        return res;
+      }
+    }
+    // Fallback: save to local queue/storage
+    return { success: true, localOnly: true, student: studentData };
+  }
+
+  // Archive / Delete student
+  async archiveStudent(studentId, isArchived = true) {
+    if (this.hasCloudBackend()) {
+      this.notifyStatus('syncing');
+      const action = isArchived ? 'archiveStudent' : 'restoreStudent';
+      const res = await this.postAction(action, { id: studentId });
+      this.notifyStatus(res.success ? 'synced' : 'error');
+      return res;
+    }
+    return { success: true, localOnly: true };
+  }
+
+  // Save daily canteen record with offline queue protection
+  async saveRecord(recordData) {
+    if (this.hasCloudBackend()) {
+      this.notifyStatus('syncing');
+      const res = await this.postAction('saveRecord', { record: recordData });
+      if (res && res.success) {
+        this.notifyStatus('synced');
+        return res;
+      }
+    }
+
+    // Queue for later sync when back online
+    this.queueOfflineRecord(recordData);
+    this.notifyStatus('queued');
+    return { success: true, queued: true, record: recordData };
+  }
+
+  // Offline queue management
+  getOfflineQueue() {
+    return JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.OFFLINE_QUEUE) || '[]');
+  }
+
+  queueOfflineRecord(record) {
+    const queue = this.getOfflineQueue();
+    // Replace if same student and date already in queue
+    const index = queue.findIndex(q => q.date === record.date && q.studentId === record.studentId);
+    if (index >= 0) {
+      queue[index] = record;
+    } else {
+      queue.push(record);
+    }
+    localStorage.setItem(CONFIG.STORAGE_KEYS.OFFLINE_QUEUE, JSON.stringify(queue));
+  }
+
+  clearOfflineQueue() {
+    localStorage.removeItem(CONFIG.STORAGE_KEYS.OFFLINE_QUEUE);
+  }
+
+  async flushOfflineQueue() {
+    if (!this.hasCloudBackend() || this.syncing) return;
+    const queue = this.getOfflineQueue();
+    if (!queue.length) return;
+
+    this.syncing = true;
+    this.notifyStatus('syncing', `Syncing ${queue.length} offline records...`);
+
+    const remaining = [];
+    for (const record of queue) {
+      const res = await this.postAction('saveRecord', { record });
+      if (!res || !res.success) {
+        remaining.push(record);
+      }
+    }
+
+    localStorage.setItem(CONFIG.STORAGE_KEYS.OFFLINE_QUEUE, JSON.stringify(remaining));
+    this.syncing = false;
+    
+    if (remaining.length === 0) {
+      this.notifyStatus('synced', 'All offline records synced to Google Sheets!');
+    } else {
+      this.notifyStatus('error', `${remaining.length} records remaining in queue.`);
+    }
+  }
+
+  // Generate PDF Receipt in Google Drive
+  async generateReceipt(recordId) {
+    if (!this.hasCloudBackend()) {
+      return { success: false, error: 'Google Cloud backend is required to generate Drive PDF receipts.' };
+    }
+    this.notifyStatus('syncing', 'Generating receipt in Google Drive...');
+    const res = await this.postAction('generateReceipt', { recordId });
+    this.notifyStatus(res.success ? 'synced' : 'error');
+    return res;
+  }
+}
+
+window.apiClient = new CanteenAPI();
+
+
+/**
+ * COSMAT Canteen Management System - Reactive State Manager
+ */
+
+class StateStore {
+  constructor() {
+    this.students = JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.STUDENTS) || '[]');
+    this.records = JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.RECORDS) || '[]');
+    this.rates = JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.RATES) || 'null') || CONFIG.DEFAULT_RATES;
+    this.settings = JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.SETTINGS) || 'null') || CONFIG.DEFAULT_SETTINGS;
+    this.holidays = JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.HOLIDAYS) || 'null') || CONFIG.DEFAULT_SETTINGS.holidays;
+    this.subscribers = [];
+  }
+
+  subscribe(fn) {
+    this.subscribers.push(fn);
+  }
+
+  notify(event, payload) {
+    this.subscribers.forEach(fn => {
+      try { fn(event, payload); } catch (e) { console.error(e); }
+    });
+  }
+
+  // Load cloud data and merge into local state
+  applyCloudBootstrap(bootstrapData) {
+    if (!bootstrapData) return;
+
+    if (Array.isArray(bootstrapData.students)) {
+      this.students = bootstrapData.students;
+      localStorage.setItem(CONFIG.STORAGE_KEYS.STUDENTS, JSON.stringify(this.students));
+    }
+
+    if (bootstrapData.rates && Object.keys(bootstrapData.rates).length > 0) {
+      this.rates = bootstrapData.rates;
+      localStorage.setItem(CONFIG.STORAGE_KEYS.RATES, JSON.stringify(this.rates));
+    }
+
+    if (bootstrapData.settings) {
+      this.settings = { ...this.settings, ...bootstrapData.settings };
+      localStorage.setItem(CONFIG.STORAGE_KEYS.SETTINGS, JSON.stringify(this.settings));
+    }
+
+    if (Array.isArray(bootstrapData.holidays)) {
+      this.holidays = bootstrapData.holidays;
+      localStorage.setItem(CONFIG.STORAGE_KEYS.HOLIDAYS, JSON.stringify(this.holidays));
+    }
+
+    if (Array.isArray(bootstrapData.records)) {
+      // Merge records with local records avoiding duplicates
+      const map = new Map(this.records.map(r => [r.id || `${r.date}-${r.studentId}`, r]));
+      bootstrapData.records.forEach(r => {
+        map.set(r.id || `${r.date}-${r.studentId}`, r);
+      });
+      this.records = Array.from(map.values());
+      localStorage.setItem(CONFIG.STORAGE_KEYS.RECORDS, JSON.stringify(this.records));
+    }
+
+    this.notify('bootstrap_loaded', bootstrapData);
+  }
+
+  // Rates calculation
+  chargeFor(student) {
+    if (!student) return 0;
+    const type = student.paymentType || 'Canteen';
+    const family = Number(student.familyMembers) || 1;
+
+    if (type === 'Canteen') {
+      return Number(this.rates.Canteen?.[family]) || 0;
+    }
+
+    if (type === 'Bus & Canteen') {
+      const dist = student.distance || 'Short';
+      return Number(this.rates['Bus & Canteen']?.[dist]?.[family]) || 0;
+    }
+
+    return 0;
+  }
+
+  // School calendar verification
+  isSchoolDay(date) {
+    if (!date) return false;
+    const s = this.settings;
+    const value = new Date(`${date}T00:00:00`);
+    const day = value.getDay();
+
+    const inRange = (!s.termStart || date >= s.termStart) && (!s.termEnd || date <= s.termEnd);
+    const isSchoolWeekDay = Array.isArray(s.schoolDays) && s.schoolDays.map(Number).includes(day);
+    const isHoliday = Array.isArray(this.holidays) && this.holidays.some(h => h.date === date);
+
+    return inRange && isSchoolWeekDay && !isHoliday;
+  }
+
+  schoolDayReason(date) {
+    const s = this.settings;
+    if (s.termStart && date < s.termStart) return 'before the current term start date';
+    if (s.termEnd && date > s.termEnd) return 'after the current term end date';
+    const holiday = (this.holidays || []).find(h => h.date === date);
+    if (holiday) return `a holiday / school closure: "${holiday.reason}"`;
+    return 'not a designated school day';
+  }
+
+  // Daily records aggregator
+  dailyRows(date) {
+    if (!this.isSchoolDay(date)) return [];
+    const active = this.students.filter(s => !s.archived && s.status === 'Active');
+    const byStudent = new Map(this.records.filter(r => r.date === date).map(r => [r.studentId, r]));
+
+    return active.map(s => {
+      const record = byStudent.get(s.id);
+      if (record) {
+        return {
+          ...record,
+          studentId: s.id,
+          photoUrl: s.photoUrl,
+          status: record.attendance === 'Absent' ? 'Absent' : 
+                  (record.actualPaid > 0 && record.outstanding <= 0 ? 'Paid' : 'Owing')
+        };
+      }
+      const expected = this.chargeFor(s);
+      return {
+        studentId: s.id,
+        studentName: s.name,
+        class: s.class,
+        photoUrl: s.photoUrl,
+        attendance: 'Present',
+        expectedCharge: expected,
+        actualPaid: 0,
+        outstanding: expected,
+        remarks: 'No payment recorded',
+        status: 'Owing'
+      };
+    });
+  }
+
+  totalsFor(rows) {
+    return {
+      paid: rows.filter(r => r.status === 'Paid').length,
+      absent: rows.filter(r => r.status === 'Absent').length,
+      owing: rows.filter(r => r.status === 'Owing').length,
+      expected: rows.filter(r => r.attendance !== 'Absent').reduce((sum, r) => sum + (Number(r.expectedCharge) || 0), 0),
+      collected: rows.reduce((sum, r) => sum + (Number(r.actualPaid) || 0), 0),
+      outstanding: rows.reduce((sum, r) => sum + (Number(r.outstanding) || 0), 0)
+    };
+  }
+
+  // Student CRUD
+  upsertStudent(student) {
+    const idx = this.students.findIndex(s => s.id === student.id);
+    if (idx >= 0) {
+      this.students[idx] = student;
+    } else {
+      this.students.unshift(student);
+    }
+    localStorage.setItem(CONFIG.STORAGE_KEYS.STUDENTS, JSON.stringify(this.students));
+    this.notify('students_updated', this.students);
+  }
+
+  setStudentArchived(id, archived) {
+    const student = this.students.find(s => s.id === id);
+    if (student) {
+      student.archived = archived;
+      localStorage.setItem(CONFIG.STORAGE_KEYS.STUDENTS, JSON.stringify(this.students));
+      this.notify('students_updated', this.students);
+    }
+  }
+
+  // Record CRUD
+  upsertRecord(record) {
+    const idx = this.records.findIndex(r => r.date === record.date && r.studentId === record.studentId);
+    if (idx >= 0) {
+      this.records[idx] = record;
+    } else {
+      this.records.unshift(record);
+    }
+    localStorage.setItem(CONFIG.STORAGE_KEYS.RECORDS, JSON.stringify(this.records));
+    this.notify('records_updated', this.records);
+  }
+}
+
+window.stateStore = new StateStore();
+
+
+/**
+ * COSMAT Canteen Management — Professional Client Application
+ * Powered by Google Sheets + Google Apps Script + Google Drive
+ */
+
+(function () {
+  'use strict';
+
+  const $ = id => document.getElementById(id);
+  const money = val => `${CONFIG.CURRENCY} ${Number(val || 0).toFixed(2)}`;
+  const today = () => new Date().toISOString().slice(0, 10);
+  const escapeHtml = (val = '') => {
+    const div = document.createElement('div');
+    div.textContent = val;
+    return div.innerHTML;
+  };
+
+  // State handles
+  let selectedStudentId = null;
+  let editingRecord = null;
+  let editingStudentId = null;
+  let studentPhotoBase64 = null;
+  let currentReceiptRecord = null;
+
+  // Notification Toast
+  function toast(message) {
+    const el = $('toast');
+    if (!el) return;
+    el.textContent = message;
+    el.classList.add('show');
+    clearTimeout(window.toastTimer);
+    window.toastTimer = setTimeout(() => el.classList.remove('show'), 3200);
+  }
+
+  // ===========================================================================
+  // CLOUD SYNC & STATUS INDICATOR
+  // ===========================================================================
+  function updateSyncUI(status, details) {
+    const badge = $('syncBadge');
+    const text = $('syncStatusText');
+    const statusMsg = $('cloudStatusMsg');
+    const statusIcon = $('cloudStatusIcon');
+    if (!badge || !text) return;
+
+    badge.className = 'sync-badge';
+
+    if (status === 'synced' || status === 'online') {
+      badge.classList.add('online');
+      text.textContent = '🟢 Google Cloud Connected';
+      if (statusMsg) statusMsg.textContent = details || 'Live sync active with Google Sheets & Drive.';
+      if (statusIcon) statusIcon.textContent = '🟢';
+    } else if (status === 'syncing') {
+      badge.classList.add('syncing');
+      text.textContent = '🔄 Syncing with Cloud...';
+      if (statusMsg) statusMsg.textContent = details || 'Sending updates to Google Sheets...';
+      if (statusIcon) statusIcon.textContent = '🔄';
+    } else if (status === 'queued' || status === 'offline') {
+      badge.classList.add('offline');
+      const queueLen = apiClient.getOfflineQueue().length;
+      text.textContent = `🟡 Offline (${queueLen} queued)`;
+      if (statusMsg) statusMsg.textContent = `Offline: ${queueLen} records safely stored locally. Will sync automatically once reconnected.`;
+      if (statusIcon) statusIcon.textContent = '🟡';
+    } else if (status === 'error') {
+      badge.classList.add('offline');
+      text.textContent = '⚠️ Cloud Sync Issue';
+      if (statusMsg) statusMsg.textContent = details || 'Failed to communicate with Google Cloud backend.';
+      if (statusIcon) statusIcon.textContent = '⚠️';
+    } else {
+      badge.classList.add('demo');
+      text.textContent = '⚪ Local Offline Mode';
+      if (statusMsg) statusMsg.textContent = 'No Google Apps Script URL set. Running in local browser mode.';
+      if (statusIcon) statusIcon.textContent = '⚪';
+    }
+  }
+
+  apiClient.onStatusChange((status, details) => {
+    updateSyncUI(status, details);
+  });
+
+  // ===========================================================================
+  // NAVIGATION ROUTER
+  // ===========================================================================
+  function showPage(pageId) {
+    document.querySelectorAll('.page-view, .page').forEach(el => {
+      el.classList.toggle('active', el.id === pageId);
+    });
+    document.querySelectorAll('.nav-tab, .nav-button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.page === pageId);
+    });
+
+    if (pageId === 'students') renderStudents();
+    if (pageId === 'register') {
+      renderRecords();
+      $('canteenStudentSearch')?.focus();
+    }
+    if (pageId === 'tracking') renderTracking();
+    if (pageId === 'reports') renderReports();
+    if (pageId === 'settings') renderSettings();
+  }
+
+  document.querySelectorAll('.nav-tab, .nav-button').forEach(button => {
+    button.addEventListener('click', () => showPage(button.dataset.page));
+  });
+
+  // ===========================================================================
+  // STUDENT MANAGEMENT (PAGE 1)
+  // ===========================================================================
+  function updateDistanceVisibility() {
+    const isCanteen = $('studentPaymentType').value === 'Canteen';
+    $('studentDistance').disabled = isCanteen;
+    if (isCanteen) $('studentDistance').value = '';
+  }
+
+  $('studentPaymentType')?.addEventListener('change', updateDistanceVisibility);
+
+  // Photo upload & preview
+  $('studentPhotoInput')?.addEventListener('change', event => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      return toast('Please select an image file (JPEG or PNG).');
+    }
+
+    const reader = new FileReader();
+    reader.onload = e => {
+      studentPhotoBase64 = e.target.result;
+      const img = $('studentPhotoImg');
+      const placeholder = $('photoPlaceholderText');
+      img.src = studentPhotoBase64;
+      img.hidden = false;
+      placeholder.hidden = true;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  $('studentPhotoPreview')?.addEventListener('click', () => {
+    $('studentPhotoInput')?.click();
+  });
+
+  function resetStudentForm() {
+    $('studentForm').reset();
+    $('studentPaymentType').value = 'Canteen';
+    $('studentStatus').value = 'Active';
+    $('studentPhotoImg').src = '';
+    $('studentPhotoImg').hidden = true;
+    $('photoPlaceholderText').hidden = false;
+    studentPhotoBase64 = null;
+    editingStudentId = null;
+    $('saveStudentButton').textContent = '💾 Save Student Profile';
+    $('cancelStudentEditButton').hidden = true;
+    $('studentFormMessage').textContent = '';
+    updateDistanceVisibility();
+  }
+
+  $('studentForm')?.addEventListener('submit', async event => {
+    event.preventDefault();
+    const current = stateStore.students.find(s => s.id === editingStudentId);
+
+    const student = {
+      id: editingStudentId || `STU-${Math.floor(1000 + Math.random() * 9000)}`,
+      name: $('studentName').value.trim(),
+      class: $('studentClass').value.trim(),
+      familyMembers: Number($('familyMembers').value),
+      paymentType: $('studentPaymentType').value,
+      distance: $('studentDistance').value,
+      status: $('studentStatus').value,
+      archived: current?.archived || false,
+      photoUrl: current?.photoUrl || '',
+      photoBase64: studentPhotoBase64 || null
+    };
+
+    if (student.familyMembers < 1 || student.familyMembers > 6) {
+      return toast('Family members must be between 1 and 6.');
+    }
+    if (student.paymentType === 'Bus & Canteen' && !student.distance) {
+      return toast('Please select a bus distance route.');
+    }
+    if (!stateStore.chargeFor(student)) {
+      return toast('No rate exists for this combination in rate settings.');
+    }
+
+    // Save to local store immediately for instant UI responsiveness
+    stateStore.upsertStudent(student);
+    resetStudentForm();
+    renderStudents();
+
+    // Async sync to Google Sheets & Drive
+    const cloudRes = await apiClient.saveStudent(student);
+    if (cloudRes && cloudRes.success) {
+      if (cloudRes.student?.photoUrl) {
+        student.photoUrl = cloudRes.student.photoUrl;
+        stateStore.upsertStudent(student);
+        renderStudents();
+      }
+      toast(editingStudentId ? 'Student updated and synced to Google Sheets!' : 'Student saved and synced to Google Sheets!');
+    } else {
+      toast('Student saved locally. Will sync when cloud is connected.');
+    }
+  });
+
+  function beginStudentEdit(id) {
+    const student = stateStore.students.find(s => s.id === id);
+    if (!student) return;
+
+    editingStudentId = id;
+    $('studentName').value = student.name;
+    $('studentClass').value = student.class;
+    $('familyMembers').value = student.familyMembers;
+    $('studentPaymentType').value = student.paymentType;
+    updateDistanceVisibility();
+    $('studentDistance').value = student.distance || '';
+    $('studentStatus').value = student.status;
+
+    if (student.photoUrl) {
+      $('studentPhotoImg').src = student.photoUrl;
+      $('studentPhotoImg').hidden = false;
+      $('photoPlaceholderText').hidden = true;
+    } else {
+      $('studentPhotoImg').hidden = true;
+      $('photoPlaceholderText').hidden = false;
+    }
+
+    $('saveStudentButton').textContent = '💾 Update Student Profile';
+    $('cancelStudentEditButton').hidden = false;
+    $('studentFormMessage').textContent = `Editing ${student.name}. Existing payments will remain intact.`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  async function archiveStudent(id) {
+    const student = stateStore.students.find(s => s.id === id);
+    if (!student) return;
+
+    stateStore.setStudentArchived(id, true);
+    if (editingStudentId === id) resetStudentForm();
+    renderStudents();
+    toast(`${student.name} moved to Recycle Bin.`);
+
+    await apiClient.archiveStudent(id, true);
+  }
+
+  async function restoreStudent(id) {
+    const student = stateStore.students.find(s => s.id === id);
+    if (!student) return;
+
+    stateStore.setStudentArchived(id, false);
+    renderStudents();
+    toast(`${student.name} restored.`);
+
+    await apiClient.archiveStudent(id, false);
+  }
+
+  function renderStudents() {
+    const term = ($('studentListSearch')?.value || '').toLowerCase();
+    const all = stateStore.students;
+    const active = all.filter(s => !s.archived && (s.name.toLowerCase().includes(term) || s.class.toLowerCase().includes(term)));
+    const recycled = all.filter(s => s.archived);
+
+    $('activeStudentCount').textContent = `${all.filter(s => !s.archived).length} registered learner(s)`;
+
+    $('studentList').innerHTML = active.length ? active.map(s => {
+      const avatarHtml = s.photoUrl ?
+        `<img class="student-table-thumb" src="${escapeHtml(s.photoUrl)}" alt="Avatar">` :
+        `<span class="student-table-thumb" style="display:inline-flex;align-items:center;justify-content:center;font-weight:bold;color:#0f2d59;">${s.name.charAt(0)}</span>`;
+
+      return `<tr>
+        <td>${avatarHtml}</td>
+        <td><strong>${escapeHtml(s.name)}</strong></td>
+        <td>${escapeHtml(s.class)}</td>
+        <td>${s.familyMembers} sibling(s)</td>
+        <td><span class="badge ${s.paymentType === 'Canteen' ? 'badge-blue' : 'badge-purple'}">${s.paymentType}</span></td>
+        <td>${s.distance || '—'}</td>
+        <td><span class="status ${s.status === 'Active' ? 'paid' : 'owing'}">${s.status}</span></td>
+        <td>
+          <button type="button" class="edit-button" data-student-edit="${escapeHtml(s.id)}">Edit</button>
+          <button type="button" class="archive-button" data-student-archive="${escapeHtml(s.id)}">Archive</button>
+        </td>
+      </tr>`;
+    }).join('') : '<tr><td class="empty" colspan="8">No active students found.</td></tr>';
+
+    $('recycleList').innerHTML = recycled.length ? recycled.map(s => `
+      <tr>
+        <td><strong>${escapeHtml(s.name)}</strong></td>
+        <td>${escapeHtml(s.class)}</td>
+        <td>${s.status}</td>
+        <td>
+          <button type="button" class="restore-button" data-student-restore="${escapeHtml(s.id)}">Restore</button>
+        </td>
+      </tr>
+    `).join('') : '<tr><td class="empty" colspan="4">Recycle bin is empty.</td></tr>';
+  }
+
+  $('studentList')?.addEventListener('click', e => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    if (btn.dataset.studentEdit) beginStudentEdit(btn.dataset.studentEdit);
+    if (btn.dataset.studentArchive) archiveStudent(btn.dataset.studentArchive);
+  });
+
+  $('recycleList')?.addEventListener('click', e => {
+    const btn = e.target.closest('[data-student-restore]');
+    if (btn) restoreStudent(btn.dataset.studentRestore);
+  });
+
+  $('cancelStudentEditButton')?.addEventListener('click', resetStudentForm);
+  $('studentListSearch')?.addEventListener('input', renderStudents);
+
+  // ===========================================================================
+  // CANTEEN REGISTER / CASHIER (PAGE 2)
+  // ===========================================================================
+  function selectStudent(id) {
+    const student = stateStore.students.find(s => s.id === id);
+    if (!student) return;
+
+    selectedStudentId = id;
+    $('canteenStudentSearch').value = student.name;
+    $('studentMatches').hidden = true;
+
+    // Populate preview card
+    const profileCard = $('selectedStudentProfile');
+    profileCard.hidden = false;
+    $('selectedStudentName').textContent = student.name;
+    $('badgeClass').textContent = student.class;
+    $('badgePlan').textContent = student.paymentType;
+    $('badgeFamily').textContent = `${student.familyMembers} in family`;
+
+    if (student.distance) {
+      $('badgeDistance').textContent = `${student.distance} Route`;
+      $('badgeDistance').hidden = false;
+    } else {
+      $('badgeDistance').hidden = true;
+    }
+
+    if (student.photoUrl) {
+      $('canteenStudentPhoto').src = student.photoUrl;
+      $('canteenStudentPhoto').hidden = false;
+      $('canteenStudentInitials').hidden = true;
+    } else {
+      $('canteenStudentPhoto').hidden = true;
+      $('canteenStudentInitials').textContent = student.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+      $('canteenStudentInitials').hidden = false;
+    }
+
+    $('canteenClass').value = student.class;
+    $('canteenFamilyMembers').value = student.familyMembers;
+    $('canteenPaymentType').value = student.paymentType;
+    $('canteenDistance').value = student.distance || '';
+
+    const expected = stateStore.chargeFor(student);
+    $('expectedCharge').value = money(expected);
+    $('actualPaid').value = expected.toFixed(2);
+    $('selectedStudentMessage').textContent = `Selected: ${student.name} (${student.class})`;
+    updatePaymentCalculations();
+  }
+
+  function renderStudentMatches() {
+    const box = $('studentMatches');
+    const term = ($('canteenStudentSearch')?.value || '').trim().toLowerCase();
+    if (!term) {
+      box.hidden = true;
+      return;
+    }
+
+    const matches = stateStore.students
+      .filter(s => !s.archived && s.status === 'Active' && (s.name.toLowerCase().includes(term) || s.class.toLowerCase().includes(term)))
+      .slice(0, 7);
+
+    box.innerHTML = matches.length ? matches.map(s => `
+      <div class="match" data-id="${escapeHtml(s.id)}">
+        <div class="match-avatar">${s.name.charAt(0)}</div>
+        <div class="match-info">
+          <strong>${escapeHtml(s.name)}</strong>
+          <small>${escapeHtml(s.class)} · ${s.paymentType} · Family of ${s.familyMembers}</small>
+        </div>
+      </div>
+    `).join('') : '<div class="match" style="cursor:default;color:#64748b;">No active learner found.</div>';
+
+    box.hidden = false;
+    box.querySelectorAll('.match[data-id]').forEach(el => {
+      el.addEventListener('click', () => selectStudent(el.dataset.id));
+    });
+  }
+
+  $('canteenStudentSearch')?.addEventListener('input', () => {
+    selectedStudentId = null;
+    $('selectedStudentProfile').hidden = true;
+    $('selectedStudentMessage').textContent = 'Select learner from the suggestions.';
+    renderStudentMatches();
+  });
+
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.student-picker')) {
+      const box = $('studentMatches');
+      if (box) box.hidden = true;
+    }
+  });
+
+  function getExpectedValue() {
+    return Number($('expectedCharge').value.replace(/[^0-9.]/g, '')) || 0;
+  }
+
+  function updatePaymentCalculations() {
+    const isAbsent = $('attendance').value.includes('Absent');
+    $('actualPaid').disabled = isAbsent;
+    if (isAbsent) $('actualPaid').value = '0.00';
+
+    const expected = isAbsent ? 0 : getExpectedValue();
+    const paid = isAbsent ? 0 : (Number($('actualPaid').value) || 0);
+    const balance = isAbsent ? 0 : Math.max(0, expected - paid);
+
+    $('outstanding').value = money(balance);
+  }
+
+  $('attendance')?.addEventListener('change', updatePaymentCalculations);
+  $('actualPaid')?.addEventListener('input', updatePaymentCalculations);
+
+  // Quick cash preset buttons
+  document.querySelectorAll('.quick-cash-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const val = btn.dataset.quick;
+      if (val === 'exact') {
+        $('actualPaid').value = getExpectedValue().toFixed(2);
+      } else if (val === '0') {
+        $('actualPaid').value = '0.00';
+      } else {
+        $('actualPaid').value = Number(val).toFixed(2);
+      }
+      updatePaymentCalculations();
+    });
+  });
+
+  // Submit Daily Register Record
+  $('registerForm')?.addEventListener('submit', async event => {
+    event.preventDefault();
+    const student = stateStore.students.find(s => s.id === selectedStudentId);
+    const date = $('canteenDate').value;
+
+    if (!date || (!student && !editingRecord)) {
+      return toast('Please select an active learner and valid date.');
+    }
+
+    if (!stateStore.isSchoolDay(date)) {
+      return toast(`Cannot save record: ${date} is ${stateStore.schoolDayReason(date)}.`);
+    }
+
+    const studentId = editingRecord?.studentId || student.id;
+    const existing = stateStore.records.find(r => r.id !== editingRecord?.id && r.date === date && r.studentId === studentId);
+    if (existing) {
+      return toast('A daily record already exists for this learner on this date.');
+    }
+
+    const expected = editingRecord ? editingRecord.expectedCharge : stateStore.chargeFor(student);
+    const isAbsent = $('attendance').value.includes('Absent');
+    const paid = isAbsent ? 0 : Number($('actualPaid').value);
+
+    if (!Number.isFinite(paid) || paid < 0) {
+      return toast('Amount paid cannot be negative.');
+    }
+
+    const calendar = stateStore.settings;
+    const record = {
+      id: editingRecord?.id || `REC-${date.replace(/-/g, '')}-${studentId}`,
+      date,
+      studentId,
+      studentName: editingRecord?.studentName || student.name,
+      class: editingRecord?.class || student.class,
+      attendance: isAbsent ? 'Absent' : 'Present',
+      expectedCharge: isAbsent ? 0 : expected,
+      actualPaid: paid,
+      outstanding: isAbsent ? 0 : Math.max(0, expected - paid),
+      remarks: $('canteenRemarks').value.trim(),
+      academicYear: calendar.academicYear || '2026/2027',
+      term: calendar.term || 'Term 1'
+    };
+
+    // Immediate state store update
+    stateStore.upsertRecord(record);
+    currentReceiptRecord = record;
+
+    const savedDate = date;
+    resetRegisterForm(savedDate);
+    renderRecords();
+    renderTracking();
+
+    $('printCurrentReceiptBtn').hidden = false;
+    toast(editingRecord ? 'Record updated!' : isAbsent ? 'Learner marked Absent. No charge recorded.' : 'Daily payment recorded!');
+
+    // Async cloud sync
+    const res = await apiClient.saveRecord(record);
+    if (res && res.queued) {
+      toast('Saved locally (Offline). Will auto-sync to Google Sheets when reconnected.');
+    }
+  });
+
+  function resetRegisterForm(defaultDate = today()) {
+    $('registerForm').reset();
+    $('canteenDate').value = defaultDate;
+    selectedStudentId = null;
+    editingRecord = null;
+    $('selectedStudentProfile').hidden = true;
+    $('expectedCharge').value = money(0);
+    $('outstanding').value = money(0);
+    $('actualPaid').disabled = false;
+    $('canteenStudentSearch').disabled = false;
+    $('saveRecordButton').textContent = '💾 Save Daily Record';
+    $('cancelEditButton').hidden = true;
+    $('selectedStudentMessage').textContent = 'Search and select an active student to begin.';
+  }
+
+  function beginRecordEdit(recordId) {
+    const record = stateStore.records.find(r => r.id === recordId);
+    if (!record) return;
+
+    editingRecord = record;
+    selectedStudentId = record.studentId;
+    $('canteenDate').value = record.date;
+    $('canteenStudentSearch').value = record.studentName;
+    $('canteenStudentSearch').disabled = true;
+    $('canteenClass').value = record.class;
+    $('attendance').value = record.attendance;
+    $('expectedCharge').value = money(record.expectedCharge);
+    $('actualPaid').value = Number(record.actualPaid).toFixed(2);
+    $('canteenRemarks').value = record.remarks || '';
+    $('saveRecordButton').textContent = '💾 Update Daily Record';
+    $('cancelEditButton').hidden = false;
+    $('selectedStudentMessage').textContent = `Editing ${record.studentName}'s record.`;
+    updatePaymentCalculations();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function renderRecords() {
+    const term = ($('recordSearch')?.value || '').toLowerCase();
+    const rows = stateStore.records
+      .filter(r => `${r.studentName} ${r.class} ${r.date}`.toLowerCase().includes(term))
+      .sort((a, b) => b.date.localeCompare(a.date));
+
+    $('recordsCountBadge').textContent = `${rows.length} saved record(s)`;
+
+    $('recordList').innerHTML = rows.length ? rows.map(r => `
+      <tr>
+        <td><strong>${r.date}</strong></td>
+        <td>${escapeHtml(r.studentName)}</td>
+        <td>${escapeHtml(r.class)}</td>
+        <td><span class="badge ${r.attendance === 'Present' ? 'badge-green' : 'badge-amber'}">${r.attendance}</span></td>
+        <td>${money(r.expectedCharge)}</td>
+        <td><strong class="text-green">${money(r.actualPaid)}</strong></td>
+        <td><strong class="${r.outstanding > 0 ? 'text-red' : ''}">${money(r.outstanding)}</strong></td>
+        <td>${escapeHtml(r.remarks) || '—'}</td>
+        <td>
+          <button type="button" class="receipt-row-btn" data-record-receipt="${escapeHtml(r.id)}">🧾 Receipt</button>
+        </td>
+        <td>
+          <button type="button" class="edit-button" data-record-id="${escapeHtml(r.id)}">Edit</button>
+        </td>
+      </tr>
+    `).join('') : '<tr><td class="empty" colspan="10">No daily records saved yet.</td></tr>';
+  }
+
+  $('recordList')?.addEventListener('click', e => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    if (btn.dataset.recordId) beginRecordEdit(btn.dataset.recordId);
+    if (btn.dataset.recordReceipt) openReceiptModal(btn.dataset.recordReceipt);
+  });
+
+  $('cancelEditButton')?.addEventListener('click', () => resetRegisterForm($('canteenDate').value));
+  $('recordSearch')?.addEventListener('input', renderRecords);
+
+  // ===========================================================================
+  // RECEIPT MODAL DIALOG
+  // ===========================================================================
+  function openReceiptModal(recordId) {
+    const record = stateStore.records.find(r => r.id === recordId) || currentReceiptRecord;
+    if (!record) return toast('Record not found.');
+
+    currentReceiptRecord = record;
+    $('recReceiptId').textContent = record.id;
+    $('recDate').textContent = record.date;
+    $('recStudentName').textContent = record.studentName;
+    $('recClass').textContent = record.class;
+    $('recAttendance').textContent = record.attendance;
+    $('recExpected').textContent = money(record.expectedCharge);
+    $('recPaid').textContent = money(record.actualPaid);
+    $('recBalance').textContent = money(record.outstanding);
+    $('recRemarks').textContent = record.remarks || 'None';
+    $('recTimestamp').textContent = `Generated: ${new Date().toLocaleString()}`;
+
+    $('receiptModal')?.showModal();
+  }
+
+  $('printCurrentReceiptBtn')?.addEventListener('click', () => {
+    if (currentReceiptRecord) openReceiptModal(currentReceiptRecord.id);
+  });
+
+  $('closeReceiptModal')?.addEventListener('click', () => {
+    $('receiptModal')?.close();
+  });
+
+  $('printThermalReceiptBtn')?.addEventListener('click', () => {
+    window.print();
+  });
+
+  $('saveDrivePdfReceiptBtn')?.addEventListener('click', async () => {
+    if (!currentReceiptRecord) return;
+    toast('Generating PDF receipt in Google Drive...');
+    const res = await apiClient.generateReceipt(currentReceiptRecord.id);
+    if (res && res.success) {
+      toast('Receipt saved to Google Drive!');
+      if (res.receiptUrl) window.open(res.receiptUrl, '_blank');
+    } else {
+      toast(res?.error || 'Failed to generate Drive receipt.');
+    }
+  });
+
+  // ===========================================================================
+  // DAILY TRACKING AUDIT (PAGE 3)
+  // ===========================================================================
+  function summaryHtml(summary) {
+    return [
+      ['Paid Learners', summary.paid, 'paid'],
+      ['Absent Learners', summary.absent, 'absent'],
+      ['Learners Owing', summary.owing, 'owing'],
+      ['Total Collected', money(summary.collected), 'paid'],
+      ['Total Expected', money(summary.expected), ''],
+      ['Outstanding Debt', money(summary.outstanding), 'owing']
+    ].map(([label, val, kind]) => `
+      <div class="summary-card ${kind}">
+        <strong>${val}</strong>
+        <span>${label}</span>
+      </div>
+    `).join('');
+  }
+
+  function renderTracking() {
+    const date = $('trackingDate')?.value;
+    if (!stateStore.isSchoolDay(date)) {
+      $('summaryCards').innerHTML = summaryHtml({ paid: 0, absent: 0, owing: 0, collected: 0, expected: 0, outstanding: 0 });
+      $('trackingList').innerHTML = `<tr><td class="empty" colspan="8">No records: ${date} is ${stateStore.schoolDayReason(date)}.</td></tr>`;
+      return;
+    }
+
+    const rows = stateStore.dailyRows(date);
+    const summary = stateStore.totalsFor(rows);
+    $('summaryCards').innerHTML = summaryHtml(summary);
+
+    $('trackingList').innerHTML = rows.length ? rows.map(r => `
+      <tr>
+        <td><strong>${escapeHtml(r.studentName)}</strong></td>
+        <td>${escapeHtml(r.class)}</td>
+        <td><span class="badge ${r.attendance === 'Present' ? 'badge-green' : 'badge-amber'}">${r.attendance}</span></td>
+        <td>${money(r.expectedCharge)}</td>
+        <td><strong class="text-green">${money(r.actualPaid)}</strong></td>
+        <td><strong class="${r.outstanding > 0 ? 'text-red' : ''}">${money(r.outstanding)}</strong></td>
+        <td><span class="status ${r.status.toLowerCase()}">${r.status}</span></td>
+        <td>${escapeHtml(r.remarks) || '—'}</td>
+      </tr>
+    `).join('') : '<tr><td class="empty" colspan="8">No active learners registered.</td></tr>';
+  }
+
+  $('refreshTracking')?.addEventListener('click', renderTracking);
+  $('printTracking')?.addEventListener('click', () => {
+    renderTracking();
+    document.body.classList.add('printing-tracking');
+    window.print();
+    setTimeout(() => document.body.classList.remove('printing-tracking'), 600);
+  });
+
+  // ===========================================================================
+  // EXECUTIVE REPORTS & DEBTORS (PAGE 4)
+  // ===========================================================================
+  function schoolWeek(dateStr) {
+    const start = new Date(`${dateStr}T00:00:00`);
+    start.setDate(start.getDate() - ((start.getDay() + 6) % 7));
+    return Array.from({ length: 7 }, (_, i) => {
+      const d = new Date(start);
+      d.setDate(start.getDate() + i);
+      return d.toISOString().slice(0, 10);
+    });
+  }
+
+  function reportDates(type, refDate) {
+    if (type === 'daily') return [refDate];
+    if (type === 'weekly') return schoolWeek(refDate);
+    if (type === 'monthly') {
+      const base = new Date(`${refDate}T00:00:00`);
+      const daysInMonth = new Date(base.getFullYear(), base.getMonth() + 1, 0).getDate();
+      return Array.from({ length: daysInMonth }, (_, i) => {
+        const d = new Date(base.getFullYear(), base.getMonth(), i + 1);
+        return d.toISOString().slice(0, 10);
+      });
+    }
+    // Termly
+    const s = stateStore.settings;
+    if (!s.termStart || !s.termEnd) return [];
+    const list = [];
+    const cur = new Date(`${s.termStart}T00:00:00`);
+    const end = new Date(`${s.termEnd}T00:00:00`);
+    while (cur <= end) {
+      list.push(cur.toISOString().slice(0, 10));
+      cur.setDate(cur.getDate() + 1);
+    }
+    return list;
+  }
+
+  function renderReports() {
+    const type = $('reportType')?.value || 'weekly';
+    const date = $('reportDate')?.value || today();
+    const dates = reportDates(type, date);
+    const isDaily = type === 'daily';
+
+    $('dailyReportBlock').hidden = !isDaily;
+    $('periodReportBlock').hidden = isDaily;
+    const notice = $('reportCalendarNotice');
+    notice.hidden = true;
+
+    if (isDaily) {
+      const valid = stateStore.isSchoolDay(date);
+      const rows = stateStore.dailyRows(date);
+      const summary = stateStore.totalsFor(rows);
+
+      if (!valid) {
+        notice.hidden = false;
+        notice.textContent = `Selected date is ${stateStore.schoolDayReason(date)}.`;
+      }
+
+      $('dailyReportTitle').textContent = `Daily Canteen Report — ${date}`;
+      $('dailyReportCards').innerHTML = summaryHtml(summary);
+      $('dailyReportList').innerHTML = rows.map(r => `
+        <tr>
+          <td><strong>${escapeHtml(r.studentName)}</strong></td>
+          <td>${escapeHtml(r.class)}</td>
+          <td>${r.attendance}</td>
+          <td>${money(r.expectedCharge)}</td>
+          <td>${money(r.actualPaid)}</td>
+          <td>${money(r.outstanding)}</td>
+          <td><span class="status ${r.status.toLowerCase()}">${r.status}</span></td>
+          <td>${escapeHtml(r.remarks) || '—'}</td>
+        </tr>
+      `).join('');
+      return;
+    }
+
+    // Weekly / Monthly / Termly Debtors
+    const allRows = dates.flatMap(d => stateStore.dailyRows(d));
+    const summary = stateStore.totalsFor(allRows);
+
+    const debtorsMap = new Map();
+    allRows.forEach(r => {
+      const entry = debtorsMap.get(r.studentId) || {
+        studentName: r.studentName,
+        class: r.class,
+        expected: 0,
+        paid: 0,
+        outstanding: 0,
+        daysOwing: 0
+      };
+      entry.expected += r.expectedCharge;
+      entry.paid += r.actualPaid;
+      entry.outstanding += r.outstanding;
+      if (r.outstanding > 0) entry.daysOwing++;
+      debtorsMap.set(r.studentId, entry);
+    });
+
+    const debtorRows = Array.from(debtorsMap.values())
+      .filter(d => d.outstanding > 0)
+      .sort((a, b) => b.outstanding - a.outstanding);
+
+    const titleMap = { weekly: 'Weekly Collection & Debtors', monthly: 'Monthly Collection & Debtors', termly: 'Termly Collection & Debtors' };
+    $('periodReportTitle').textContent = `${titleMap[type]} Report`;
+    $('periodReportSubtitle').textContent = dates.length ? `${dates[0]} to ${dates[dates.length - 1]}` : 'Configure term dates in Settings';
+
+    $('periodReportCards').innerHTML = [
+      ['Total Expected', money(summary.expected), ''],
+      ['Total Collected', money(summary.collected), 'paid'],
+      ['Total Outstanding Debt', money(summary.outstanding), 'owing'],
+      ['Total Learners Owing', debtorRows.length, 'owing']
+    ].map(([lbl, val, kind]) => `
+      <div class="summary-card ${kind}">
+        <strong>${val}</strong>
+        <span>${lbl}</span>
+      </div>
+    `).join('');
+
+    $('debtorCount').textContent = `${debtorRows.length} learner(s) owing`;
+    $('weeklyDebtorsList').innerHTML = debtorRows.length ? debtorRows.map(d => `
+      <tr>
+        <td><strong>${escapeHtml(d.studentName)}</strong></td>
+        <td>${escapeHtml(d.class)}</td>
+        <td>${money(d.expected)}</td>
+        <td><strong class="text-green">${money(d.paid)}</strong></td>
+        <td><strong class="text-red">${money(d.outstanding)}</strong></td>
+        <td>${d.daysOwing} day(s)</td>
+      </tr>
+    `).join('') : `<tr><td class="empty" colspan="6">No outstanding debtors for this ${type}!</td></tr>`;
+  }
+
+  $('generateReports')?.addEventListener('click', () => {
+    renderReports();
+    toast('Reports generated.');
+  });
+  $('printReports')?.addEventListener('click', () => {
+    renderReports();
+    window.print();
+  });
+
+  // ===========================================================================
+  // SETTINGS & CLOUD CONFIGURATION (PAGE 5)
+  // ===========================================================================
+  function renderSettings() {
+    const s = stateStore.settings;
+    $('academicYear').value = s.academicYear || '2026/2027';
+    $('schoolTerm').value = s.term || 'Term 1';
+    $('termStart').value = s.termStart || '';
+    $('termEnd').value = s.termEnd || '';
+    $('cloudApiUrlInput').value = apiClient.getApiUrl();
+
+    document.querySelectorAll('[name="schoolDay"]').forEach(box => {
+      box.checked = Array.isArray(s.schoolDays) && s.schoolDays.map(Number).includes(Number(box.value));
+    });
+
+    $('holidayList').innerHTML = (stateStore.holidays || []).map((h, i) => `
+      <tr>
+        <td><strong>${h.date}</strong></td>
+        <td>${escapeHtml(h.reason)}</td>
+        <td>
+          <button type="button" class="archive-button" data-holiday-idx="${i}">Remove</button>
+        </td>
+      </tr>
+    `).join('') || '<tr><td class="empty" colspan="3">No holidays or closures scheduled.</td></tr>';
+  }
+
+  // Cloud Connect Button
+  $('testConnectCloudBtn')?.addEventListener('click', async () => {
+    const url = $('cloudApiUrlInput').value.trim();
+    if (!url) return toast('Please enter a Google Apps Script Web App URL.');
+
+    toast('Testing connection to Google Apps Script...');
+    const ping = await apiClient.testConnection(url);
+    if (!ping || !ping.success) {
+      updateSyncUI('error', ping?.error || 'Connection failed.');
+      return toast('Connection failed! Check that the Web App was deployed with access set to "Anyone".');
+    }
+
+    apiClient.setApiUrl(url);
+    toast('Connected to Google Cloud! Fetching live database...');
+    const data = await apiClient.fetchBootstrapData();
+    if (data) {
+      stateStore.applyCloudBootstrap(data);
+      renderStudents();
+      renderRecords();
+      renderSettings();
+      toast('Sync complete! All Google Sheets data loaded.');
+    }
+  });
+
+  $('disconnectCloudBtn')?.addEventListener('click', () => {
+    apiClient.setApiUrl('');
+    $('cloudApiUrlInput').value = '';
+    updateSyncUI('demo');
+    toast('Disconnected from Google Cloud. Now in Local Mode.');
+  });
+
+  $('quickSyncBtn')?.addEventListener('click', async () => {
+    if (!apiClient.hasCloudBackend()) {
+      showPage('settings');
+      toast('Paste your Google Apps Script URL here to enable cloud sync.');
+      return;
+    }
+    toast('Syncing with Google Sheets & Drive...');
+    const data = await apiClient.fetchBootstrapData();
+    if (data) {
+      stateStore.applyCloudBootstrap(data);
+      renderStudents();
+      renderRecords();
+      renderTracking();
+      toast('Live sync completed!');
+    }
+  });
+
+  // Calendar Settings Form
+  $('settingsForm')?.addEventListener('submit', async e => {
+    e.preventDefault();
+    const days = [...document.querySelectorAll('[name="schoolDay"]:checked')].map(b => Number(b.value));
+    const next = {
+      ...stateStore.settings,
+      academicYear: $('academicYear').value.trim(),
+      term: $('schoolTerm').value,
+      termStart: $('termStart').value,
+      termEnd: $('termEnd').value,
+      schoolDays: days
+    };
+
+    if (next.termEnd < next.termStart) {
+      return toast('Term end date must be after term start date.');
+    }
+
+    stateStore.settings = next;
+    localStorage.setItem(CONFIG.STORAGE_KEYS.SETTINGS, JSON.stringify(next));
+    renderSettings();
+    toast('School calendar settings saved.');
+
+    if (apiClient.hasCloudBackend()) {
+      await apiClient.postAction('saveSettings', { settings: next });
+    }
+  });
+
+  // Holidays
+  $('holidayForm')?.addEventListener('submit', async e => {
+    e.preventDefault();
+    const date = $('holidayDate').value;
+    const reason = $('holidayReason').value.trim();
+    if (!date || !reason) return;
+
+    const list = stateStore.holidays || [];
+    if (list.some(h => h.date === date)) {
+      return toast('This date is already listed as a closure.');
+    }
+
+    list.push({ date, reason });
+    stateStore.holidays = list;
+    localStorage.setItem(CONFIG.STORAGE_KEYS.HOLIDAYS, JSON.stringify(list));
+    e.target.reset();
+    renderSettings();
+    toast('Holiday / Closure added.');
+
+    if (apiClient.hasCloudBackend()) {
+      await apiClient.postAction('addHoliday', { holiday: { date, reason } });
+    }
+  });
+
+  $('holidayList')?.addEventListener('click', async e => {
+    const btn = e.target.closest('[data-holiday-idx]');
+    if (!btn) return;
+    const idx = Number(btn.dataset.holidayIdx);
+    const item = stateStore.holidays[idx];
+    stateStore.holidays.splice(idx, 1);
+    localStorage.setItem(CONFIG.STORAGE_KEYS.HOLIDAYS, JSON.stringify(stateStore.holidays));
+    renderSettings();
+    toast('Holiday removed.');
+
+    if (apiClient.hasCloudBackend() && item) {
+      await apiClient.postAction('deleteHoliday', { date: item.date });
+    }
+  });
+
+  // ===========================================================================
+  // BACKUP & RESTORE
+  // ===========================================================================
+  $('downloadBackup')?.addEventListener('click', () => {
+    const backup = {
+      version: 3,
+      createdAt: new Date().toISOString(),
+      students: stateStore.students,
+      canteenRecords: stateStore.records,
+      schoolSettings: stateStore.settings,
+      holidays: stateStore.holidays,
+      rates: stateStore.rates
+    };
+    const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `cosmat-canteen-backup-${today()}.json`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+    toast('JSON backup downloaded safely.');
+  });
+
+  $('restoreBackup')?.addEventListener('change', event => {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const backup = JSON.parse(reader.result);
+        if (!Array.isArray(backup.students) || !Array.isArray(backup.canteenRecords)) {
+          throw new Error();
+        }
+        if (!confirm('Restore this backup? Current records on this device will be replaced.')) return;
+        stateStore.students = backup.students;
+        stateStore.records = backup.canteenRecords;
+        if (backup.schoolSettings) stateStore.settings = backup.schoolSettings;
+        if (backup.holidays) stateStore.holidays = backup.holidays;
+        if (backup.rates) stateStore.rates = backup.rates;
+
+        localStorage.setItem(CONFIG.STORAGE_KEYS.STUDENTS, JSON.stringify(stateStore.students));
+        localStorage.setItem(CONFIG.STORAGE_KEYS.RECORDS, JSON.stringify(stateStore.records));
+        localStorage.setItem(CONFIG.STORAGE_KEYS.SETTINGS, JSON.stringify(stateStore.settings));
+        localStorage.setItem(CONFIG.STORAGE_KEYS.HOLIDAYS, JSON.stringify(stateStore.holidays));
+
+        resetStudentForm();
+        resetRegisterForm();
+        renderStudents();
+        renderRecords();
+        renderTracking();
+        renderReports();
+        toast('Backup restored successfully.');
+      } catch (err) {
+        toast('Invalid backup file.');
+      } finally {
+        event.target.value = '';
+      }
+    };
+    reader.readAsText(file);
+  });
+
+  // ===========================================================================
+  // INITIAL BOOTSTRAP
+  // ===========================================================================
+  async function initApp() {
+    $('canteenDate').value = today();
+    $('trackingDate').value = today();
+    $('reportDate').value = today();
+    updateDistanceVisibility();
+
+    if (apiClient.hasCloudBackend()) {
+      updateSyncUI('syncing', 'Connecting to Google Sheets...');
+      const cloudData = await apiClient.fetchBootstrapData();
+      if (cloudData) {
+        stateStore.applyCloudBootstrap(cloudData);
+      }
+    } else {
+      updateSyncUI('demo');
+    }
+
+    renderStudents();
+    renderRecords();
+    renderTracking();
+    renderReports();
+    renderSettings();
+  }
+
+  // Run on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+  } else {
+    initApp();
+  }
+})();
+
+</script>
+</body>
+</html>
