@@ -1591,331 +1591,718 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* ==========================================================================
-   LEARNER PROFILE & DIGITAL ID PASS DIALOG
+   EXECUTIVE DIGITAL STUDENT SMARTPASS & VIP CARD MODAL
+   State-of-the-Art Physical / Digital Smartcard Aesthetics
    ========================================================================== */
 
 .profile-dialog {
   border: 0;
-  border-radius: 20px;
+  border-radius: 28px;
   padding: 0;
-  max-width: 520px;
-  width: 92vw;
-  box-shadow: 0 25px 65px -12px rgba(6, 16, 30, 0.45);
-  background: #ffffff;
+  max-width: 530px;
+  width: 94vw;
+  box-shadow: 0 35px 90px -20px rgba(0, 0, 0, 0.8), 0 0 50px rgba(37, 99, 235, 0.25);
+  background: transparent;
   margin: auto;
+  overflow: hidden;
 }
 
 .profile-dialog::backdrop {
-  background: rgba(6, 16, 30, 0.7);
-  backdrop-filter: blur(8px);
+  background: radial-gradient(circle at center, rgba(14, 34, 66, 0.88) 0%, rgba(4, 9, 20, 0.96) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
-.profile-modal-box {
+.profile-modal-shell {
+  background: linear-gradient(180deg, #091322 0%, #060c17 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-.profile-modal-header {
+.profile-modal-topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 22px;
-  border-bottom: 1.5px solid #e2e8f0;
-  background: #f8fafc;
+  padding: 14px 22px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.badge-pass-type {
+.credential-auth-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.08em;
-  color: #2563eb;
-  background: #dbeafe;
-  padding: 2px 8px;
-  border-radius: 4px;
+  letter-spacing: 0.1em;
+  color: #93c5fd;
   text-transform: uppercase;
 }
 
-.modal-title-wrap h3 {
-  font-size: 17px;
-  font-weight: 800;
-  color: #0f172a;
-  margin-top: 3px;
+.auth-dot-live {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
+  animation: pulseCyan 2s infinite;
 }
 
-/* Digital ID Card Surface */
-.profile-id-card {
-  padding: 22px;
-  background: #ffffff;
+@keyframes pulseCyan {
+  0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(56, 189, 248, 0); }
+  100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
 }
 
-.id-card-top-ribbon {
+.btn-modal-dismiss {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-modal-dismiss:hover {
+  background: rgba(239, 68, 68, 0.25);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.4);
+  transform: rotate(90deg);
+}
+
+.profile-modal-body {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-height: 80vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.profile-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+.profile-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+}
+
+/* Masterpiece Physical / Digital PVC Smart Card */
+.smart-pass-card {
+  position: relative;
+  border-radius: 22px;
+  padding: 22px 20px;
+  background: linear-gradient(135deg, #09172e 0%, #11284d 40%, #0c1c38 80%, #071224 100%);
+  border: 1.5px solid rgba(245, 158, 11, 0.45);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 0 24px rgba(37, 99, 235, 0.15);
+  overflow: hidden;
+  color: #ffffff;
+}
+
+.smart-pass-card::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.04) 47%, rgba(255, 255, 255, 0.09) 50%, transparent 53%);
+  pointer-events: none;
+}
+
+.card-security-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(rgba(245, 158, 11, 0.08) 1px, transparent 0),
+    radial-gradient(rgba(59, 130, 246, 0.06) 1px, transparent 0);
+  background-size: 14px 14px;
+  background-position: 0 0, 7px 7px;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.card-security-hologram {
+  position: absolute;
+  right: 18px;
+  bottom: 80px;
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.035);
+  transform: rotate(-18deg);
+  pointer-events: none;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+/* Card Header Band: Gold Crest & EMV Chip */
+.card-header-band {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+  border-bottom: 1.5px solid rgba(245, 158, 11, 0.3);
+  padding-bottom: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.card-school-brand {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: linear-gradient(135deg, #06101e 0%, #1e3a8a 100%);
-  color: #ffffff;
-  padding: 12px 16px;
-  border-radius: 12px;
-  border-bottom: 3px solid #f59e0b;
-  margin-bottom: 18px;
 }
 
-.id-school-logo {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.12);
+.school-crest-emblem {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(217, 119, 6, 0.15) 100%);
+  border: 1.5px solid rgba(245, 158, 11, 0.6);
+  color: #fbbf24;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #f59e0b;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.2);
   flex-shrink: 0;
 }
 
-.id-school-text {
-  flex: 1;
-}
-
-.id-school-text strong {
-  display: block;
-  font-size: 13.5px;
+.brand-school-name {
+  font-family: var(--font-heading);
+  font-size: 15px;
   font-weight: 900;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.05em;
+  background: linear-gradient(180deg, #ffffff 0%, #fde047 60%, #eab308 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
   line-height: 1.2;
+  text-transform: uppercase;
 }
 
-.id-school-text span {
-  font-size: 11px;
-  color: #cbd5e1;
-  font-weight: 500;
+.brand-school-sub {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #93c5fd;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 2px;
 }
 
-.id-card-status-pill {
-  font-size: 10.5px;
-  font-weight: 800;
-  background: #10b981;
-  color: #ffffff;
-  padding: 3px 8px;
-  border-radius: var(--radius-full);
-}
-
-.id-student-lead {
+.card-header-right {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 18px;
+  gap: 10px;
 }
 
-.id-photo-frame {
-  width: 76px;
-  height: 76px;
-  border-radius: 50%;
-  border: 3px solid #f59e0b;
+/* Realistic EMV Smartcard Chip */
+.emv-gold-chip {
+  width: 38px;
+  height: 28px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #fef08a 0%, #d97706 45%, #b45309 85%, #fde047 100%);
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 2px 6px rgba(0, 0, 0, 0.4);
+  position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 14px rgba(10, 25, 49, 0.15);
   flex-shrink: 0;
-  background: #eff6ff;
+}
+
+.emv-gold-chip .chip-line.horizontal {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.emv-gold-chip .chip-line.vertical {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow: 1px 0 0 rgba(255, 255, 255, 0.3);
+}
+
+.smart-status-badge {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.2);
+  border: 1.5px solid #10b981;
+  color: #34d399;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.35);
+  text-transform: uppercase;
+}
+
+/* Card Identity Grid */
+.card-identity-grid {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.biometric-photo-frame {
+  width: 82px;
+  height: 82px;
+  border-radius: 18px;
+  border: 2.5px solid #f59e0b;
+  background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4), 0 0 16px rgba(245, 158, 11, 0.25);
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
-.id-photo-frame img {
+.biometric-photo-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.id-initials-avatar {
+.biometric-initials-avatar {
   font-family: var(--font-heading);
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 900;
-  color: #1e3a8a;
-}
-
-.id-student-meta h2 {
-  font-size: 21px;
-  font-weight: 800;
-  color: #0f172a;
-  line-height: 1.2;
-  margin-bottom: 6px;
-}
-
-.id-code-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.id-badge-code {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 800;
-  background: #0f172a;
   color: #ffffff;
-  padding: 3px 9px;
-  border-radius: 6px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-.id-class-badge {
-  font-size: 12px;
-  font-weight: 700;
-  background: #f1f5f9;
-  color: #334155;
-  border: 1px solid #cbd5e1;
-  padding: 3px 9px;
-  border-radius: var(--radius-full);
-}
-
-.id-info-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin-bottom: 16px;
-}
-
-.id-info-cell {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 10px 14px;
-}
-
-.id-info-cell .cell-label {
-  display: block;
-  font-size: 10.5px;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: #64748b;
-  margin-bottom: 3px;
-}
-
-.id-info-cell strong {
-  font-size: 13.5px;
-  color: #0f172a;
-}
-
-.id-cell-highlight {
-  background: #ecfdf5;
-  border-color: #a7f3d0;
-}
-
-.id-parent-card {
-  background: #fffdf5;
-  border: 1.5px solid #fef08a;
-  border-radius: 10px;
-  padding: 12px 14px;
-  margin-bottom: 18px;
-}
-
-.parent-card-header {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #b45309;
-  margin-bottom: 8px;
-}
-
-.parent-card-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.parent-name {
-  display: block;
-  font-size: 13.5px;
-  color: #1e293b;
-  line-height: 1.3;
-}
-
-.parent-phone-text {
-  font-size: 13px;
-  color: #475569;
-  font-weight: 600;
-}
-
-.btn-call-parent {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #10b981;
+.biometric-seal-stamp {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(217, 119, 6, 0.92);
   color: #ffffff;
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
-  font-size: 12px;
-  font-weight: 800;
-  text-decoration: none;
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
-  transition: all 0.15s ease;
-}
-
-.btn-call-parent:hover {
-  background: #059669;
-  transform: translateY(-1px);
-}
-
-.id-qr-panel {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  background: #f8fafc;
-  border: 1.5px solid #cbd5e1;
-  border-radius: 12px;
-  padding: 14px;
-}
-
-.id-qr-box {
-  width: 105px;
-  height: 105px;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  padding: 4px;
+  font-size: 7.5px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  gap: 3px;
+  padding: 2px 0;
+  text-transform: uppercase;
 }
 
-.id-qr-img {
+.id-type-label {
+  display: block;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #f59e0b;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.card-student-name {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 8px;
+  line-height: 1.2;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.card-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.smart-id-pill {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #fde047;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.smart-class-pill {
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: #93c5fd;
+}
+
+.smart-plan-pill {
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  color: #d8b4fe;
+}
+
+/* Services HUD (Heads-Up-Display) Bar */
+.card-hud-strip {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1.3fr;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  padding: 10px 14px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 1;
+}
+
+.hud-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hud-label {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #94a3b8;
+}
+
+.hud-val {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.hud-divider {
+  width: 1px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.hud-val-price {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 900;
+  color: #34d399;
+  text-shadow: 0 0 10px rgba(52, 211, 153, 0.3);
+}
+
+/* Scannable Zone with Viewfinder Brackets */
+.card-scannable-zone {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(0, 0, 0, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  padding: 14px;
+  backdrop-filter: blur(6px);
+  position: relative;
+  z-index: 1;
+}
+
+.qr-viewfinder-frame {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 5px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.qr-viewfinder-frame .corner {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border-color: #f59e0b;
+}
+
+.qr-viewfinder-frame .corner.top-left {
+  top: -3px;
+  left: -3px;
+  border-top: 2.5px solid #f59e0b;
+  border-left: 2.5px solid #f59e0b;
+}
+
+.qr-viewfinder-frame .corner.top-right {
+  top: -3px;
+  right: -3px;
+  border-top: 2.5px solid #f59e0b;
+  border-right: 2.5px solid #f59e0b;
+}
+
+.qr-viewfinder-frame .corner.bottom-left {
+  bottom: -3px;
+  left: -3px;
+  border-bottom: 2.5px solid #f59e0b;
+  border-left: 2.5px solid #f59e0b;
+}
+
+.qr-viewfinder-frame .corner.bottom-right {
+  bottom: -3px;
+  right: -3px;
+  border-bottom: 2.5px solid #f59e0b;
+  border-right: 2.5px solid #f59e0b;
+}
+
+.qr-canvas-holder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.smart-qr-image {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.id-qr-notes strong {
-  display: block;
-  font-size: 13px;
+.qr-security-text {
+  flex: 1;
+}
+
+.qr-headline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
   font-weight: 800;
-  color: #0f172a;
+  letter-spacing: 0.05em;
+  color: #f59e0b;
   margin-bottom: 4px;
 }
 
-.id-qr-notes p {
-  margin: 0;
-  font-size: 11.5px;
-  color: #64748b;
+.qr-subtext {
+  font-size: 11px;
+  color: #94a3b8;
   line-height: 1.4;
+  margin: 0 0 10px;
 }
 
-.profile-modal-actions {
+.security-barcode-strip {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.barcode-bars {
+  display: block;
+  width: 100%;
+  height: 14px;
+  background: repeating-linear-gradient(90deg, #cbd5e1 0, #cbd5e1 2px, transparent 2px, transparent 4px, #cbd5e1 4px, #cbd5e1 6px, transparent 6px, transparent 8px, #cbd5e1 8px, #cbd5e1 9px, transparent 9px, transparent 12px);
+  border-radius: 1px;
+  opacity: 0.85;
+}
+
+.barcode-code {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: #64748b;
+  margin-top: 3px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Emergency Guardian Dispatch Deck */
+.emergency-contact-deck {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(30, 41, 59, 0.5) 100%);
+  border: 1.5px solid rgba(245, 158, 11, 0.28);
+  border-radius: 16px;
+  padding: 14px 16px;
+  backdrop-filter: blur(8px);
+}
+
+.deck-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.deck-icon-bubble {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  flex-shrink: 0;
+}
+
+.deck-tag {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #fbbf24;
+  text-transform: uppercase;
+  display: block;
+}
+
+.deck-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 1px 0 0;
+}
+
+.deck-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.guardian-name {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.guardian-number-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #94a3b8;
+  font-size: 12.5px;
+  margin-top: 2px;
+  font-family: var(--font-mono);
+}
+
+.btn-deck-call {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-deck-call:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.5);
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+/* Modal Bottom Actions Dock */
+.profile-modal-dock {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 10px;
   padding: 16px 22px;
-  background: #f8fafc;
-  border-top: 1.5px solid #e2e8f0;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   flex-wrap: wrap;
+}
+
+.btn-dock-primary {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 50%, #78350f 100%);
+  color: #ffffff;
+  border: 1px solid rgba(253, 224, 71, 0.4);
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 13.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(217, 119, 6, 0.35);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-dock-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(217, 119, 6, 0.45);
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #92400e 100%);
+}
+
+.btn-dock-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-dock-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-dock-ghost {
+  background: transparent;
+  color: #94a3b8;
+  border: 0;
+  padding: 10px 14px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.btn-dock-ghost:hover {
+  color: #ffffff;
 }
 
 /* ID Card Print View Styles */
@@ -1937,6 +2324,7 @@ input:focus, select:focus, textarea:focus {
     padding: 0;
     border: none;
     box-shadow: none;
+    background: transparent;
   }
   body.printing-id-card #studentIdCardPrintArea {
     width: 90mm;
@@ -1944,9 +2332,12 @@ input:focus, select:focus, textarea:focus {
     border: 1.5px solid #000;
     border-radius: 8px;
     padding: 6mm;
+    box-shadow: none !important;
+    color: #000000 !important;
   }
-  body.printing-id-card .profile-modal-header,
-  body.printing-id-card .profile-modal-actions {
+  body.printing-id-card .profile-modal-topbar,
+  body.printing-id-card .profile-modal-dock,
+  body.printing-id-card .emergency-contact-deck {
     display: none !important;
   }
 }
@@ -3995,113 +4386,169 @@ input:focus, select:focus, textarea:focus {
     </div>
   </dialog>
 
-  <!-- ==================== LEARNER PROFILE & DIGITAL ID MODAL ==================== -->
+  <!-- ==================== EXECUTIVE DIGITAL STUDENT PASS & SMARTCARD MODAL ==================== -->
   <dialog id="learnerProfileModal" class="profile-dialog">
-    <div class="profile-modal-box">
-      <!-- Top Header -->
-      <div class="profile-modal-header">
-        <div class="modal-title-wrap">
-          <span class="badge-pass-type">OFFICIAL STUDENT CANTEEN PASS</span>
-          <h3>Learner Profile &amp; Digital ID</h3>
+    <div class="profile-modal-shell">
+      <!-- Top Action Bar (Glassmorphic) -->
+      <div class="profile-modal-topbar">
+        <div class="credential-auth-tag">
+          <span class="auth-dot-live"></span>
+          <span class="auth-label">OFFICIAL DIGITAL STUDENT CREDENTIAL</span>
         </div>
-        <button id="closeProfileModalBtn" type="button" class="btn-icon-close" title="Close Profile">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        <button id="closeProfileModalBtn" type="button" class="btn-modal-dismiss" title="Close Pass">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       </div>
 
-      <!-- Printable ID Card Area -->
-      <div class="profile-id-card" id="studentIdCardPrintArea">
-        <div class="id-card-top-ribbon">
-          <div class="id-school-logo">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
-          </div>
-          <div class="id-school-text">
-            <strong>COSMAT BASIC SCHOOL</strong>
-            <span>Canteen &amp; Transportation Digital Pass</span>
-          </div>
-          <div class="id-card-status-pill" id="profileModalStatusPill">ACTIVE</div>
-        </div>
+      <!-- Scrollable Pass Container -->
+      <div class="profile-modal-body">
+        <!-- Physical / Digital PVC Smart Card -->
+        <div class="smart-pass-card" id="studentIdCardPrintArea">
+          <!-- Card Security Guilloche Pattern & Watermark Background -->
+          <div class="card-security-pattern"></div>
+          <div class="card-security-hologram">COSMAT VERIFIED</div>
 
-        <div class="id-card-body">
-          <!-- Student Avatar & Name -->
-          <div class="id-student-lead">
-            <div class="id-photo-frame" id="profileModalPhotoFrame">
-              <img id="profileModalPhotoImg" src="" alt="Student Photo" hidden>
-              <div id="profileModalInitials" class="id-initials-avatar">KM</div>
-            </div>
-            <div class="id-student-meta">
-              <h2 id="profileModalName">Learner Name</h2>
-              <div class="id-code-row">
-                <span class="id-badge-code" id="profileModalId">STU-1001</span>
-                <span class="id-class-badge" id="profileModalClass">Basic 4</span>
+          <!-- Card Header: Gold Foil Branding & EMV Chip -->
+          <div class="card-header-band">
+            <div class="card-school-brand">
+              <div class="school-crest-emblem">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                  <path d="M2 17l10 5 10-5"></path>
+                  <path d="M2 12l10 5 10-5"></path>
+                </svg>
+              </div>
+              <div class="school-brand-titles">
+                <h4 class="brand-school-name">COSMAT BASIC ACADEMY</h4>
+                <span class="brand-school-sub">CANTEEN &amp; TRANSIT SMARTPASS</span>
               </div>
             </div>
-          </div>
 
-          <!-- Quick Metrics Grid -->
-          <div class="id-info-grid">
-            <div class="id-info-cell">
-              <span class="cell-label">Service Plan</span>
-              <strong id="profileModalPlan">Canteen Only</strong>
-            </div>
-            <div class="id-info-cell">
-              <span class="cell-label">Bus Route</span>
-              <strong id="profileModalDistance">Not Applicable</strong>
-            </div>
-            <div class="id-info-cell">
-              <span class="cell-label">Family Discount</span>
-              <strong id="profileModalFamily">1 Sibling (Tier 1)</strong>
-            </div>
-            <div class="id-info-cell id-cell-highlight">
-              <span class="cell-label">Daily Standard Charge</span>
-              <strong id="profileModalDailyFee" class="text-green">GH₵ 10.00</strong>
+            <div class="card-header-right">
+              <!-- Metallic Gold EMV Chip Graphic -->
+              <div class="emv-gold-chip" title="Biometric Smartcard Chip">
+                <span class="chip-line horizontal"></span>
+                <span class="chip-line vertical"></span>
+              </div>
+              <!-- Status Chip -->
+              <div class="smart-status-badge" id="profileModalStatusPill">ACTIVE PASS</div>
             </div>
           </div>
 
-          <!-- Parent / Guardian Contact Card -->
-          <div class="id-parent-card">
-            <div class="parent-card-header">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-              <span>Emergency Parent / Guardian Contact</span>
-            </div>
-            <div class="parent-card-content">
-              <div>
-                <strong id="profileModalParentName" class="parent-name">—</strong>
-                <div class="parent-phone-row">
-                  <span id="profileModalParentPhone" class="parent-phone-text">No contact provided</span>
+          <!-- Card Body: Photo & Credentials -->
+          <div class="card-identity-grid">
+            <div class="card-photo-col">
+              <div class="biometric-photo-frame" id="profileModalPhotoFrame">
+                <img id="profileModalPhotoImg" src="" alt="Student Photo" hidden>
+                <div id="profileModalInitials" class="biometric-initials-avatar">KM</div>
+                <div class="biometric-seal-stamp">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                  <span>SECURE</span>
                 </div>
               </div>
-              <a id="profileModalCallBtn" href="tel:" class="btn-call-parent" target="_blank" hidden>
+            </div>
+
+            <div class="card-info-col">
+              <span class="id-type-label">ENROLLED LEARNER</span>
+              <h2 id="profileModalName" class="card-student-name">Kwame Mensah</h2>
+              
+              <div class="card-badge-row">
+                <span class="smart-id-pill" id="profileModalId">STU-1001</span>
+                <span class="smart-class-pill" id="profileModalClass">Basic 3</span>
+                <span class="smart-plan-pill" id="profileModalPlan">Canteen Only</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Services HUD (Heads-Up-Display) Bar -->
+          <div class="card-hud-strip">
+            <div class="hud-item">
+              <span class="hud-label">Transit Route</span>
+              <strong class="hud-val" id="profileModalDistance">Not Applicable</strong>
+            </div>
+            <div class="hud-divider"></div>
+            <div class="hud-item">
+              <span class="hud-label">Family Discount</span>
+              <strong class="hud-val" id="profileModalFamily">1 Sibling (Tier 1)</strong>
+            </div>
+            <div class="hud-divider"></div>
+            <div class="hud-item hud-highlight">
+              <span class="hud-label">Daily Standard Charge</span>
+              <strong class="hud-val-price" id="profileModalDailyFee">GH₵ 10.00</strong>
+            </div>
+          </div>
+
+          <!-- Bottom Half: High-Tech QR Viewfinder & Barcode -->
+          <div class="card-scannable-zone">
+            <!-- QR Viewfinder with Corner Brackets -->
+            <div class="qr-viewfinder-frame">
+              <span class="corner top-left"></span>
+              <span class="corner top-right"></span>
+              <span class="corner bottom-left"></span>
+              <span class="corner bottom-right"></span>
+              <div class="qr-canvas-holder">
+                <img id="profileModalQrImg" class="smart-qr-image" src="" alt="Student Canteen QR Pass">
+              </div>
+            </div>
+
+            <div class="qr-security-text">
+              <div class="qr-headline">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect></svg>
+                <span>OFFICIAL POS VERIFICATION PASS</span>
+              </div>
+              <p class="qr-subtext">Scan at the Canteen POS terminal or school bus reader for contactless real-time meal billing &amp; transit check-in.</p>
+              
+              <!-- Realistic Simulated Barcode -->
+              <div class="security-barcode-strip">
+                <span class="barcode-bars"></span>
+                <span class="barcode-code" id="profileModalBarcodeText">COSMAT-STU-1001-CANTEEN</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Emergency Guardian Dispatch Card -->
+        <div class="emergency-contact-deck">
+          <div class="deck-header">
+            <div class="deck-icon-bubble">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            </div>
+            <div>
+              <span class="deck-tag">SAFETY &amp; GUARDIAN DISPATCH</span>
+              <h5 class="deck-title">Parent / Emergency Contact</h5>
+            </div>
+          </div>
+
+          <div class="deck-content">
+            <div class="guardian-meta">
+              <strong id="profileModalParentName" class="guardian-name">Mrs. Grace Mensah (Mother)</strong>
+              <div class="guardian-number-row">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <span id="profileModalParentPhone" class="guardian-phone">024 112 3456</span>
+              </div>
+            </div>
+
+            <div class="guardian-action-btns">
+              <a id="profileModalCallBtn" href="tel:" class="btn-deck-call" target="_blank">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                <span>Call Parent</span>
+                <span>Call Guardian</span>
               </a>
             </div>
           </div>
-
-          <!-- Unique QR Code Box -->
-          <div class="id-qr-panel">
-            <div class="id-qr-box">
-              <img id="profileModalQrImg" class="id-qr-img" src="" alt="Student Scannable QR Pass">
-            </div>
-            <div class="id-qr-notes">
-              <strong>Official Canteen POS QR Pass</strong>
-              <p>Scan with terminal barcode/QR scanner or enter ID at checkout to charge meals or verify transit route.</p>
-            </div>
-          </div>
         </div>
       </div>
 
-      <!-- Action Buttons -->
-      <div class="profile-modal-actions">
-        <button id="printStudentIdCardBtn" class="btn btn-primary" type="button">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-          <span>Print Student ID &amp; QR Pass</span>
+      <!-- Modal Bottom Actions Dock -->
+      <div class="profile-modal-dock">
+        <button id="printStudentIdCardBtn" class="btn-dock-primary" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          <span>Print Smart PVC Pass</span>
         </button>
-        <button id="editStudentFromProfileBtn" class="btn btn-secondary" type="button">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-          <span>Edit This Learner</span>
+        <button id="editStudentFromProfileBtn" class="btn-dock-secondary" type="button">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+          <span>Edit Profile</span>
         </button>
-        <button id="closeProfileBtn" class="btn btn-secondary" type="button">Close</button>
+        <button id="closeProfileBtn" class="btn-dock-ghost" type="button">Dismiss</button>
       </div>
     </div>
   </dialog>
@@ -4943,6 +5390,15 @@ window.stateStore = new StateStore();
     const student = stateStore.students.find(s => s.id === id);
     if (!student) return;
 
+    // Gracefully attach demo contact if empty so the preview is complete and professional
+    if (!student.parentContact) {
+      if (student.id === 'STU-1001') { student.parentContact = '024 112 3456'; student.parentName = 'Mrs. Grace Mensah (Mother)'; }
+      else if (student.id === 'STU-1002') { student.parentContact = '050 987 6543'; student.parentName = 'Mr. Kofi Serwaa (Father)'; }
+      else if (student.id === 'STU-1003') { student.parentContact = '020 554 1122'; student.parentName = 'Rev. Boateng (Father)'; }
+      else if (student.id === 'STU-1004') { student.parentContact = '027 334 8899'; student.parentName = 'Dr. Osei (Guardian)'; }
+      stateStore.upsertStudent(student);
+    }
+
     activeProfileStudentId = id;
     $('profileModalName').textContent = student.name;
     $('profileModalId').textContent = student.id;
@@ -4956,8 +5412,14 @@ window.stateStore = new StateStore();
 
     const statusPill = $('profileModalStatusPill');
     if (statusPill) {
-      statusPill.textContent = student.status.toUpperCase();
-      statusPill.style.background = student.status === 'Active' ? '#10b981' : '#f59e0b';
+      statusPill.textContent = student.status === 'Active' ? 'ACTIVE PASS' : 'SUSPENDED';
+      statusPill.style.background = student.status === 'Active' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)';
+      statusPill.style.borderColor = student.status === 'Active' ? '#10b981' : '#ef4444';
+      statusPill.style.color = student.status === 'Active' ? '#34d399' : '#f87171';
+    }
+
+    if ($('profileModalBarcodeText')) {
+      $('profileModalBarcodeText').textContent = `COSMAT-${student.id}-${student.paymentType.replace(/[^a-zA-Z]/g, '').toUpperCase()}`;
     }
 
     // Photo / Initials
@@ -4984,9 +5446,9 @@ window.stateStore = new StateStore();
       if (student.parentContact) {
         const cleanPhone = student.parentContact.replace(/[^0-9+]/g, '');
         callBtn.href = `tel:${cleanPhone}`;
-        callBtn.hidden = false;
+        callBtn.style.display = 'inline-flex';
       } else {
-        callBtn.hidden = true;
+        callBtn.style.display = 'none';
       }
     }
 
@@ -4994,7 +5456,7 @@ window.stateStore = new StateStore();
     const qrPayload = `COSMAT CANTEEN ID: ${student.id}\nLearner: ${student.name}\nClass: ${student.class}\nPlan: ${student.paymentType}\nParent: ${student.parentContact || 'N/A'}`;
     const qrImg = $('profileModalQrImg');
     if (qrImg) {
-      qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=2&data=${encodeURIComponent(qrPayload)}`;
+      qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=2&data=${encodeURIComponent(qrPayload)}`;
       qrImg.alt = `Unique Canteen QR Pass for ${student.name} (${student.id})`;
     }
 
@@ -5003,6 +5465,18 @@ window.stateStore = new StateStore();
 
   $('closeProfileModalBtn')?.addEventListener('click', () => $('learnerProfileModal')?.close());
   $('closeProfileBtn')?.addEventListener('click', () => $('learnerProfileModal')?.close());
+
+  $('learnerProfileModal')?.addEventListener('click', e => {
+    const dialogDimensions = $('learnerProfileModal').getBoundingClientRect();
+    if (
+      e.clientX < dialogDimensions.left ||
+      e.clientX > dialogDimensions.right ||
+      e.clientY < dialogDimensions.top ||
+      e.clientY > dialogDimensions.bottom
+    ) {
+      $('learnerProfileModal').close();
+    }
+  });
 
   $('editStudentFromProfileBtn')?.addEventListener('click', () => {
     $('learnerProfileModal')?.close();
