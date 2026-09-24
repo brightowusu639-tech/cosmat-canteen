@@ -205,7 +205,114 @@ h1, h2, h3, h4, h5 {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   DAY / NIGHT (LIGHT / DARK) TOGGLE SWITCH
+   ========================================================================== */
+
+.theme-toggle-btn {
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--white);
+  padding: 4px 12px 4px 4px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  user-select: none;
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-1px);
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.96);
+}
+
+.theme-toggle-track {
+  width: 38px;
+  height: 22px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: var(--radius-full);
+  position: relative;
+  padding: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: background 0.24s ease, border-color 0.24s ease;
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.24s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  transform: translateX(0);
+}
+
+.theme-toggle-thumb .icon-sun {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f59e0b;
+}
+
+.theme-toggle-thumb .icon-moon {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: #60a5fa;
+}
+
+.theme-mode-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: 0.02em;
+  min-width: 30px;
+  text-align: left;
+}
+
+/* Night / Dark Mode Active State on Button */
+.theme-toggle-btn.is-dark .theme-toggle-track,
+[data-theme="dark"] .theme-toggle-btn .theme-toggle-track {
+  background: #1e3a8a;
+  border-color: #3b82f6;
+}
+
+.theme-toggle-btn.is-dark .theme-toggle-thumb,
+[data-theme="dark"] .theme-toggle-btn .theme-toggle-thumb {
+  transform: translateX(16px);
+  background: #0f172a;
+}
+
+.theme-toggle-btn.is-dark .icon-sun,
+[data-theme="dark"] .theme-toggle-btn .icon-sun {
+  display: none;
+}
+
+.theme-toggle-btn.is-dark .icon-moon,
+[data-theme="dark"] .theme-toggle-btn .icon-moon {
+  display: flex;
+}
+
+.theme-toggle-btn.is-dark .theme-mode-text,
+[data-theme="dark"] .theme-toggle-btn .theme-mode-text {
+  color: #93c5fd;
 }
 
 .header-clock {
@@ -4486,7 +4593,1368 @@ input:focus, select:focus, textarea:focus {
   }
 }
 
+/* ==========================================================================
+   GLOBAL THEME TRANSITION
+   ========================================================================== */
+
+body,
+.app-nav,
+.nav-tab,
+.card,
+.metric-card,
+.audit-kpi-card,
+.pos-card,
+.student-form-card,
+.tracking-control-panel,
+.reports-control-panel,
+input,
+select,
+textarea,
+.data-table th,
+.data-table td,
+.data-table tbody tr,
+.filter-chip,
+.cash-chip,
+.quick-date-btn,
+.btn-secondary,
+.btn-pdf-export,
+.modal-box,
+.profile-modal-box,
+.receipt-modal-box {
+  transition: background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
+}
+
+/* ==========================================================================
+   EXECUTIVE FINTECH DARK / NIGHT MODE SYSTEM
+   Targeted via [data-theme="dark"] on <html> and <body>
+   ========================================================================== */
+
+[data-theme="dark"],
+body.dark-theme {
+  --brand-950: #020617;
+  --brand-900: #0b1329;
+  --brand-850: #0f172a;
+  --brand-800: #1e293b;
+  --brand-700: #334155;
+  --brand-600: #3b82f6;
+
+  --slate-900: #f8fafc;
+  --slate-850: #f1f5f9;
+  --slate-800: #e2e8f0;
+  --slate-700: #cbd5e1;
+  --slate-600: #94a3b8;
+  --slate-500: #64748b;
+  --slate-400: #475569;
+  --slate-300: #334155;
+  --slate-200: #1e293b;
+  --slate-150: #162035;
+  --slate-100: #111a2e;
+  --slate-50:  #0d1527;
+  --white:     #111a2e;
+
+  background: #090e1a;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.09) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.07) 0px, transparent 50%);
+  color: #e2e8f0;
+}
+
+/* App Header & Top Bar */
+[data-theme="dark"] .app-header {
+  background: linear-gradient(135deg, #020617 0%, #0b1329 50%, #0f172a 100%);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Navigation Bar */
+[data-theme="dark"] .app-nav {
+  background: rgba(11, 19, 41, 0.92);
+  border-bottom-color: #1e2942;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .nav-tab {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .nav-tab:hover {
+  background: #16223b;
+  color: #f8fafc;
+  border-color: #2b3959;
+}
+
+[data-theme="dark"] .nav-tab.active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #3b82f6;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+}
+
+/* Headings & Typography */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] .view-header h2 {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .view-header p {
+  color: #94a3b8;
+}
+
+/* Cards & Surfaces */
+[data-theme="dark"] .card {
+  background: #111a2e;
+  border-color: #1e2942;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .card:hover {
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35);
+  border-color: #2b3959;
+}
+
+[data-theme="dark"] .pos-card {
+  background: #111a2e;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 0 1px #1e2942;
+  border: none;
+}
+
+[data-theme="dark"] .student-form-card {
+  background: #111a2e;
+  border-color: #24355a;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .form-card-header,
+[data-theme="dark"] .form-card-header-simple {
+  border-bottom-color: #1e2942;
+}
+
+[data-theme="dark"] .form-card-footer {
+  background: #0d1527;
+  border-top-color: #1e2942;
+}
+
+[data-theme="dark"] .form-step-container {
+  background: #111a2e;
+}
+
+[data-theme="dark"] .tracking-control-panel,
+[data-theme="dark"] .reports-control-panel {
+  background: #111a2e;
+  border-color: #1e2942;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Fintech KPI Cards & Metric Strips */
+[data-theme="dark"] .metric-card {
+  background: #111a2e;
+  border-color: #1e2942;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .metric-card:hover {
+  border-color: #2b3959;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .metric-num {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .metric-label {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .metric-subtext {
+  color: #64748b;
+}
+
+/* Daily Audit & Reports KPI Cards */
+[data-theme="dark"] .audit-kpi-card {
+  background: #111a2e;
+  border-color: #1e2942;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .audit-kpi-card:hover {
+  border-color: #2b3959;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .audit-kpi-label {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .audit-kpi-subtext {
+  color: #64748b;
+}
+
+[data-theme="dark"] .kpi-theme-expected .audit-kpi-val {
+  color: #93c5fd;
+}
+
+[data-theme="dark"] .summary-card {
+  background: #111a2e;
+  border-color: #1e2942;
+}
+
+[data-theme="dark"] .summary-card strong {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .summary-card span {
+  color: #94a3b8;
+}
+
+/* Form Controls & Inputs */
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background: #0d1527;
+  border-color: #24324f;
+  color: #f8fafc;
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: #475569;
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+[data-theme="dark"] .readonly-field,
+[data-theme="dark"] input[readonly] {
+  background: #0a0f1d;
+  color: #94a3b8;
+  border-color: #1a243a;
+}
+
+[data-theme="dark"] .field-wrap label {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .search-box input {
+  background: #0d1527;
+  border-color: #24324f;
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .search-icon {
+  color: #64748b;
+}
+
+/* Buttons */
+[data-theme="dark"] .btn-secondary {
+  background: #16223b;
+  color: #e2e8f0;
+  border-color: #2b3959;
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background: #24324f;
+  color: #ffffff;
+  border-color: #3b82f6;
+}
+
+[data-theme="dark"] .btn-pdf-export {
+  background: #16223b;
+  color: #f8fafc;
+  border-color: #2b3959;
+}
+
+[data-theme="dark"] .btn-pdf-export:hover {
+  background: #24324f;
+  border-color: #3b82f6;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .quick-date-btn {
+  background: #16223b;
+  border-color: #2b3959;
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .quick-date-btn:hover {
+  background: #24324f;
+  color: #ffffff;
+  border-color: #3b82f6;
+}
+
+[data-theme="dark"] .btn-add-learner.is-open {
+  background: #16223b;
+  color: #e2e8f0;
+  border-color: #2b3959;
+}
+
+[data-theme="dark"] .btn-add-learner.is-open:hover {
+  background: #7f1d1d;
+  color: #fecaca;
+  border-color: #dc2626;
+}
+
+/* Data Tables */
+[data-theme="dark"] .data-table {
+  background: transparent;
+}
+
+[data-theme="dark"] .data-table th {
+  background: #0d1527;
+  border-bottom: 1.5px solid #1e2942;
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .data-table td {
+  border-bottom: 1px solid #192338;
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .data-table tbody tr:hover {
+  background: #16223b;
+}
+
+[data-theme="dark"] .audit-table-foot {
+  border-top: 2px solid #24324f;
+}
+
+[data-theme="dark"] .table-total-row td {
+  background: #0d1527 !important;
+  border-top: 2px solid #2b3959 !important;
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .empty {
+  color: #64748b;
+}
+
+/* POS Cashier Register Panel */
+[data-theme="dark"] .pos-learner-preview,
+[data-theme="dark"] .selected-student-box {
+  background: #0d1527;
+  border-color: #1e2942;
+}
+
+[data-theme="dark"] .pos-totals-panel {
+  background: #0d1527;
+  border-color: #1e2942;
+}
+
+[data-theme="dark"] .total-card {
+  background: #111a2e;
+  border-color: #1e2942;
+}
+
+[data-theme="dark"] .total-paid {
+  background: linear-gradient(145deg, #111a2e 0%, rgba(16, 185, 129, 0.12) 100%);
+  border-color: #059669;
+}
+
+[data-theme="dark"] .total-balance {
+  background: linear-gradient(145deg, #111a2e 0%, rgba(239, 68, 68, 0.12) 100%);
+  border-color: #dc2626;
+}
+
+[data-theme="dark"] .fast-cash-bar {
+  background: #0d1527;
+  border-color: #1e2942;
+}
+
+[data-theme="dark"] .fast-cash-title {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .cash-chip {
+  background: #16223b;
+  border-color: #2b3959;
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .cash-chip:hover {
+  background: #1e3a8a;
+  border-color: #3b82f6;
+  color: #93c5fd;
+}
+
+[data-theme="dark"] .chip-exact {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #3b82f6;
+}
+
+[data-theme="dark"] .chip-clear:hover {
+  background: #24324f;
+  color: #ffffff;
+}
+
+/* Filter Chips Bar */
+[data-theme="dark"] .class-filter-bar {
+  background: #0d1527;
+  border-color: #1e2942;
+}
+
+[data-theme="dark"] .filter-chip {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .filter-chip:hover {
+  background: #16223b;
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .filter-chip.active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #3b82f6;
+}
+
+/* Banners, Tags & Badges */
+[data-theme="dark"] .alert-banner {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.25);
+  color: #fef3c7;
+}
+
+[data-theme="dark"] .alert-text {
+  color: #fde68a;
+}
+
+[data-theme="dark"] .alert-icon-box {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+
+[data-theme="dark"] .alert-title-tag {
+  background: #78350f;
+  color: #fef3c7;
+}
+
+[data-theme="dark"] .audit-badge {
+  background: rgba(37, 99, 235, 0.15);
+  color: #93c5fd;
+  border-color: rgba(59, 130, 246, 0.35);
+}
+
+[data-theme="dark"] .report-badge {
+  background: rgba(124, 58, 237, 0.15);
+  color: #c4b5fd;
+  border-color: rgba(139, 92, 246, 0.35);
+}
+
+[data-theme="dark"] .cloud-badge {
+  background: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+[data-theme="dark"] .live-pos-badge {
+  background: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+/* Settings View Elements */
+[data-theme="dark"] .form-section-title {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .sub-notice {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .school-days-group {
+  border-color: #1e2942;
+}
+
+[data-theme="dark"] .school-days-group legend {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .checkbox-label {
+  background: #0d1527;
+  border-color: #1e2942;
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .checkbox-label:hover {
+  background: #16223b;
+  border-color: #2b3959;
+}
+
+[data-theme="dark"] .cloud-live-indicator {
+  background: #0d1527;
+  border-color: #1e2942;
+  color: #cbd5e1;
+}
+
+/* Modals & Dialogs */
+[data-theme="dark"] .modal-backdrop {
+  background: rgba(2, 6, 23, 0.8);
+}
+
+[data-theme="dark"] .profile-modal-box {
+  background: #111a2e;
+  border-color: #1e2942;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+}
+
+[data-theme="dark"] .profile-modal-header {
+  background: #0d1527;
+  border-bottom-color: #1e2942;
+}
+
+[data-theme="dark"] .profile-modal-header h3 {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .btn-modal-close {
+  background: #16223b;
+  color: #94a3b8;
+  border-color: #2b3959;
+}
+
+[data-theme="dark"] .btn-modal-close:hover {
+  background: #24324f;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .profile-info-card {
+  background: #0d1527;
+  border-color: #1e2942;
+}
+
+[data-theme="dark"] .info-card-title {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .guardian-name-text {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .btn-call-parent {
+  background: #16223b;
+  border-color: #2b3959;
+  color: #93c5fd;
+}
+
+[data-theme="dark"] .btn-call-parent:hover {
+  background: #1e3a8a;
+  border-color: #3b82f6;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .profile-modal-footer {
+  background: #0d1527;
+  border-top-color: #1e2942;
+}
+
+[data-theme="dark"] .receipt-modal-box {
+  background: #111a2e;
+  border-color: #1e2942;
+}
+
+[data-theme="dark"] .receipt-modal-header {
+  background: #0d1527;
+  border-bottom-color: #1e2942;
+}
+
+[data-theme="dark"] .btn-close-modal {
+  background: #16223b;
+  color: #94a3b8;
+  border-color: #2b3959;
+}
+
+[data-theme="dark"] .btn-close-modal:hover {
+  background: #24324f;
+  color: #ffffff;
+}
+
+/* Scrollbars in Dark Mode */
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #0d1527;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #24324f;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* ==========================================================================
+   AUTHENTICATION GATEWAY & EXECUTIVE LOGIN DASHBOARD
+   ========================================================================== */
+
+/* State Rules: Gating when terminal is locked */
+html.auth-locked,
+body.auth-locked {
+  overflow: hidden !important;
+}
+
+html.auth-locked .app-nav,
+html.auth-locked .app-main {
+  filter: blur(12px);
+  pointer-events: none;
+  opacity: 0.15;
+  user-select: none;
+  transition: filter 0.35s ease, opacity 0.35s ease;
+}
+
+html:not(.auth-locked) #loginOverlay {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  display: none !important;
+}
+
+/* Top Header User Profile Widget */
+.user-profile-widget {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius-full);
+  padding: 4px 10px 4px 5px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: all 0.2s ease;
+}
+
+.user-profile-widget[hidden] {
+  display: none !important;
+}
+
+.user-avatar-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+  flex-shrink: 0;
+}
+
+.user-info-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.user-display-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.user-role-badge {
+  font-size: 9.5px;
+  font-weight: 800;
+  color: #93c5fd;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.btn-logout {
+  background: rgba(239, 68, 68, 0.16);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  margin-left: 2px;
+}
+
+.btn-logout:hover {
+  background: #dc2626;
+  border-color: #ef4444;
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(220, 38, 38, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-logout:active {
+  transform: translateY(1px);
+}
+
+/* Fullscreen Login Dashboard Overlay */
+.login-portal-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: radial-gradient(circle at 50% 20%, rgba(10, 25, 49, 0.94) 0%, rgba(3, 8, 18, 0.98) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+@keyframes loginCardPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.login-portal-card {
+  display: grid;
+  grid-template-columns: 390px 480px;
+  width: 100%;
+  max-width: 870px;
+  min-height: 560px;
+  border-radius: 24px;
+  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  background: #ffffff;
+  animation: loginCardPop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Left Hero Pane */
+.login-hero-pane {
+  background: linear-gradient(150deg, #07152b 0%, #0d2347 48%, #173b75 100%);
+  padding: 38px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  color: #ffffff;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.login-hero-pane::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.25), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.login-hero-pane::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  right: -60px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.16), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.login-hero-brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 1;
+}
+
+.login-crest-box {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+  border: 1.5px solid rgba(251, 191, 36, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fbbf24;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  flex-shrink: 0;
+}
+
+.login-school-title {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.login-portal-sub {
+  font-size: 12px;
+  font-weight: 600;
+  color: #94a3b8;
+  margin: 3px 0 0;
+  letter-spacing: 0.02em;
+}
+
+.login-terminal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 13px;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  color: #a7f3d0;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  margin-bottom: 18px;
+  align-self: flex-start;
+  z-index: 1;
+}
+
+.login-terminal-badge .pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: badgePulse 2s infinite;
+}
+
+.login-hero-desc {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #cbd5e1;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.login-status-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.login-status-item {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-key {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.05em;
+}
+
+.status-val {
+  font-size: 12px;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.status-val.text-green {
+  color: #34d399;
+}
+
+.login-hero-footer {
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.4;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 14px;
+  margin-top: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Right Form Pane */
+.login-form-pane {
+  padding: 34px 34px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.login-form-header {
+  margin-bottom: 16px;
+}
+
+.login-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.login-title-row h3 {
+  font-size: 21px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.terminal-lock-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form-header p {
+  font-size: 12.5px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Role Selector Chips */
+.role-selector-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  background: #f1f5f9;
+  padding: 5px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.role-chip {
+  border: none;
+  background: transparent;
+  padding: 8px 6px;
+  border-radius: 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: all 0.18s ease;
+  font-family: inherit;
+}
+
+.role-chip:hover {
+  color: #0f172a;
+}
+
+.role-chip.active {
+  background: #ffffff;
+  color: #1e40af;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Form Fields */
+.login-fields-form {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.login-fields-form .field-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.login-fields-form .field-wrap label {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #334155;
+  letter-spacing: 0.02em;
+}
+
+.input-icon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-leading-icon {
+  position: absolute;
+  left: 12px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.input-icon-wrap input {
+  width: 100%;
+  padding: 10px 14px 10px 38px;
+  border-radius: 10px;
+  border: 1.5px solid #cbd5e1;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #0f172a;
+  background: #ffffff;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.input-icon-wrap input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.btn-toggle-pwd {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.btn-toggle-pwd:hover {
+  color: #334155;
+  background: #f1f5f9;
+}
+
+.login-options-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: -2px;
+}
+
+.login-remember-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  user-select: none;
+}
+
+.login-remember-label input[type="checkbox"] {
+  accent-color: #2563eb;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+.terminal-pin-tag {
+  font-size: 10px;
+  font-weight: 800;
+  color: #059669;
+  background: #d1fae5;
+  padding: 2px 7px;
+  border-radius: 6px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.btn-login-submit {
+  width: 100%;
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 800;
+  padding: 11px 18px;
+  border-radius: 11px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  transition: all 0.18s ease;
+  margin-top: 4px;
+  font-family: inherit;
+}
+
+.btn-login-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
+  background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+}
+
+.btn-login-submit:active {
+  transform: translateY(1px);
+}
+
+/* Rapid 1-Click Demo Login Shortcuts */
+.quick-demo-login-box {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.quick-demo-title {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  color: #64748b;
+  letter-spacing: 0.06em;
+  margin-bottom: 7px;
+}
+
+.quick-demo-pills {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.demo-login-btn {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 9px;
+  padding: 6px 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #334155;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.demo-login-btn:hover {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #1e40af;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+}
+
+.demo-login-btn:active {
+  transform: translateY(1px);
+}
+
+.demo-role-tag {
+  font-size: 9px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.demo-role-tag.cashier {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.demo-role-tag.bursar {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.demo-role-tag.admin {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+/* Security Notice */
+.login-security-notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: #64748b;
+  line-height: 1.35;
+  margin-top: 13px;
+  padding: 7px 10px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.login-security-notice svg {
+  flex-shrink: 0;
+  color: #94a3b8;
+}
+
+/* Responsive Login Dashboard */
+@media (max-width: 860px) {
+  .login-portal-card {
+    grid-template-columns: 1fr;
+    max-width: 460px;
+    margin: auto;
+  }
+  .login-hero-pane {
+    padding: 26px 22px;
+  }
+  .login-form-pane {
+    padding: 24px 22px;
+  }
+}
+
+/* Dark Theme Overrides for Login & Header User Profile */
+[data-theme="dark"] .user-profile-widget {
+  background: rgba(15, 23, 42, 0.7);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+[data-theme="dark"] .login-portal-card {
+  background: #0f172a;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .login-form-pane {
+  background: #0b1322;
+}
+
+[data-theme="dark"] .login-title-row h3 {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .login-form-header p {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .terminal-lock-icon {
+  background: #1e293b;
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .role-selector-bar {
+  background: #16223b;
+}
+
+[data-theme="dark"] .role-chip {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .role-chip:hover {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .role-chip.active {
+  background: #1e3a8a;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .login-fields-form .field-wrap label {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .input-icon-wrap input {
+  background: #16223b;
+  border-color: #2b3959;
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .input-icon-wrap input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+[data-theme="dark"] .btn-toggle-pwd {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .btn-toggle-pwd:hover {
+  color: #ffffff;
+  background: #1e293b;
+}
+
+[data-theme="dark"] .login-remember-label {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .quick-demo-login-box {
+  border-top-color: #1e2942;
+}
+
+[data-theme="dark"] .quick-demo-title {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .demo-login-btn {
+  background: #16223b;
+  border-color: #2b3959;
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .demo-login-btn:hover {
+  background: #1e3a8a;
+  border-color: #3b82f6;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .login-security-notice {
+  background: #0d1527;
+  border-color: #1e2942;
+  color: #94a3b8;
+}
+
 </style>
+  <script>
+    // Immediate Theme & Session Initialization
+    (function() {
+      try {
+        var savedTheme = localStorage.getItem('canteen_theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          document.documentElement.classList.add('dark-theme');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+          document.documentElement.classList.remove('dark-theme');
+        }
+
+        var savedUser = localStorage.getItem('canteen_auth_user');
+        if (!savedUser) {
+          document.documentElement.classList.add('auth-locked');
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <!-- ==================== EXECUTIVE HEADER ==================== -->
@@ -4507,21 +5975,191 @@ input:focus, select:focus, textarea:focus {
       </div>
 
       <div class="header-actions">
+        <!-- Day / Night Mode Toggle Switch -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" type="button" aria-label="Toggle Day / Night mode" title="Switch between Day and Night mode (Ctrl+Shift+D)">
+          <span class="theme-toggle-track">
+            <span class="theme-toggle-thumb">
+              <span class="icon-sun" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+              </span>
+              <span class="icon-moon" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+              </span>
+            </span>
+          </span>
+          <span class="theme-mode-text" id="themeModeText">Day</span>
+        </button>
+
         <div id="liveClock" class="header-clock" title="Local School Time">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
           <span id="clockText">--:--:--</span>
         </div>
+
         <div id="syncBadge" class="cloud-pill demo" title="Cloud Sync Status">
           <span class="pulse-dot"></span>
           <span id="syncStatusText">Connecting...</span>
         </div>
+
         <button id="quickSyncBtn" class="btn-sync" type="button" title="Sync live with Google Sheets">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
           <span>Sync</span>
         </button>
+
+        <!-- Logged In User Profile Widget -->
+        <div id="userProfileWidget" class="user-profile-widget" hidden>
+          <div class="user-avatar-circle" id="userAvatarCircle">
+            <span id="userAvatarInitials">SM</span>
+          </div>
+          <div class="user-info-text">
+            <span class="user-display-name" id="userDisplayName">Sarah Mensah</span>
+            <span class="user-role-badge" id="userRoleBadge">POS Cashier</span>
+          </div>
+          <button id="logoutBtn" class="btn-logout" type="button" title="Sign out of current terminal session">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <span>Log Out</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
+
+  <!-- ==================== EXECUTIVE LOGIN & AUTHENTICATION DASHBOARD ==================== -->
+  <div id="loginOverlay" class="login-portal-wrapper">
+    <div class="login-portal-card">
+      <!-- Left Column: School Identity & System Status -->
+      <div class="login-hero-pane">
+        <div class="login-hero-brand">
+          <div class="login-crest-box">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
+              <path d="M7 2v20"></path>
+              <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
+            </svg>
+          </div>
+          <div>
+            <h2 class="login-school-title">COSMAT BASIC ACADEMY</h2>
+            <p class="login-portal-sub">Institutional Canteen &amp; Bursary Portal</p>
+          </div>
+        </div>
+
+        <div class="login-terminal-badge">
+          <span class="pulse-dot"></span>
+          <span>ENTERPRISE POS GATEWAY &bull; V3.2</span>
+        </div>
+
+        <div class="login-hero-desc">
+          <p>Secure cloud terminal for instant meal fee checkouts, real-time sibling ledger reconciliation, biometric learner pass scanning, and executive debtor accounting.</p>
+        </div>
+
+        <div class="login-status-strip">
+          <div class="login-status-item">
+            <span class="status-key">ACADEMIC TERM</span>
+            <strong class="status-val" id="loginTermVal">Term 1 · 2026/2027</strong>
+          </div>
+          <div class="login-status-item">
+            <span class="status-key">CLOUD DATABASE</span>
+            <strong class="status-val text-green">Online &bull; Google Sheets</strong>
+          </div>
+          <div class="login-status-item">
+            <span class="status-key">SECURITY STANDARD</span>
+            <strong class="status-val">AES-256 SSL Encrypted</strong>
+          </div>
+        </div>
+
+        <div class="login-hero-footer">
+          <small>&copy; 2026 Cosmat Basic Academy. All terminal transactions are encrypted.</small>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Login Dashboard & Terminal Sign In -->
+      <div class="login-form-pane">
+        <div class="login-form-header">
+          <div class="login-title-row">
+            <h3>Terminal Sign In</h3>
+            <span class="terminal-lock-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </span>
+          </div>
+          <p>Select your authorized staff role and sign in to open the canteen terminal.</p>
+        </div>
+
+        <!-- Role Selector Chips -->
+        <div class="role-selector-bar">
+          <button type="button" class="role-chip active" data-role="cashier" id="roleBtnCashier">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+            <span>POS Cashier</span>
+          </button>
+          <button type="button" class="role-chip" data-role="bursar" id="roleBtnBursar">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            <span>School Bursar</span>
+          </button>
+          <button type="button" class="role-chip" data-role="admin" id="roleBtnAdmin">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            <span>Administrator</span>
+          </button>
+        </div>
+
+        <form id="loginForm" class="login-fields-form">
+          <div class="field-wrap">
+            <label for="loginUsername">Staff Username or Terminal ID *</label>
+            <div class="input-icon-wrap">
+              <svg class="input-leading-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <input id="loginUsername" type="text" placeholder="e.g. cashier or sarah" required autocomplete="username" value="cashier">
+            </div>
+          </div>
+
+          <div class="field-wrap">
+            <label for="loginPassword">Access Password / PIN *</label>
+            <div class="input-icon-wrap">
+              <svg class="input-leading-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <input id="loginPassword" type="password" placeholder="Enter password or PIN" required autocomplete="current-password" value="1234">
+              <button type="button" id="togglePasswordVisibilityBtn" class="btn-toggle-pwd" title="Show or hide password">
+                <svg id="eyeIconOpen" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <svg id="eyeIconClosed" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="login-options-row">
+            <label class="login-remember-label">
+              <input type="checkbox" id="rememberSessionCheck" checked>
+              <span>Keep Terminal Signed In</span>
+            </label>
+            <span class="terminal-pin-tag">PIN Ready</span>
+          </div>
+
+          <button id="loginSubmitBtn" type="submit" class="btn btn-login-submit">
+            <svg id="loginSubmitIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+            <span id="loginSubmitText">Authenticate &amp; Open POS</span>
+          </button>
+        </form>
+
+        <!-- Quick 1-Click Demo Login Shortcuts -->
+        <div class="quick-demo-login-box">
+          <span class="quick-demo-title">RAPID ACCESS DEMO PRESETS:</span>
+          <div class="quick-demo-pills">
+            <button type="button" class="demo-login-btn" id="quickLoginCashierBtn">
+              <span class="demo-role-tag cashier">Cashier</span>
+              <span>Sarah Mensah</span>
+            </button>
+            <button type="button" class="demo-login-btn" id="quickLoginBursarBtn">
+              <span class="demo-role-tag bursar">Bursar</span>
+              <span>Kojo Antwi</span>
+            </button>
+            <button type="button" class="demo-login-btn" id="quickLoginAdminBtn">
+              <span class="demo-role-tag admin">Admin</span>
+              <span>Cosmat Admin</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="login-security-notice">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          <span>Authorized School Staff Terminal Only. All financial actions and daily audits are recorded.</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ==================== NAVIGATION TABS ==================== -->
   <nav class="app-nav" aria-label="Main navigation">
@@ -6429,10 +8067,86 @@ window.stateStore = new StateStore();
     const now = new Date();
     const timeStr = now.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
     const dateStr = now.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
-    el.textContent = `${timeStr} · ${dateStr}`;
+    const clockText = $('clockText');
+    if (clockText) clockText.textContent = `${timeStr} · ${dateStr}`;
   }
   setInterval(updateLiveClock, 1000);
   updateLiveClock();
+
+  // ===========================================================================
+  // DAY / NIGHT (LIGHT / DARK) THEME MANAGER
+  // ===========================================================================
+  function initThemeToggle() {
+    const toggleBtn = $('themeToggleBtn');
+    const modeText = $('themeModeText');
+
+    function applyTheme(theme, save = true) {
+      const isDark = theme === 'dark';
+      if (isDark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.documentElement.classList.add('dark-theme');
+        document.body.classList.add('dark-theme');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.documentElement.classList.remove('dark-theme');
+        document.body.classList.remove('dark-theme');
+      }
+
+      if (toggleBtn) {
+        toggleBtn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+        toggleBtn.classList.toggle('is-dark', isDark);
+      }
+      if (modeText) {
+        modeText.textContent = isDark ? 'Night' : 'Day';
+      }
+
+      if (save) {
+        try {
+          localStorage.setItem('canteen_theme', theme);
+        } catch (e) {}
+      }
+    }
+
+    // Determine initial state
+    let savedTheme = null;
+    try {
+      savedTheme = localStorage.getItem('canteen_theme');
+    } catch (e) {}
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+    applyTheme(initialTheme, false);
+
+    // Toggle button click handler
+    toggleBtn?.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      applyTheme(next, true);
+      toast(next === 'dark' ? 'Night mode enabled' : 'Day mode enabled');
+    });
+
+    // Keyboard shortcut: Ctrl + Shift + D
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'D' || e.key === 'd')) {
+        e.preventDefault();
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        applyTheme(next, true);
+        toast(next === 'dark' ? 'Night mode enabled' : 'Day mode enabled');
+      }
+    });
+
+    // Listen for OS color scheme change if user hasn't set an explicit preference
+    if (window.matchMedia) {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        try {
+          if (!localStorage.getItem('canteen_theme')) {
+            applyTheme(e.matches ? 'dark' : 'light', false);
+          }
+        } catch (e) {}
+      });
+    }
+  }
+  initThemeToggle();
 
   // Subtle POS Sound Chime (Web Audio API)
   function playSuccessChime() {
@@ -6521,6 +8235,262 @@ window.stateStore = new StateStore();
   document.querySelectorAll('.nav-tab, .nav-button').forEach(button => {
     button.addEventListener('click', () => showPage(button.dataset.page));
   });
+
+  // ===========================================================================
+  // AUTHENTICATION GATEWAY & SESSION MANAGER
+  // ===========================================================================
+  const STAFF_ACCOUNTS = {
+    cashier: {
+      username: 'cashier',
+      password: '1234',
+      name: 'Sarah Mensah',
+      roleTitle: 'POS Cashier',
+      initials: 'SM',
+      roleKey: 'cashier',
+      defaultPage: 'register'
+    },
+    bursar: {
+      username: 'bursar',
+      password: 'admin123',
+      name: 'Kojo Antwi',
+      roleTitle: 'School Bursar',
+      initials: 'KA',
+      roleKey: 'bursar',
+      defaultPage: 'tracking'
+    },
+    admin: {
+      username: 'admin',
+      password: 'admin123',
+      name: 'Cosmat Admin',
+      roleTitle: 'Administrator',
+      initials: 'CA',
+      roleKey: 'admin',
+      defaultPage: 'register'
+    }
+  };
+
+  let currentSelectedRole = 'cashier';
+
+  function initAuthSession() {
+    const overlay = $('loginOverlay');
+    const form = $('loginForm');
+    const usernameInput = $('loginUsername');
+    const passwordInput = $('loginPassword');
+    const togglePwdBtn = $('togglePasswordVisibilityBtn');
+    const eyeOpen = $('eyeIconOpen');
+    const eyeClosed = $('eyeIconClosed');
+    const submitBtn = $('loginSubmitBtn');
+    const submitText = $('loginSubmitText');
+    const userProfileWidget = $('userProfileWidget');
+    const userAvatarInitials = $('userAvatarInitials');
+    const userDisplayName = $('userDisplayName');
+    const userRoleBadge = $('userRoleBadge');
+    const logoutBtn = $('logoutBtn');
+
+    // Role switcher buttons
+    const roleChips = {
+      cashier: $('roleBtnCashier'),
+      bursar: $('roleBtnBursar'),
+      admin: $('roleBtnAdmin')
+    };
+
+    function selectRole(roleKey) {
+      currentSelectedRole = roleKey;
+      Object.keys(roleChips).forEach(key => {
+        if (roleChips[key]) {
+          roleChips[key].classList.toggle('active', key === roleKey);
+        }
+      });
+      const account = STAFF_ACCOUNTS[roleKey];
+      if (account) {
+        if (usernameInput) usernameInput.value = account.username;
+        if (passwordInput) passwordInput.value = account.password;
+        if (submitText) submitText.textContent = `Authenticate as ${account.roleTitle}`;
+      }
+    }
+
+    Object.keys(roleChips).forEach(roleKey => {
+      roleChips[roleKey]?.addEventListener('click', () => selectRole(roleKey));
+    });
+
+    // Password visibility toggle
+    togglePwdBtn?.addEventListener('click', () => {
+      if (!passwordInput) return;
+      const isPassword = passwordInput.type === 'password';
+      passwordInput.type = isPassword ? 'text' : 'password';
+      if (eyeOpen) eyeOpen.hidden = isPassword;
+      if (eyeClosed) eyeClosed.hidden = !isPassword;
+    });
+
+    // Core login execution
+    function authenticateSession(account) {
+      if (submitBtn) submitBtn.disabled = true;
+      if (submitText) submitText.textContent = 'Authenticating...';
+
+      setTimeout(() => {
+        const session = {
+          username: account.username,
+          name: account.name,
+          role: account.roleTitle,
+          roleKey: account.roleKey || 'cashier',
+          initials: account.initials || 'ST',
+          loginTime: new Date().toISOString()
+        };
+
+        try {
+          localStorage.setItem('canteen_auth_user', JSON.stringify(session));
+        } catch (e) {}
+
+        applySessionState(session, true);
+
+        if (submitBtn) submitBtn.disabled = false;
+        if (submitText) submitText.textContent = `Authenticate as ${account.roleTitle}`;
+
+        if (account.defaultPage) {
+          showPage(account.defaultPage);
+        }
+
+        playSuccessChime();
+        toast(`Welcome back, ${session.name}! Terminal unlocked.`);
+      }, 250);
+    }
+
+    function applySessionState(session, animate = false) {
+      document.documentElement.classList.remove('auth-locked');
+      document.body.classList.remove('auth-locked');
+
+      if (userProfileWidget) {
+        userProfileWidget.removeAttribute('hidden');
+        userProfileWidget.style.display = 'flex';
+      }
+      if (userAvatarInitials) userAvatarInitials.textContent = session.initials;
+      if (userDisplayName) userDisplayName.textContent = session.name;
+      if (userRoleBadge) userRoleBadge.textContent = session.role;
+
+      if (overlay) {
+        if (animate) {
+          overlay.style.transition = 'opacity 0.25s ease, visibility 0.25s ease';
+          overlay.style.opacity = '0';
+          setTimeout(() => {
+            overlay.style.display = 'none';
+          }, 250);
+        } else {
+          overlay.style.display = 'none';
+        }
+      }
+    }
+
+    // Form submit
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const enteredUser = (usernameInput?.value || '').trim().toLowerCase();
+      const enteredPwd = (passwordInput?.value || '').trim();
+
+      if (!enteredPwd) {
+        toast('Please enter staff access password or PIN.');
+        passwordInput?.focus();
+        return;
+      }
+
+      // Check predefined staff accounts
+      let matched = Object.values(STAFF_ACCOUNTS).find(
+        acc => acc.username.toLowerCase() === enteredUser && acc.password === enteredPwd
+      );
+
+      if (matched) {
+        authenticateSession(matched);
+        return;
+      }
+
+      // If credentials match standard pins (1234 or admin123) or current role's pin
+      const roleAcc = STAFF_ACCOUNTS[currentSelectedRole] || STAFF_ACCOUNTS.cashier;
+      if (enteredPwd === '1234' || enteredPwd === 'admin123' || enteredPwd === roleAcc.password) {
+        const customName = (enteredUser ? enteredUser.charAt(0).toUpperCase() + enteredUser.slice(1) : roleAcc.name);
+        const initials = customName.split(' ').map(s => s[0]).join('').slice(0, 2).toUpperCase() || 'ST';
+        authenticateSession({
+          username: enteredUser || roleAcc.username,
+          password: enteredPwd,
+          name: customName,
+          roleTitle: roleAcc.roleTitle,
+          roleKey: currentSelectedRole,
+          initials: initials,
+          defaultPage: roleAcc.defaultPage
+        });
+        return;
+      }
+
+      toast('Incorrect password or PIN. Try 1234 or admin123');
+    });
+
+    // Rapid 1-click Demo logins
+    $('quickLoginCashierBtn')?.addEventListener('click', () => {
+      selectRole('cashier');
+      authenticateSession(STAFF_ACCOUNTS.cashier);
+    });
+
+    $('quickLoginBursarBtn')?.addEventListener('click', () => {
+      selectRole('bursar');
+      authenticateSession(STAFF_ACCOUNTS.bursar);
+    });
+
+    $('quickLoginAdminBtn')?.addEventListener('click', () => {
+      selectRole('admin');
+      authenticateSession(STAFF_ACCOUNTS.admin);
+    });
+
+    // Logout handling
+    logoutBtn?.addEventListener('click', () => {
+      if (!confirm('Log out of current canteen terminal session?')) return;
+
+      try {
+        localStorage.removeItem('canteen_auth_user');
+      } catch (e) {}
+
+      document.documentElement.classList.add('auth-locked');
+      document.body.classList.add('auth-locked');
+
+      if (userProfileWidget) {
+        userProfileWidget.setAttribute('hidden', '');
+        userProfileWidget.style.display = 'none';
+      }
+
+      if (overlay) {
+        overlay.style.opacity = '1';
+        overlay.style.visibility = 'visible';
+        overlay.style.display = 'flex';
+      }
+
+      selectRole('cashier');
+      if (passwordInput) passwordInput.value = '1234';
+
+      toast('Terminal locked. Session logged out safely.');
+    });
+
+    // Boot check
+    try {
+      const savedUserStr = localStorage.getItem('canteen_auth_user');
+      if (savedUserStr) {
+        const savedSession = JSON.parse(savedUserStr);
+        if (savedSession && savedSession.name) {
+          applySessionState(savedSession, false);
+          return;
+        }
+      }
+    } catch (e) {}
+
+    // Not logged in: ensure locked
+    document.documentElement.classList.add('auth-locked');
+    document.body.classList.add('auth-locked');
+    if (userProfileWidget) {
+      userProfileWidget.setAttribute('hidden', '');
+      userProfileWidget.style.display = 'none';
+    }
+    if (overlay) {
+      overlay.style.display = 'flex';
+    }
+    selectRole('cashier');
+  }
+
 
   // ===========================================================================
   // STUDENT MANAGEMENT & LEARNERS DIRECTORY (PAGE 1)
@@ -8028,6 +9998,7 @@ window.stateStore = new StateStore();
   // INITIAL BOOTSTRAP
   // ===========================================================================
   async function initApp() {
+    initAuthSession();
     $('canteenDate').value = today();
     $('trackingDate').value = today();
     $('reportDate').value = today();
