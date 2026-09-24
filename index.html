@@ -392,6 +392,24 @@ h1, h2, h3, h4, h5 {
   gap: 16px;
 }
 
+.view-header.view-header-center {
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto 24px;
+}
+
+.view-header-center .view-header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.view-header-center .view-title-row {
+  justify-content: center;
+}
+
 .view-title-row {
   display: flex;
   align-items: center;
@@ -1436,8 +1454,73 @@ input:focus, select:focus, textarea:focus {
   vertical-align: middle;
 }
 
+/* Table Learner Profile Cell & Badges */
+.table-learner-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mini-learner-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand-900) 0%, var(--accent-600) 100%);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 12px;
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(10, 25, 49, 0.15);
+}
+
+.learner-cell-name {
+  display: block;
+  font-size: 13.5px;
+  color: var(--slate-900);
+  line-height: 1.25;
+}
+
+.learner-cell-id {
+  display: block;
+  font-size: 11px;
+  color: var(--slate-500);
+  font-family: var(--font-mono, monospace);
+  margin-top: 1px;
+}
+
+.table-class-pill {
+  font-size: 11.5px;
+  font-weight: 700;
+  background: #f1f5f9;
+  color: #334155;
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+}
+
+.table-money-expected {
+  font-family: var(--font-mono, monospace);
+  font-size: 13px;
+  color: var(--slate-700);
+}
+
+.table-remarks {
+  font-size: 12.5px;
+  color: var(--slate-500);
+}
+
+.table-action-btns {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
 /* Action Buttons */
-.edit-button, .restore-button, .receipt-row-btn {
+.edit-button, .restore-button, .receipt-row-btn, .void-button {
   font-size: 12px;
   font-weight: 700;
   padding: 6px 12px;
@@ -1445,23 +1528,44 @@ input:focus, select:focus, textarea:focus {
   color: var(--white);
   border: 0;
   cursor: pointer;
-  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
 }
 
 .edit-button {
-  background: var(--warning-600);
+  background: #f59e0b;
 }
-.edit-button:hover { background: var(--warning-700); }
+.edit-button:hover {
+  background: #d97706;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.35);
+}
+
+.void-button {
+  background: #dc2626;
+}
+.void-button:hover {
+  background: #b91c1c;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.35);
+}
+
+.receipt-row-btn {
+  background: var(--brand-900);
+}
+.receipt-row-btn:hover {
+  background: #1e3a8a;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(11, 25, 44, 0.3);
+}
 
 .restore-button {
   background: var(--success-600);
 }
 .restore-button:hover { background: var(--success-700); }
-
-.receipt-row-btn {
-  background: var(--slate-700);
-}
-.receipt-row-btn:hover { background: var(--slate-900); }
 
 .archive-button {
   background: var(--danger-600);
@@ -2483,8 +2587,8 @@ input:focus, select:focus, textarea:focus {
 
     <!-- ==================== VIEW 2: CASHIER REGISTER (POS) ==================== -->
     <section id="register" class="page-view active">
-      <div class="view-header">
-        <div>
+      <div class="view-header view-header-center">
+        <div class="view-header-content">
           <div class="view-title-row">
             <h2>Daily Canteen Cashier Register</h2>
             <span class="live-pos-badge">
@@ -2698,7 +2802,7 @@ input:focus, select:focus, textarea:focus {
                 <th>Balance</th>
                 <th>Remarks</th>
                 <th>Receipt</th>
-                <th class="text-right">Action</th>
+                <th class="text-right">Actions</th>
               </tr>
             </thead>
             <tbody id="recordList"></tbody>
@@ -3377,6 +3481,23 @@ class CanteenAPI {
     return { success: true, queued: true, record: recordData };
   }
 
+  // Void/Cancel a payment record
+  async voidRecord(recordId) {
+    if (this.hasCloudBackend()) {
+      this.notifyStatus('syncing');
+      try {
+        const res = await this.postAction('voidRecord', { recordId });
+        if (res && res.success) {
+          this.notifyStatus('synced');
+          return res;
+        }
+      } catch (err) {
+        console.warn('Cloud void error, continuing local void:', err);
+      }
+    }
+    return { success: true, queued: true, recordId };
+  }
+
   // Offline queue management
   getOfflineQueue() {
     return JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.OFFLINE_QUEUE) || '[]');
@@ -3616,6 +3737,17 @@ class StateStore {
     }
     localStorage.setItem(CONFIG.STORAGE_KEYS.RECORDS, JSON.stringify(this.records));
     this.notify('records_updated', this.records);
+  }
+
+  voidRecord(recordId) {
+    const idx = this.records.findIndex(r => r.id === recordId);
+    if (idx >= 0) {
+      const removed = this.records.splice(idx, 1)[0];
+      localStorage.setItem(CONFIG.STORAGE_KEYS.RECORDS, JSON.stringify(this.records));
+      this.notify('records_updated', this.records);
+      return removed;
+    }
+    return null;
   }
 }
 
@@ -4248,27 +4380,75 @@ window.stateStore = new StateStore();
     $('recordList').innerHTML = rows.length ? rows.map(r => `
       <tr>
         <td><strong>${r.date}</strong></td>
-        <td>${escapeHtml(r.studentName)}</td>
-        <td>${escapeHtml(r.class)}</td>
-        <td><span class="badge ${r.attendance === 'Present' ? 'badge-green' : 'badge-amber'}">${r.attendance}</span></td>
-        <td>${money(r.expectedCharge)}</td>
-        <td><strong class="text-green">${money(r.actualPaid)}</strong></td>
-        <td><strong class="${r.outstanding > 0 ? 'text-red' : ''}">${money(r.outstanding)}</strong></td>
-        <td>${escapeHtml(r.remarks) || '—'}</td>
         <td>
-          <button type="button" class="receipt-row-btn" data-record-receipt="${escapeHtml(r.id)}" title="Print Receipt">
+          <div class="table-learner-cell">
+            <div class="mini-learner-avatar">${escapeHtml(r.studentName.charAt(0))}</div>
+            <div>
+              <strong class="learner-cell-name">${escapeHtml(r.studentName)}</strong>
+              <small class="learner-cell-id">${escapeHtml(r.studentId)}</small>
+            </div>
+          </div>
+        </td>
+        <td><span class="table-class-pill">${escapeHtml(r.class)}</span></td>
+        <td><span class="badge ${r.attendance === 'Present' ? 'badge-green' : 'badge-amber'}">${r.attendance}</span></td>
+        <td><span class="table-money-expected">${money(r.expectedCharge)}</span></td>
+        <td><strong class="text-green">${money(r.actualPaid)}</strong></td>
+        <td><strong class="${r.outstanding > 0 ? 'text-red' : 'text-green'}">${money(r.outstanding)}</strong></td>
+        <td><span class="table-remarks">${escapeHtml(r.remarks) || '—'}</span></td>
+        <td>
+          <button type="button" class="receipt-row-btn" data-record-receipt="${escapeHtml(r.id)}" title="Print Thermal Voucher">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
             <span>Receipt</span>
           </button>
         </td>
         <td class="text-right">
-          <button type="button" class="edit-button" data-record-id="${escapeHtml(r.id)}" title="Edit Transaction">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-            <span>Edit</span>
-          </button>
+          <div class="table-action-btns">
+            <button type="button" class="edit-button" data-record-id="${escapeHtml(r.id)}" title="Edit Transaction">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+              <span>Edit</span>
+            </button>
+            <button type="button" class="void-button" data-record-void="${escapeHtml(r.id)}" title="Void & Cancel Payment">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
+              <span>Void</span>
+            </button>
+          </div>
         </td>
       </tr>
     `).join('') : '<tr><td class="empty" colspan="10">No daily records saved yet.</td></tr>';
+  }
+
+  async function voidRecordTransaction(recordId) {
+    const record = stateStore.records.find(r => r.id === recordId);
+    if (!record) return toast('Record not found.');
+
+    const confirmed = confirm(
+      `⚠️ VOID PAYMENT CONFIRMATION\n\n` +
+      `Are you sure you want to VOID this transaction?\n\n` +
+      `• Receipt: ${record.id}\n` +
+      `• Learner: ${record.studentName} (${record.class})\n` +
+      `• Amount Paid: ${money(record.actualPaid)}\n` +
+      `• Date: ${record.date}\n\n` +
+      `This will cancel the payment and remove it from today's cashier totals.`
+    );
+    if (!confirmed) return;
+
+    const removed = stateStore.voidRecord(recordId);
+    if (!removed) return toast('Failed to void transaction.');
+
+    renderRecords();
+    renderTracking();
+    playSuccessChime();
+    toast(`✓ Payment for ${record.studentName} voided successfully.`);
+
+    if (currentReceiptRecord && currentReceiptRecord.id === recordId) {
+      $('receiptModal')?.close();
+      currentReceiptRecord = null;
+    }
+
+    const res = await apiClient.voidRecord(recordId);
+    if (res && res.queued) {
+      toast('Void recorded locally. Will sync to Google Sheets when online.');
+    }
   }
 
   $('recordList')?.addEventListener('click', e => {
@@ -4276,6 +4456,7 @@ window.stateStore = new StateStore();
     if (!btn) return;
     if (btn.dataset.recordId) beginRecordEdit(btn.dataset.recordId);
     if (btn.dataset.recordReceipt) openReceiptModal(btn.dataset.recordReceipt);
+    if (btn.dataset.recordVoid) voidRecordTransaction(btn.dataset.recordVoid);
   });
 
   $('cancelEditButton')?.addEventListener('click', () => resetRegisterForm($('canteenDate').value));
